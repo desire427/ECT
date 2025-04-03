@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Métadonnées et liens CSS inchangés -->
+    <!-- ... (conservez tout le head précédent) ... -->
+    
+    <style>
+        /* Ajoutez ces styles supplémentaires */
+        
+        /* Catalogue amélioré */
+        .catalog-container {
+            position: relative;
+            margin: 40px 0;
+        }
+        
+        .catalog-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding: 20px 0;
+            gap: 20px;
+        }
+        
+        .catalog-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .catalog-slider::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .catalog-slider::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+        
+        .catalog-item {
+            scroll-snap-align: start;
+            flex: 0 0 280px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .catalog-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .catalog-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .catalog-info {
+            padding: 15px;
+        }
+        
+        .catalog-category {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+        
+        .catalog-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+        
+        .catalog-price {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .catalog-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-catalog {
+            flex: 1;
+            padding: 8px 0;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-details {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-details:hover {
+            background: #1a252f;
+        }
+        
+        .btn-cart {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-cart:hover {
+            background: #c0392b;
+        }
+        
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .slider-dot.active {
+            background: var(--accent-color);
+            transform: scale(1.2);
+        }
+        
+        @media (max-width: 768px) {
+            .catalog-item {
+                flex: 0 0 220px;
+            }
+            
+            .catalog-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ... (conservez tout le contenu jusqu'à la section catalogue) ... -->
+
+    <!-- Section Catalogue améliorée -->
+    <div class="container py-5">
+        <div class="section-title" data-aos="fade-up">
+            <h1>NOTRE CATALOGUE</h1>
+            <p class="text-muted">Parcourez nos différentes catégories de produits</p>
+        </div>
+        
+        <!-- Navigation par catégories -->
+        <div class="d-flex justify-content-center mb-5" data-aos="fade-up">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-outline-primary active" data-category="all">Tout voir</button>
+                <button type="button" class="btn btn-outline-primary" data-category="arduino">Arduino</button>
+                <button type="button" class="btn btn-outline-primary" data-category="machines">Machines</button>
+                <button type="button" class="btn btn-outline-primary" data-category="services">Services</button>
+                <button type="button" class="btn btn-outline-primary" data-category="formations">Formations</button>
+            </div>
+        </div>
+        
+        <!-- Catalogue Arduino -->
+        <div class="catalog-container" data-aos="fade-up" data-category="arduino">
+            <h3 class="mb-4"><i class="fas fa-microchip me-2"></i> Kits Arduino et IoT</h3>
+            <div class="catalog-slider" id="arduino-slider">
+                <!-- Item 1 -->
+                <div class="catalog-item">
+                    <img src="arduino1.jpg" alt="Kit Arduino Starter">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Starter Kit</span>
+                        <h4 class="catalog-title">Kit Arduino Débutant</h4>
+                        <div class="catalog-price">25,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="catalog-item">
+                    <img src="arduino2.jpg" alt="Kit Arduino Avancé">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Avancé</span>
+                        <h4 class="catalog-title">Kit IoT Professionnel</h4>
+                        <div class="catalog-price">45,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="catalog-item">
+                    <img src="arduino3.jpg" alt="Capteurs">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Capteurs</span>
+                        <h4 class="catalog-title">Pack 10 Capteurs</h4>
+                        <div class="catalog-price">18,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="catalog-item">
+                    <img src="arduino4.jpg" alt="Ecrans Arduino">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Affichage</span>
+                        <h4 class="catalog-title">Ecran LCD + Shield</h4>
+                        <div class="catalog-price">12,500 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="catalog-item">
+                    <img src="arduino5.jpg" alt="Robotique">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Robotique</span>
+                        <h4 class="catalog-title">Kit Robot Éducatif</h4>
+                        <div class="catalog-price">32,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav" id="arduino-dots"></div>
+        </div>
+        
+        <!-- Catalogue Machines -->
+        <div class="catalog-container" data-aos="fade-up" data-category="machines">
+            <h3 class="mb-4"><i class="fas fa-robot me-2"></i> Machines Numériques</h3>
+            <div class="catalog-slider" id="machines-slider">
+                <!-- Item 1 -->
+                <div class="catalog-item">
+                    <img src="machine1.jpg" alt="Imprimante 3D">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Impression 3D</span>
+                        <h4 class="catalog-title">Imprimante 3D Pro</h4>
+                        <div class="catalog-price">450,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">Demander un devis</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="catalog-item">
+                    <img src="machine2.jpg" alt="Découpe Laser">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Découpe Laser</span>
+                        <h4 class="catalog-title">Découpeuse Laser 60W</h4>
+                        <div class="catalog-price">1,200,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">Demander un devis</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="catalog-item">
+                    <img src="machine3.jpg" alt="CNC">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Fraisage CNC</span>
+                        <h4 class="catalog-title">Machine CNC 3 Axes</h4>
+                        <div class="catalog-price">980,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">Demander un devis</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="catalog-item">
+                    <img src="machine4.jpg" alt="Broderie">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Broderie</span>
+                        <h4 class="catalog-title">Machine à Broder 6 têtes</h4>
+                        <div class="catalog-price">1,500,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">Demander un devis</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav" id="machines-dots"></div>
+        </div>
+        
+        <!-- Catalogue Services -->
+        <div class="catalog-container" data-aos="fade-up" data-category="services">
+            <h3 class="mb-4"><i class="fas fa-cogs me-2"></i> Services</h3>
+            <div class="catalog-slider" id="services-slider">
+                <!-- Item 1 -->
+                <div class="catalog-item">
+                    <img src="service1.jpg" alt="Découpe Laser">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Découpe Laser</span>
+                        <h4 class="catalog-title">Service Découpe Laser</h4>
+                        <div class="catalog-price">À partir de 5,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">Commander</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="catalog-item">
+                    <img src="service2.jpg" alt="Broderie">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Broderie</span>
+                        <h4 class="catalog-title">Broderie Numérique</h4>
+                        <div class="catalog-price">À partir de 3,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">Commander</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="catalog-item">
+                    <img src="service3.jpg" alt="Impression 3D">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Impression 3D</span>
+                        <h4 class="catalog-title">Service Impression 3D</h4>
+                        <div class="catalog-price">À partir de 2,500 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">Commander</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav" id="services-dots"></div>
+        </div>
+        
+        <!-- Catalogue Formations -->
+        <div class="catalog-container" data-aos="fade-up" data-category="formations">
+            <h3 class="mb-4"><i class="fas fa-graduation-cap me-2"></i> Formations</h3>
+            <div class="catalog-slider" id="formations-slider">
+                <!-- Item 1 -->
+                <div class="catalog-item">
+                    <img src="formation1.jpg" alt="Formation Arduino">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Débutant</span>
+                        <h4 class="catalog-title">Formation Arduino</h4>
+                        <div class="catalog-price">25,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">S'inscrire</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="catalog-item">
+                    <img src="formation2.jpg" alt="Formation CNC">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Avancé</span>
+                        <h4 class="catalog-title">Formation Usinage CNC</h4>
+                        <div class="catalog-price">35,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">S'inscrire</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="catalog-item">
+                    <img src="formation3.jpg" alt="Formation Laser">
+                    <div class="catalog-info">
+                        <span class="catalog-category">Intermédiaire</span>
+                        <h4 class="catalog-title">Formation Découpe Laser</h4>
+                        <div class="catalog-price">30,000 CFA</div>
+                        <div class="catalog-buttons">
+                            <button class="btn-catalog btn-details">Détails</button>
+                            <button class="btn-catalog btn-cart">S'inscrire</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav" id="formations-dots"></div>
+        </div>
+    </div>
+
+    <!-- ... (conservez le reste du contenu) ... -->
+
+    <script>
+        // Script pour le catalogue interactif
+        
+        // Filtrage par catégorie
+        const categoryButtons = document.querySelectorAll('[data-category]');
+        const catalogContainers = document.querySelectorAll('.catalog-container');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Active le bouton sélectionné
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const category = button.dataset.category;
+                
+                // Affiche/masque les catégories
+                catalogContainers.forEach(container => {
+                    if (category === 'all' || container.dataset.category === category) {
+                        container.style.display = 'block';
+                    } else {
+                        container.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Initialisation des sliders
+        function initSlider(sliderId, dotsId) {
+            const slider = document.getElementById(sliderId);
+            const dotsContainer = document.getElementById(dotsId);
+            
+            if (!slider || !dotsContainer) return;
+            
+            // Crée les indicateurs de position
+            const items = slider.querySelectorAll('.catalog-item');
+            items.forEach((item, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('slider-dot');
+                if (index === 0) dot.classList.add('active');
+                
+                dot.addEventListener('click', () => {
+                    // Scroll vers l'élément correspondant
+                    slider.scrollTo({
+                        left: item.offsetLeft - slider.offsetLeft,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                dotsContainer.appendChild(dot);
+            });
+            
+            // Met à jour les indicateurs pendant le scroll
+            slider.addEventListener('scroll', () => {
+                const dots = dotsContainer.querySelectorAll('.slider-dot');
+                const scrollPos = slider.scrollLeft + slider.offsetWidth / 2;
+                
+                items.forEach((item, index) => {
+                    const itemStart = item.offsetLeft;
+                    const itemEnd = itemStart + item.offsetWidth;
+                    
+                    if (scrollPos >= itemStart && scrollPos < itemEnd) {
+                        dots.forEach(dot => dot.classList.remove('active'));
+                        dots[index].classList.add('active');
+                    }
+                });
+            });
+        }
+        
+        // Initialise tous les sliders
+        initSlider('arduino-slider', 'arduino-dots');
+        initSlider('machines-slider', 'machines-dots');
+        initSlider('services-slider', 'services-dots');
+        initSlider('formations-slider', 'formations-dots');
+        
+        // Gestion du clic sur les boutons "Ajouter au panier"
+        document.querySelectorAll('.btn-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const item = this.closest('.catalog-item');
+                const title = item.querySelector('.catalog-title').textContent;
+                const price = item.querySelector('.catalog-price').textContent;
+                
+                // Animation du bouton
+                this.innerHTML = '<i class="fas fa-check"></i> Ajouté';
+                this.style.backgroundColor = '#2ecc71';
+                
+                setTimeout(() => {
+                    this.innerHTML = this.textContent.includes('Devis') ? 'Demander un devis' : 
+                                  this.textContent.includes('inscrire') ? 'S\'inscrire' : 'Ajouter';
+                    this.style.backgroundColor = '';
+                }, 2000);
+                
+                // Mise à jour du compteur du panier
+                const cartCount = document.querySelector('.cart-count');
+                let count = parseInt(cartCount.getAttribute('data-count')) + 1;
+                cartCount.setAttribute('data-count', count);
+                cartCount.innerHTML = `<i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">${count} CFA</span>`;
+                
+                // Animation du panier
+                cartCount.classList.add('animate__animated', 'animate__bounceIn');
+                setTimeout(() => {
+                    cartCount.classList.remove('animate__animated', 'animate__bounceIn');
+                }, 1000);
+                
+                // Notification (vous pouvez personnaliser ceci)
+                alert(`${title} a été ajouté à votre panier\nPrix: ${price}`);
+            });
+        });
+        
+        // Gestion du clic sur les boutons "Détails"
+        document.querySelectorAll('.btn-details').forEach(button => {
+            button.addEventListener('click', function() {
+                const item = this.closest('.catalog-item');
+                const title = item.querySelector('.catalog-title').textContent;
+                
+                // Ici vous pouvez rediriger vers une page de détails
+                // ou afficher un modal avec plus d'informations
+                alert(`Détails pour: ${title}\n\nCette fonctionnalité peut être connectée à une page produit détaillée.`);
+            });
+        });
+    </script>
+</body>
+</html>
