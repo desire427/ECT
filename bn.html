@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique - LINGUERE FABLAB</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="arduino.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+
+        /* Styles existants conservés... */
+
+        /* Nouveaux styles pour le panier amélioré */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            max-width: 500px; /* Largeur augmentée */
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            flex-direction: column;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f5f5f5;
+            transition: all 0.3s;
+        }
+
+        .cart-item:hover {
+            background: #f9f9f9;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-right: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 5px;
+            border: 1px solid #eee;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .cart-item-price {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .quantity-btn:hover {
+            background: var(--light-color);
+        }
+
+        .quantity-value {
+            width: 40px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .remove-item {
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 5px;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .remove-item:hover {
+            color: #c0392b;
+            text-decoration: underline;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            background: #f9f9f9;
+        }
+
+        .cart-summary {
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .summary-label {
+            color: var(--text-light);
+        }
+
+        .summary-value {
+            font-weight: 500;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .checkout-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .payment-method {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-method:hover {
+            border-color: var(--accent-color);
+        }
+
+        .payment-method.active {
+            border-color: var(--secondary-color);
+            background: rgba(231, 76, 60, 0.05);
+        }
+
+        .payment-method i {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .payment-method.active i {
+            color: var(--secondary-color);
+        }
+
+        .delivery-options {
+            margin-bottom: 20px;
+        }
+
+        .delivery-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .delivery-option input {
+            margin-right: 10px;
+        }
+
+        /* Checkout Modal */
+        .checkout-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkout-content {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            overflow: hidden;
+            animation: modalFadeIn 0.3s;
+        }
+
+        .checkout-header {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: #ddd;
+            color: var(--text-color);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .step.active .step-number {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .step.completed .step-number {
+            background: #27ae60;
+            color: white;
+        }
+
+        .step-title {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .step.active .step-title {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            right: -50%;
+            height: 2px;
+            background: #ddd;
+            z-index: -1;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .checkout-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .checkout-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-outline {
+            background: none;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Confirmation Modal */
+        .confirmation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .confirmation-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            padding: 30px;
+            animation: modalFadeIn 0.3s;
+        }
+
+        .confirmation-icon {
+            font-size: 4rem;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .confirmation-buttons button {
+            flex: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .payment-methods {
+                flex-direction: column;
+            }
+            
+            .checkout-steps .step-title {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Votre structure HTML existante... -->
+     <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container d-flex flex-wrap justify-content-center justify-content-md-between">
+            <span><a href="localisation.html"><i class="fas fa-map-marker-alt me-2"></i> LOCALISATION</a></span>
+            <span><i class="fas fa-truck me-2"></i> Livraison Partout au Sénégal</span>
+            <span><i class="far fa-clock me-2"></i> 08:00 - 17:00</span>
+            <span><i class="fas fa-phone me-2"></i> (+221) 77 077 18 32</span>
+            <span><a href="https://wa.me/+221770771832" target="_blank"><i class="fab fa-whatsapp me-2"></i> WHATSAPP</a></span>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div class="logo animate__animated animate__fadeInLeft d-flex align-items-center">
+                <a href="index.html"><img src="logos.jpeg" alt="Logo" class="logo-img me-3"></a>
+                <span class="nav-brand">LINGUERE FABLAB</span>
+            </div>
+            
+            <div class="search-bar animate__animated animate__zoomIn">
+                <input type="text" placeholder="Rechercher produits...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="icons d-flex align-items-center">
+                <span class="me-3"><i class="far fa-heart"></i></span>
+                <span class="me-3"><i class="far fa-user"></i></span>
+                <span class="cart-count" data-count="0"><i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">0 CFA</span></span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Navigation -->
+    <div class="nav-bar">
+        <div class="container d-flex flex-wrap justify-content-center">
+            <a href="#"><i class="fas fa-home me-2"></i> ACCUEIL</a>
+            <div class="dropdown">
+                <a href="#"><i class="fas fa-list me-2"></i> CATALOGUE <i class="fas fa-chevron-down ms-1"></i></a>
+                <div class="dropdown-menu">
+                    <a href="arduino.html"><i class="fas fa-microchip me-2"></i> Kits Arduino et IOT</a>
+                    <a href="machine.html"><i class="fas fa-robot me-2"></i> Machines Numériques</a>
+                    <a href="installation.html"><i class="fas fa-tools me-2"></i> Installations Fablab</a>
+                    <a href="broderie.html"><i class="fas fa-tshirt me-2"></i> Broderie numérique</a>
+                    <a href="CNC.html"><i class="fas fa-cogs me-2"></i> Services CNC</a>
+                    <a href="laser.html"><i class="fas fa-cut me-2"></i> Découpe laser</a>
+                    <a href="boutique"><i class="fas fa-laptop-code me-2"></i> Logiciels</a>
+                    <a href="boutique"><i class="fas fa-plug me-2"></i> Accessoires</a>
+                </div>
+            </div>
+            <a href="#"><i class="fas fa-certificate me-2"></i> NOUVEAUTÉS</a>
+            <a href="#"><i class="fas fa-info-circle me-2"></i> À PROPOS</a>
+            <a href="#"><i class="fas fa-envelope me-2"></i> CONTACT</a>
+        </div>
+    </div>
+
+    <!-- Confirmation Message -->
+    <div id="confirmation-message" class="confirmation-message">
+        <i class="fas fa-check-circle me-2"></i> Produit ajouté au panier!
+    </div>
+
+    <!-- Main Content -->
+    <main class="shop-container container py-4">
+        <!-- Filter Section -->
+        <aside class="filter-section">
+            <h3 class="mb-4"><i class="fas fa-filter me-2"></i> Filtres</h3>
+            
+            <div class="filter-group">
+                <div class="filter-title" onclick="toggleFilter('category-filter')">
+                    <span>Catégories</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="filter-options" id="category-filter">
+                    <div class="filter-option">
+                        <input type="checkbox" id="arduino" checked>
+                        <label for="arduino">Kits Arduino</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="iot" checked>
+                        <label for="iot">Composants IoT</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="robotics" checked>
+                        <label for="robotics">Robotique</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="sensors" checked>
+                        <label for="sensors">Capteurs</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <div class="filter-title" onclick="toggleFilter('price-filter')">
+                    <span>Prix</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="filter-options show" id="price-filter">
+                    <input type="range" class="price-range" min="0" max="500000" value="500000" step="1000">
+                    <div class="price-values">
+                        <span>0 CFA</span>
+                        <span>500 000 CFA</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <div class="filter-title" onclick="toggleFilter('stock-filter')">
+                    <span>Disponibilité</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="filter-options" id="stock-filter">
+                    <div class="filter-option">
+                        <input type="checkbox" id="in-stock" checked>
+                        <label for="in-stock">En stock</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="low-stock">
+                        <label for="low-stock">Stock limité</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="out-of-stock">
+                        <label for="out-of-stock">En rupture</label>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary w-100 mt-3">
+                <i class="fas fa-sync-alt me-2"></i> Appliquer les filtres
+            </button>
+        </aside>
+
+        <!-- Product Section -->
+        <section class="product-container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1><i class="fas fa-microchip me-2"></i> Kits Arduino et IOT</h1>
+                <div class="sort-options">
+                    <select class="form-select">
+                        <option>Trier par : Pertinence</option>
+                        <option>Prix croissant</option>
+                        <option>Prix décroissant</option>
+                        <option>Nouveautés</option>
+                        <option>Meilleures ventes</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card" data-aos="fade-up" data-category="Kits Arduino">
+                    <span class="product-badge">Nouveau</span>
+                    <img src="Arduino mega.png" alt="Arduino Méga">
+                    <div class="quick-view">
+                        <button class="quick-view-btn" onclick="showQuickView('Arduino Méga', 'Arduino mega.png', 'Carte puissante avec plus d\'entrées/sorties que l\'Uno.', 15000, 50, 'Kits Arduino')">
+                            <i class="fas fa-eye me-1"></i> Aperçu rapide
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Arduino Méga</h3>
+                        <p class="product-description">Carte puissante avec plus d'entrées/sorties que l'Uno.</p>
+                        <p class="product-price">15 000 CFA</p>
+                        <p class="product-stock in-stock"><i class="fas fa-check-circle me-1"></i> En stock (50 unités)</p>
+                        <button class="add-to-cart-button" onclick="addToCart('Arduino Méga', 15000, 'Kits Arduino')">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        <div class="product-meta">
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                            <span class="product-sku">REF: ARD-MEGA-01</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Kits Arduino">
+                    <img src="Arduino uno.png" alt="Arduino Uno">
+                    <div class="quick-view">
+                        <button class="quick-view-btn" onclick="showQuickView('Arduino Uno', 'Arduino uno.png', 'La carte Arduino la plus populaire pour les débutants.', 10000, 100, 'Kits Arduino')">
+                            <i class="fas fa-eye me-1"></i> Aperçu rapide
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Arduino Uno</h3>
+                        <p class="product-description">La carte Arduino la plus populaire pour les débutants.</p>
+                        <p class="product-price">10 000 CFA</p>
+                        <p class="product-stock in-stock"><i class="fas fa-check-circle me-1"></i> En stock (100 unités)</p>
+                        <button class="add-to-cart-button" onclick="addToCart('Arduino Uno', 10000, 'Kits Arduino')">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        <div class="product-meta">
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </span>
+                            <span class="product-sku">REF: ARD-UNO-01</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200" data-category="Kits Arduino">
+                    <span class="product-badge" style="background: #27ae60;">Promo</span>
+                    <img src="Arduino nano.png" alt="Arduino Nano">
+                    <div class="quick-view">
+                        <button class="quick-view-btn" onclick="showQuickView('Arduino Nano', 'Arduino nano.png', 'Version compacte de l\'Arduino pour les projets avec espace limité.', 8000, 30, 'Kits Arduino')">
+                            <i class="fas fa-eye me-1"></i> Aperçu rapide
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Arduino Nano</h3>
+                        <p class="product-description">Version compacte de l'Arduino pour les projets avec espace limité.</p>
+                        <p class="product-price">8 000 CFA</p>
+                        <p class="product-stock in-stock"><i class="fas fa-check-circle me-1"></i> En stock (30 unités)</p>
+                        <button class="add-to-cart-button" onclick="addToCart('Arduino Nano', 8000, 'Kits Arduino')">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        <div class="product-meta">
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                            <span class="product-sku">REF: ARD-NANO-01</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="product-card" data-aos="fade-up" data-category="Composants IoT">
+                    <img src="esp32.png" alt="ESP32">
+                    <div class="quick-view">
+                        <button class="quick-view-btn" onclick="showQuickView('ESP32', 'esp32.png', 'Microcontrôleur avec Wi-Fi et Bluetooth intégrés pour projets IoT.', 12000, 15, 'Composants IoT')">
+                            <i class="fas fa-eye me-1"></i> Aperçu rapide
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">ESP32</h3>
+                        <p class="product-description">Microcontrôleur avec Wi-Fi et Bluetooth intégrés pour projets IoT.</p>
+                        <p class="product-price">12 000 CFA</p>
+                        <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (15 unités)</p>
+                        <button class="add-to-cart-button" onclick="addToCart('ESP32', 12000, 'Composants IoT')">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        <div class="product-meta">
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </span>
+                            <span class="product-sku">REF: ESP-32-01</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 5 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Capteurs">
+                    <img src="Capteur DHT11.png" alt="Capteur DHT11">
+                    <div class="quick-view">
+                        <button class="quick-view-btn" onclick="showQuickView('Capteur DHT11', 'Capteur DHT11.png', 'Capteur de température et d\'humidité numérique.', 5000, 25, 'Capteurs')">
+                            <i class="fas fa-eye me-1"></i> Aperçu rapide
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Capteur DHT11</h3>
+                        <p class="product-description">Capteur de température et d'humidité numérique.</p>
+                        <p class="product-price">5 000 CFA</p>
+                        <p class="product-stock in-stock"><i class="fas fa-check-circle me-1"></i> En stock (25 unités)</p>
+                        <button class="add-to-cart-button" onclick="addToCart('Capteur DHT11', 5000, 'Capteurs')">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        <div class="product-meta">
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </span>
+                            <span class="product-sku">REF: SEN-DHT11-01</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 6 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200" data-category="Capteurs">
+                    <img src="Capteur ultrason.png" alt="Capteur ultrason">
+                    <div class="quick-view">
+                        <button class="quick-view-btn" onclick="showQuickView('Capteur ultrason', 'Capteur ultrason.png', 'Utilisé pour mesurer des distances avec précision ou détecter des obstacles.', 7500, 10, 'Capteurs')">
+                            <i class="fas fa-eye me-1"></i> Aperçu rapide
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Capteur ultrason</h3>
+                        <p class="product-description">Utilisé pour mesurer des distances avec précision ou détecter des obstacles.</p>
+                        <p class="product-price">7 500 CFA</p>
+                        <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (10 unités)</p>
+                        <button class="add-to-cart-button" onclick="addToCart('Capteur ultrason', 7500, 'Capteurs')">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        <div class="product-meta">
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                            <span class="product-sku">REF: SEN-USON-01</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 7 -->
+                <div class="product-card" data-aos="fade-up" data-category="Kits Arduino">
+                    <img src="kits de demarrage.png" alt="Kit de démarrage">
+                    <div class="quick-view">
+                        <button class="quick-view-btn" onclick="showQuickView('Kit de démarrage', 'kits de demarrage.png', 'Tout ce dont vous avez besoin pour commencer avec Arduino.', 25000, 8, 'Kits Arduino')">
+                            <i class="fas fa-eye me-1"></i> Aperçu rapide
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Kit de démarrage</h3>
+                        <p class="product-description">Tout ce dont vous avez besoin pour commencer avec Arduino.</p>
+                        <p class="product-price">25 000 CFA</p>
+                        <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (8 unités)</p>
+                        <button class="add-to-cart-button" onclick="addToCart('Kit de démarrage', 25000, 'Kits Arduino')">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        <div class="product-meta">
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                            <span class="product-sku">REF: KIT-START-01</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 8 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
+                    <span class="product-badge" style="background: #9b59b6;">Top vente</span>
+                    <img src="kits robotique 1.jpg" alt="Kit robotique">
+                    <div class="quick-view">
+                        <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
+                            <i class="fas fa-eye me-1"></i> Aperçu rapide
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Kit robotique</h3>
+                        <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
+                        <p class="product-price">35 000 CFA</p>
+                        <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
+                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique')">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        <div class="product-meta">
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                            <span class="product-sku">REF: KIT-ROBOT-01</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 8 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
+                    <span class="product-badge" style="background: #9b59b6;">Top vente</span>
+                    <img src="kits robotique 1.jpg" alt="Kit robotique">
+                    <div class="quick-view">
+                        <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
+                            <i class="fas fa-eye me-1"></i> Aperçu rapide
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Kit robotique</h3>
+                        <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
+                        <p class="product-price">35 000 CFA</p>
+                        <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
+                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique')">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        <div class="product-meta">
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                            <span class="product-sku">REF: KIT-ROBOT-01</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 8 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
+                    <span class="product-badge" style="background: #9b59b6;">Top vente</span>
+                    <img src="kits robotique 1.jpg" alt="Kit robotique">
+                    <div class="quick-view">
+                        <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
+                            <i class="fas fa-eye me-1"></i> Aperçu rapide
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Kit robotique</h3>
+                        <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
+                        <p class="product-price">35 000 CFA</p>
+                        <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
+                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique')">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        <div class="product-meta">
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                            <span class="product-sku">REF: KIT-ROBOT-01</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 8 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
+                    <span class="product-badge" style="background: #9b59b6;">Top vente</span>
+                    <img src="kits robotique 1.jpg" alt="Kit robotique">
+                    <div class="quick-view">
+                        <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
+                            <i class="fas fa-eye me-1"></i> Aperçu rapide
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Kit robotique</h3>
+                        <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
+                        <p class="product-price">35 000 CFA</p>
+                        <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
+                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique')">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        <div class="product-meta">
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                            <span class="product-sku">REF: KIT-ROBOT-01</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 8 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
+                    <span class="product-badge" style="background: #9b59b6;">Top vente</span>
+                    <img src="kits robotique 1.jpg" alt="Kit robotique">
+                    <div class="quick-view">
+                        <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
+                            <i class="fas fa-eye me-1"></i> Aperçu rapide
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Kit robotique</h3>
+                        <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
+                        <p class="product-price">35 000 CFA</p>
+                        <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
+                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique')">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        <div class="product-meta">
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                            <span class="product-sku">REF: KIT-ROBOT-01</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quick-view-modal">
+        <div class="quick-view-content">
+            <span class="close-quick-view" onclick="closeQuickView()">&times;</span>
+            <div class="row">
+                <div class="col-md-6 p-4">
+                    <img src="" alt="" id="quick-view-img" class="w-100">
+                    <div class="d-flex mt-3">
+                        <img src="" alt="" class="thumb-img me-2" style="width: 60px; height: 60px; object-fit: contain; border: 1px solid #ddd; cursor: pointer;">
+                        <img src="" alt="" class="thumb-img me-2" style="width: 60px; height: 60px; object-fit: contain; border: 1px solid #ddd; cursor: pointer;">
+                        <img src="" alt="" class="thumb-img" style="width: 60px; height: 60px; object-fit: contain; border: 1px solid #ddd; cursor: pointer;">
+                    </div>
+                </div>
+                <div class="col-md-6 p-4">
+                    <h2 id="quick-view-title"></h2>
+                    <div class="rating mb-3">
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star-half-alt text-warning"></i>
+                        <span class="ms-2">(12 avis)</span>
+                    </div>
+                    <p id="quick-view-price" class="h4 text-danger mb-3"></p>
+                    <p id="quick-view-desc" class="mb-4"></p>
+                    
+                    <div class="availability mb-4">
+                        <strong>Disponibilité : </strong>
+                        <span id="quick-view-stock"></span>
+                    </div>
+                    
+                    <div class="quantity-selector mb-4">
+                        <label for="quantity" class="form-label">Quantité :</label>
+                        <div class="input-group" style="max-width: 150px;">
+                            <button class="btn btn-outline-secondary" type="button" onclick="decreaseQuantity()">-</button>
+                            <input type="number" class="form-control text-center" id="quantity" value="1" min="1">
+                            <button class="btn btn-outline-secondary" type="button" onclick="increaseQuantity()">+</button>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-lg w-100 mb-3" onclick="addToCartFromQuickView()">
+                        <i class="fas fa-cart-plus me-2"></i> Ajouter au panier
+                    </button>
+                    
+                    <div class="product-meta mt-4">
+                        <div class="meta-item">
+                            <strong>Référence :</strong> <span id="quick-view-sku">ARD-MEGA-01</span>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Catégorie :</strong> <span id="quick-view-category">Kits Arduino</span>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Tags :</strong> <span>Arduino, Microcontrôleur, DIY</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart me-2"></i> Votre Panier</h3>
+            <button id="close-cart" class="btn btn-sm btn-outline-danger">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Les éléments du panier seront ajoutés ici dynamiquement -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total :</span>
+                <span id="total-price">0 CFA</span>
+            </div>
+            <button id="checkout-button" class="checkout-btn">
+                <i class="fas fa-credit-card me-2"></i> Passer la commande
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-5 mb-md-0">
+                    <h3 class="footer-heading">LINGUÈRE FABLAB</h3>
+                    <p>Votre partenaire en fabrication numérique au Sénégal. Machines, formations et services sur mesure pour particuliers, écoles et entreprises.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-3 col-6 mb-5 mb-md-0">
+                    <h3 class="footer-heading">LIENS RAPIDES</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Accueil</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Boutique</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Services</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Formations</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>À propos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-3 col-6 mb-5 mb-md-0">
+                    <h3 class="footer-heading">CATÉGORIES</h3>
+                    <ul class="footer-links">
+                        <li><a href="arduino.html"><i class="fas fa-chevron-right me-2"></i>Arduino & IoT</a></li>
+                        <li><a href="machine.html"><i class="fas fa-chevron-right me-2"></i>Machines</a></li>
+                        <li><a href="installation.html"><i class="fas fa-chevron-right me-2"></i>Installations</a></li>
+                        <li><a href="broderie.html"><i class="fas fa-chevron-right me-2"></i>Broderie</a></li>
+                        <li><a href="CNC.html"><i class="fas fa-chevron-right me-2"></i>Services CNC</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-12">
+                    <h3 class="footer-heading">CONTACT</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Avenue de l'Innovation, Dakar, Sénégal</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>(+221) 77 077 18 32</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>linguerefablab@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Lun-Ven: 08:00 - 17:00<br>Sam: 09:00 - 13:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom pt-4 mt-5">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-0">&copy; 2025 Linguère Fablab. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="mb-0">Conçu avec <i class="fas fa-heart text-danger"></i> par Linguère Fablab Team</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal amélioré -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart me-2"></i> Votre Panier</h3>
+            <button id="close-cart" class="btn btn-sm btn-outline-light">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Les éléments du panier seront ajoutés ici dynamiquement -->
+            <div class="text-center py-5" id="empty-cart-message">
+                <i class="fas fa-shopping-cart fa-3x mb-3" style="color: #ddd;"></i>
+                <p>Votre panier est vide</p>
+                <button class="btn btn-outline-primary" onclick="closeCart()">Continuer vos achats</button>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span class="summary-label">Sous-total</span>
+                    <span class="summary-value" id="subtotal-price">0 CFA</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Livraison</span>
+                    <span class="summary-value" id="delivery-price">0 CFA</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Réduction</span>
+                    <span class="summary-value" id="discount-price">0 CFA</span>
+                </div>
+            </div>
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="total-price">0 CFA</span>
+            </div>
+            
+            <div class="delivery-options">
+                <h5><i class="fas fa-truck me-2"></i> Options de livraison</h5>
+                <div class="delivery-option">
+                    <input type="radio" id="delivery-standard" name="delivery" value="standard" checked onchange="updateDelivery()">
+                    <label for="delivery-standard">Livraison standard (3-5 jours) - 2 500 CFA</label>
+                </div>
+                <div class="delivery-option">
+                    <input type="radio" id="delivery-express" name="delivery" value="express" onchange="updateDelivery()">
+                    <label for="delivery-express">Livraison express (24h) - 5 000 CFA</label>
+                </div>
+                <div class="delivery-option">
+                    <input type="radio" id="delivery-pickup" name="delivery" value="pickup" onchange="updateDelivery()">
+                    <label for="delivery-pickup">Retrait en magasin - Gratuit</label>
+                </div>
+            </div>
+            
+            <div class="payment-methods">
+                <div class="payment-method active" onclick="selectPayment('wave')">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <div>Wave</div>
+                </div>
+                <div class="payment-method" onclick="selectPayment('orange')">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div>Orange Money</div>
+                </div>
+            </div>
+            
+            <button id="checkout-button" class="checkout-btn" onclick="startCheckout()">
+                <i class="fas fa-credit-card me-2"></i> Passer la commande
+            </button>
+            
+            <button class="btn btn-outline-secondary w-100" onclick="closeCart()">
+                <i class="fas fa-arrow-left me-2"></i> Continuer mes achats
+            </button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="checkout-modal">
+        <div class="checkout-content">
+            <div class="checkout-header">
+                <h4>Finaliser la commande</h4>
+                <button class="btn btn-sm btn-outline-light" onclick="closeCheckout()">&times;</button>
+            </div>
+            <div class="checkout-steps">
+                <div class="step active" id="step1">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Informations</div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Paiement</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Confirmation</div>
+                </div>
+            </div>
+            <div class="checkout-body" id="checkout-step1">
+                <h5 class="mb-4"><i class="fas fa-user-circle me-2"></i> Informations personnelles</h5>
+                <div class="form-group">
+                    <label for="fullname">Nom complet</label>
+                    <input type="text" id="fullname" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Téléphone</label>
+                    <input type="tel" id="phone" class="form-control" required>
+                </div>
+                
+                <h5 class="mb-4 mt-4"><i class="fas fa-map-marker-alt me-2"></i> Adresse de livraison</h5>
+                <div class="form-group">
+                    <label for="address">Adresse</label>
+                    <input type="text" id="address" class="form-control" required>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="city">Ville</label>
+                            <input type="text" id="city" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="region">Région</label>
+                            <select id="region" class="form-control" required>
+                                <option value="">Sélectionnez...</option>
+                                <option value="Dakar">Dakar</option>
+                                <option value="Thiès">Thiès</option>
+                                <option value="Saint-Louis">Saint-Louis</option>
+                                <option value="Ziguinchor">Ziguinchor</option>
+                                <option value="Diourbel">Diourbel</option>
+                                <option value="Louga">Louga</option>
+                                <option value="Fatick">Fatick</option>
+                                <option value="Kaolack">Kaolack</option>
+                                <option value="Kolda">Kolda</option>
+                                <option value="Matam">Matam</option>
+                                <option value="Sédhiou">Sédhiou</option>
+                                <option value="Tambacounda">Tambacounda</option>
+                                <option value="Kaffrine">Kaffrine</option>
+                                <option value="Kédougou">Kédougou</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes (optionnel)</label>
+                    <textarea id="notes" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            
+            <div class="checkout-body" id="checkout-step2" style="display: none;">
+                <h5 class="mb-4"><i class="fas fa-credit-card me-2"></i> Paiement</h5>
+                <div id="payment-wave" class="payment-method-details">
+                    <div class="alert alert-info">
+                        <p>Pour payer avec Wave, veuillez effectuer un paiement au numéro suivant :</p>
+                        <h4 class="text-center my-3">(+221) 77 123 45 67</h4>
+                        <p>Merci d'indiquer votre numéro de commande dans la référence de paiement.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="wave-number">Votre numéro Wave</label>
+                        <input type="text" id="wave-number" class="form-control" placeholder="Ex: 77 123 45 67">
+                    </div>
+                    <div class="form-group">
+                        <label for="wave-transaction">Numéro de transaction (après paiement)</label>
+                        <input type="text" id="wave-transaction" class="form-control" placeholder="Ex: W123456789">
+                    </div>
+                </div>
+                
+                <div id="payment-orange" class="payment-method-details" style="display: none;">
+                    <div class="alert alert-info">
+                        <p>Pour payer avec Orange Money, veuillez effectuer un paiement au numéro suivant :</p>
+                        <h4 class="text-center my-3">(+221) 77 765 43 21</h4>
+                        <p>Merci d'indiquer votre numéro de commande dans la référence de paiement.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="orange-number">Votre numéro Orange</label>
+                        <input type="text" id="orange-number" class="form-control" placeholder="Ex: 77 765 43 21">
+                    </div>
+                    <div class="form-group">
+                        <label for="orange-transaction">Numéro de transaction (après paiement)</label>
+                        <input type="text" id="orange-transaction" class="form-control" placeholder="Ex: OM123456789">
+                    </div>
+                </div>
+                
+                <div class="alert alert-warning mt-4">
+                    <i class="fas fa-exclamation-circle me-2"></i> Votre commande sera traitée après confirmation du paiement.
+                </div>
+            </div>
+            
+            <div class="checkout-body" id="checkout-step3" style="display: none;">
+                <div class="text-center py-4">
+                    <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+                    <h4>Paiement confirmé!</h4>
+                    <p class="my-3">Merci pour votre commande. Votre numéro de suivi est <strong>CMD-2023-12345</strong></p>
+                    <p>Nous vous contacterons sous peu pour confirmer la livraison.</p>
+                </div>
+                
+                <div class="order-summary">
+                    <h5 class="mb-3"><i class="fas fa-receipt me-2"></i> Récapitulatif de commande</h5>
+                    <div class="summary-item">
+                        <span>Date</span>
+                        <span id="order-date">12 Nov 2023</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Méthode de paiement</span>
+                        <span id="order-payment">Wave</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Livraison</span>
+                        <span id="order-delivery">Standard (3-5 jours)</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Adresse</span>
+                        <span id="order-address">123 Rue de l'Innovation, Dakar</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total</span>
+                        <span id="order-total">45 000 CFA</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checkout-actions">
+                <button class="btn btn-outline" id="back-button" style="display: none;" onclick="previousStep()">
+                    <i class="fas fa-arrow-left me-2"></i> Retour
+                </button>
+                <button class="btn btn-primary" id="next-button" onclick="nextStep()">
+                    Suivant <i class="fas fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="confirmation-modal">
+        <div class="confirmation-content">
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Commande confirmée!</h3>
+            <p>Merci pour votre achat. Votre commande a été enregistrée avec succès.</p>
+            <p>Nous vous avons envoyé un email de confirmation avec les détails de votre commande.</p>
+            <p>Numéro de commande: <strong>CMD-2023-12345</strong></p>
+            
+            <div class="confirmation-buttons">
+                <button class="btn btn-outline" onclick="closeConfirmation()">
+                    <i class="fas fa-shopping-cart me-2"></i> Continuer mes achats
+                </button>
+                <button class="btn btn-primary" onclick="trackOrder()">
+                    <i class="fas fa-truck me-2"></i> Suivre ma commande
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialisation du panier
+        let cart = [];
+        let total = 0;
+        let subtotal = 0;
+        let deliveryCost = 0;
+        let discount = 0;
+        let currentStep = 1;
+        let selectedPayment = 'wave';
+        
+        // Fonction pour afficher le panier
+        function showCart() {
+            const cartModal = document.getElementById('cart-modal');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const emptyCartMessage = document.getElementById('empty-cart-message');
+            
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                emptyCartMessage.style.display = 'block';
+            } else {
+                emptyCartMessage.style.display = 'none';
+                
+                cart.forEach(item => {
+                    const cartItemDiv = document.createElement('div');
+                    cartItemDiv.classList.add('cart-item');
+                    
+                    cartItemDiv.innerHTML = `
+                        <img src="${item.image || 'default-product.jpg'}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price.toLocaleString()} CFA</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="updateCartItem('${item.name}', -1)">-</button>
+                                <span class="quantity-value">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateCartItem('${item.name}', 1)">+</button>
+                            </div>
+                            <div class="remove-item" onclick="removeCartItem('${item.name}')">
+                                <i class="fas fa-trash-alt me-1"></i> Supprimer
+                            </div>
+                        </div>
+                    `;
+                    
+                    cartItemsContainer.appendChild(cartItemDiv);
+                });
+            }
+            
+            updateCartTotals();
+            cartModal.style.display = 'flex';
+        }
+        
+        // Fonction pour fermer le panier
+        function closeCart() {
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+        
+        // Fonction pour mettre à jour les totaux du panier
+        function updateCartTotals() {
+            subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Calculer les frais de livraison
+            const deliveryOption = document.querySelector('input[name="delivery"]:checked').value;
+            switch(deliveryOption) {
+                case 'standard':
+                    deliveryCost = 2500;
+                    break;
+                case 'express':
+                    deliveryCost = 5000;
+                    break;
+                case 'pickup':
+                    deliveryCost = 0;
+                    break;
+            }
+            
+            // Appliquer une réduction si le total est supérieur à 50 000 CFA
+            discount = subtotal > 50000 ? subtotal * 0.1 : 0;
+            
+            total = subtotal + deliveryCost - discount;
+            
+            // Mettre à jour l'affichage
+            document.getElementById('subtotal-price').textContent = subtotal.toLocaleString() + ' CFA';
+            document.getElementById('delivery-price').textContent = deliveryCost.toLocaleString() + ' CFA';
+            document.getElementById('discount-price').textContent = discount.toLocaleString() + ' CFA';
+            document.getElementById('total-price').textContent = total.toLocaleString() + ' CFA';
+            
+            // Mettre à jour le compteur du panier
+            const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-count').setAttribute('data-count', cartCount);
+            document.querySelector('.cart-count span').textContent = total.toLocaleString() + ' CFA';
+        }
+        
+        // Fonction pour mettre à jour les frais de livraison
+        function updateDelivery() {
+            updateCartTotals();
+        }
+        
+        // Fonction pour sélectionner le mode de paiement
+        function selectPayment(method) {
+            selectedPayment = method;
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            if (method === 'wave') {
+                document.querySelector('.payment-method:nth-child(1)').classList.add('active');
+            } else {
+                document.querySelector('.payment-method:nth-child(2)').classList.add('active');
+            }
+        }
+        
+        // Fonction pour ajouter un produit au panier
+        function addToCart(productName, productPrice, productCategory, productImage) {
+            const existingProduct = cart.find(item => item.name === productName);
+            
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push({ 
+                    name: productName, 
+                    price: productPrice, 
+                    quantity: 1,
+                    category: productCategory,
+                    image: productImage || 'default-product.jpg'
+                });
+            }
+            
+            updateCartTotals();
+            
+            // Afficher le message de confirmation
+            const confirmationMessage = document.getElementById('confirmation-message');
+            confirmationMessage.style.display = 'block';
+            setTimeout(() => {
+                confirmationMessage.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Fonction pour mettre à jour un article du panier
+        function updateCartItem(productName, change) {
+            const product = cart.find(item => item.name === productName);
+            
+            if (product) {
+                if (product.quantity + change > 0) {
+                    product.quantity += change;
+                } else {
+                    removeCartItem(productName);
+                    return;
+                }
+                
+                updateCartTotals();
+                showCart();
+            }
+        }
+        
+        // Fonction pour supprimer un article du panier
+        function removeCartItem(productName) {
+            const productIndex = cart.findIndex(item => item.name === productName);
+            
+            if (productIndex !== -1) {
+                cart.splice(productIndex, 1);
+                updateCartTotals();
+                showCart();
+            }
+        }
+        
+        // Fonction pour démarrer le processus de commande
+        function startCheckout() {
+            if (cart.length === 0) {
+                alert('Votre panier est vide !');
+                return;
+            }
+            
+            closeCart();
+            document.getElementById('checkout-modal').style.display = 'flex';
+            currentStep = 1;
+            updateCheckoutSteps();
+        }
+        
+        // Fonction pour fermer le processus de commande
+        function closeCheckout() {
+            document.getElementById('checkout-modal').style.display = 'none';
+        }
+        
+        // Fonction pour passer à l'étape suivante
+        function nextStep() {
+            // Validation des champs selon l'étape actuelle
+            if (currentStep === 1) {
+                const fullname = document.getElementById('fullname').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+                const city = document.getElementById('city').value;
+                const region = document.getElementById('region').value;
+                
+                if (!fullname || !email || !phone || !address || !city || !region) {
+                    alert('Veuillez remplir tous les champs obligatoires');
+                    return;
+                }
+            } else if (currentStep === 2) {
+                if (selectedPayment === 'wave') {
+                    const waveNumber = document.getElementById('wave-number').value;
+                    const waveTransaction = document.getElementById('wave-transaction').value;
+                    
+                    if (!waveNumber || !waveTransaction) {
+                        alert('Veuillez remplir les informations de paiement Wave');
+                        return;
+                    }
+                } else {
+                    const orangeNumber = document.getElementById('orange-number').value;
+                    const orangeTransaction = document.getElementById('orange-transaction').value;
+                    
+                    if (!orangeNumber || !orangeTransaction) {
+                        alert('Veuillez remplir les informations de paiement Orange Money');
+                        return;
+                    }
+                }
+            }
+            
+            // Passer à l'étape suivante
+            document.getElementById(`checkout-step${currentStep}`).style.display = 'none';
+            currentStep++;
+            
+            if (currentStep === 3) {
+                // Si on arrive à l'étape de confirmation, remplir les détails
+                fillOrderSummary();
+            }
+            
+            updateCheckoutSteps();
+            document.getElementById(`checkout-step${currentStep}`).style.display = 'block';
+        }
+        
+        // Fonction pour revenir à l'étape précédente
+        function previousStep() {
+            document.getElementById(`checkout-step${currentStep}`).style.display = 'none';
+            currentStep--;
+            updateCheckoutSteps();
+            document.getElementById(`checkout-step${currentStep}`).style.display = 'block';
+        }
+        
+        // Fonction pour mettre à jour l'affichage des étapes
+        function updateCheckoutSteps() {
+            // Mettre à jour les étapes
+            document.querySelectorAll('.step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                
+                if (index + 1 < currentStep) {
+                    step.classList.add('completed');
+                } else if (index + 1 === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+            
+            // Afficher/masquer les boutons
+            document.getElementById('back-button').style.display = currentStep > 1 ? 'block' : 'none';
+            
+            if (currentStep === 3) {
+                document.getElementById('next-button').innerHTML = 'Terminer <i class="fas fa-check ms-2"></i>';
+                document.getElementById('next-button').onclick = completeOrder;
+            } else {
+                document.getElementById('next-button').innerHTML = 'Suivant <i class="fas fa-arrow-right ms-2"></i>';
+                document.getElementById('next-button').onclick = nextStep;
+            }
+            
+            // Afficher le bon mode de paiement
+            document.getElementById('payment-wave').style.display = selectedPayment === 'wave' ? 'block' : 'none';
+            document.getElementById('payment-orange').style.display = selectedPayment === 'orange' ? 'block' : 'none';
+        }
+        
+        // Fonction pour remplir le récapitulatif de commande
+        function fillOrderSummary() {
+            const today = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            document.getElementById('order-date').textContent = today.toLocaleDateString('fr-FR', options);
+            
+            document.getElementById('order-payment').textContent = selectedPayment === 'wave' ? 'Wave' : 'Orange Money';
+            
+            const deliveryOption = document.querySelector('input[name="delivery"]:checked').value;
+            let deliveryText = '';
+            switch(deliveryOption) {
+                case 'standard':
+                    deliveryText = 'Standard (3-5 jours)';
+                    break;
+                case 'express':
+                    deliveryText = 'Express (24h)';
+                    break;
+                case 'pickup':
+                    deliveryText = 'Retrait en magasin';
+                    break;
+            }
+            document.getElementById('order-delivery').textContent = deliveryText;
+            
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const region = document.getElementById('region').value;
+            document.getElementById('order-address').textContent = `${address}, ${city}, ${region}`;
+            
+            document.getElementById('order-total').textContent = total.toLocaleString() + ' CFA';
+        }
+        
+        // Fonction pour finaliser la commande
+        function completeOrder() {
+            closeCheckout();
+            
+            // Envoyer les données de la commande au serveur (simulé ici)
+            const orderData = {
+                customer: {
+                    name: document.getElementById('fullname').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    address: {
+                        street: document.getElementById('address').value,
+                        city: document.getElementById('city').value,
+                        region: document.getElementById('region').value
+                    }
+                },
+                items: cart,
+                payment: {
+                    method: selectedPayment,
+                    details: selectedPayment === 'wave' ? {
+                        number: document.getElementById('wave-number').value,
+                        transaction: document.getElementById('wave-transaction').value
+                    } : {
+                        number: document.getElementById('orange-number').value,
+                        transaction: document.getElementById('orange-transaction').value
+                    }
+                },
+                delivery: document.querySelector('input[name="delivery"]:checked').value,
+                total: total,
+                date: new Date()
+            };
+            
+            console.log('Order submitted:', orderData);
+            
+            // Simuler un traitement asynchrone
+            setTimeout(() => {
+                // Vider le panier
+                cart = [];
+                updateCartTotals();
+                
+                // Afficher la confirmation
+                document.getElementById('confirmation-modal').style.display = 'flex';
+            }, 1500);
+        }
+        
+        // Fonction pour fermer la modal de confirmation
+        function closeConfirmation() {
+            document.getElementById('confirmation-modal').style.display = 'none';
+        }
+        
+        // Fonction pour suivre la commande
+        function trackOrder() {
+            closeConfirmation();
+            alert('Fonctionnalité de suivi de commande à implémenter');
+            // Rediriger vers la page de suivi
+            // window.location.href = '/track-order?id=CMD-2023-12345';
+        }
+        
+        // Écouteurs d'événements
+        document.querySelector('.cart-count').addEventListener('click', showCart);
+        document.getElementById('close-cart').addEventListener('click', closeCart);
+        
+        // Fermer les modals en cliquant à l'extérieur
+        window.addEventListener('click', (event) => {
+            if (event.target === document.getElementById('cart-modal')) {
+                closeCart();
+            }
+            if (event.target === document.getElementById('checkout-modal')) {
+                closeCheckout();
+            }
+            if (event.target === document.getElementById('confirmation-modal')) {
+                closeConfirmation();
+            }
+        });
+    </script>
+</body>
+</html>
