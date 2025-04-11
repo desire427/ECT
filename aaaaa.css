@@ -930,16 +930,22 @@ footer {
 
 .services-section .card-image-title {
     position: absolute;
-    bottom: 0;
+    top: 50%; /* Centre verticalement */
     left: 0;
     right: 0;
-    background: white;
+    transform: translateY(-50%); /* Ajuste le centrage */
     padding: 20px;
     font-size: 1.4rem;
     font-weight: 700;
     color: #2178d0;
     text-align: center;
     margin: 0;
+    z-index: 1; /* S'assure qu'il est au-dessus de l'image */
+    transition: opacity 0.3s ease; /* Animation de disparition */
+}
+
+.services-section .card:hover .card-image-title {
+    opacity: 0; /* Fait disparaître le titre au survol */
 }
 
 /* Styles spécifiques pour la section Formations */
@@ -1066,4 +1072,173 @@ footer {
     font-size: 0.8rem;
     font-weight: 600;
     z-index: 2;
+}
+
+
+/*----------------- Styles généraux ------------ */
+.proj {
+    width: 100%;
+    overflow: hidden;
+}
+
+.section-title h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #2c3e50;
+}
+
+.formations-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/*----------------- Conteneurs ------------ */
+.gauche, .droite {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.gauche:hover, .droiteh:hover, .droiteb:hover {
+    transform: translateY(-5px);
+}
+
+.gauche {
+    width: 48%;
+    height: 500px;
+    background-image: url(aa.png);
+    background-size: cover;
+    background-position: center;
+    background-position: center;
+}
+
+.droite {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.droiteh, .droiteb {
+    width: 100%;
+    height: 240px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+}
+
+.droiteh {
+    background-image: url(brother1.png);
+}
+
+.droiteb {
+    background-image: url(aaaa.png);
+}
+
+/*----------------- Contenu ------------ */
+.content-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+}
+
+.description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/*----------------- Animations ------------ */
+.title-animate {
+    animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    from {
+        text-shadow: 0 0 5px rgba(44, 62, 80, 0.5);
+    }
+    to {
+        text-shadow: 0 0 15px rgba(44, 62, 80, 0.8), 0 0 20px rgba(44, 62, 80, 0.6);
+    }
+}
+
+.slide-in-title {
+    transform: translateX(-50px);
+    opacity: 0;
+    animation: slideIn 0.8s forwards ease-out;
+}
+
+.fade-in-description {
+    opacity: 0;
+    animation: fadeIn 1s forwards 0.5s;
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 0.9;
+    }
+}
+
+.btn-pulse {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.btn-pulse:hover {
+    background-color: #2980b9;
+    transform: translateX(5px);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+    }
+}
+
+/*----------------- Responsive ------------ */
+@media (max-width: 768px) {
+    .formations-container {
+        flex-direction: column;
+    }
+    
+    .gauche, .droite {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .gauche {
+        height: 300px;
+    }
 }

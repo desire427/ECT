@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Réalisations - Linguère Fablab</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #015bd1 0%, #0252dd 100%);
+        }
+        .project-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, #0442c8, #0642da);
+            bottom: -10px;
+            left: 25%;
+            border-radius: 2px;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #0336c2;
+            bottom: -2px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        .active-nav:after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <img src="https://via.placeholder.com/50" alt="Linguère Fablab Logo" class="h-12">
+                    <span class="font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-purple-800 to-purple-600">Linguère Fablab</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#" class="text-gray-700 hover:text-purple-800 nav-link">Accueil</a>
+                    <a href="#" class="text-purple-800 font-medium nav-link active-nav">Réalisations</a>
+                    <a href="#" class="text-gray-700 hover:text-purple-800 nav-link">Formations</a>
+                    <a href="#" class="text-gray-700 hover:text-purple-800 nav-link">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button class="mobile-menu-button p-2 focus:outline-none">
+                        <i class="fas fa-bars text-purple-800 text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Nos <span class="text-yellow-300">Réalisations</span></h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">
+                Découvrez nos projets concrets qui transforment la communauté à travers la technologie et l'innovation.
+            </p>
+            <a href="#projects" class="bg-white text-purple-800 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300 inline-flex items-center">
+                Explorer nos projets <i class="fas fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section id="projects" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-purple-800 mb-4 section-title">Nos Projets Phares</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Des initiatives concrètes qui font la différence dans notre communauté.
+                </p>
+            </div>
+
+            <!-- Project 1 -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
+                <div class="order-2 md:order-1">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gradient-to-r from-purple-600 to-purple-800 p-3 rounded-full mr-4 shadow-lg">
+                            <i class="fas fa-laptop-code text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Smart Coders</h3>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">
+                        Programme d'initiation au codage et à la robotique pour les enfants de 8 à 16 ans. Nous avons formé plus de 500 jeunes aux bases de la programmation à travers des ateliers interactifs.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-purple-100 p-4 rounded-lg">
+                            <div class="text-purple-800 text-xl font-bold mb-1">500+</div>
+                            <div class="text-gray-600 text-sm">Enfants formés</div>
+                        </div>
+                        <div class="bg-purple-100 p-4 rounded-lg">
+                            <div class="text-purple-800 text-xl font-bold mb-1">20+</div>
+                            <div class="text-gray-600 text-sm">Écoles partenaires</div>
+                        </div>
+                    </div>
+                    <a href="#" class="inline-flex items-center text-purple-800 font-medium hover:text-purple-600">
+                        Voir plus de détails <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <div class="order-1 md:order-2 relative rounded-xl overflow-hidden shadow-xl h-96">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Smart Coders" 
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h4 class="font-bold text-lg">Atelier Smart Coders</h4>
+                        <p class="text-sm">École primaire de Dakar, 2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
+                <div class="relative rounded-xl overflow-hidden shadow-xl h-96">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Women Tech" 
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h4 class="font-bold text-lg">Formation Women Tech</h4>
+                        <p class="text-sm">Centre de formation, 2022</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gradient-to-r from-pink-600 to-pink-800 p-3 rounded-full mr-4 shadow-lg">
+                            <i class="fas fa-female text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Women Tech</h3>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">
+                        Programme de formation intensive en développement web et mobile destiné aux jeunes femmes. 120 femmes formées en 2 ans, avec un taux d'insertion professionnelle de 75%.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-pink-100 p-4 rounded-lg">
+                            <div class="text-pink-800 text-xl font-bold mb-1">120</div>
+                            <div class="text-gray-600 text-sm">Femmes formées</div>
+                        </div>
+                        <div class="bg-pink-100 p-4 rounded-lg">
+                            <div class="text-pink-800 text-xl font-bold mb-1">75%</div>
+                            <div class="text-gray-600 text-sm">Taux d'insertion</div>
+                        </div>
+                    </div>
+                    <a href="#" class="inline-flex items-center text-purple-800 font-medium hover:text-purple-600">
+                        Voir plus de détails <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gradient-to-r from-green-600 to-green-800 p-3 rounded-full mr-4 shadow-lg">
+                            <i class="fas fa-leaf text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Green Innov</h3>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">
+                        Solutions technologiques pour des villes durables. Nous avons installé 15 stations de monitoring environnemental et développé une application de suivi de la qualité de l'air.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-green-100 p-4 rounded-lg">
+                            <div class="text-green-800 text-xl font-bold mb-1">15</div>
+                            <div class="text-gray-600 text-sm">Stations installées</div>
+                        </div>
+                        <div class="bg-green-100 p-4 rounded-lg">
+                            <div class="text-green-800 text-xl font-bold mb-1">10K+</div>
+                            <div class="text-gray-600 text-sm">Utilisateurs</div>
+                        </div>
+                    </div>
+                    <a href="#" class="inline-flex items-center text-purple-800 font-medium hover:text-purple-600">
+                        Voir plus de détails <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <div class="relative rounded-xl overflow-hidden shadow-xl h-96">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Green Innov" 
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h4 class="font-bold text-lg">Station Green Innov</h4>
+                        <p class="text-sm">Parc de Dakar, 2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative rounded-xl overflow-hidden shadow-xl h-96">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" 
+                         alt="AgriTech Lab" 
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <h4 class="font-bold text-lg">Démonstration AgriTech</h4>
+                        <p class="text-sm">Région de Thiès, 2022</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gradient-to-r from-yellow-600 to-yellow-800 p-3 rounded-full mr-4 shadow-lg">
+                            <i class="fas fa-tractor text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">AgriTech Lab</h3>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">
+                        Technologies agricoles pour améliorer la productivité. Nous avons équipé 50 fermes de capteurs intelligents et formé 200 agriculteurs aux nouvelles technologies.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-yellow-100 p-4 rounded-lg">
+                            <div class="text-yellow-800 text-xl font-bold mb-1">50</div>
+                            <div class="text-gray-600 text-sm">Fermes équipées</div>
+                        </div>
+                        <div class="bg-yellow-100 p-4 rounded-lg">
+                            <div class="text-yellow-800 text-xl font-bold mb-1">200</div>
+                            <div class="text-gray-600 text-sm">Agriculteurs formés</div>
+                        </div>
+                    </div>
+                    <a href="#" class="inline-flex items-center text-purple-800 font-medium hover:text-purple-600">
+                        Voir plus de détails <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-purple-800 mb-4 section-title">Galerie Photos</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Quelques moments forts de nos différentes activités et réalisations.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="relative group overflow-hidden rounded-xl h-64 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1542621334-a254cf47733d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Atelier Smart Coders" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <i class="fas fa-search-plus text-white text-3xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent text-white opacity-0 group-hover:opacity-100 transition duration-300">
+                        <p class="text-sm font-medium">Atelier Smart Coders - 2023</p>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-xl h-64 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1581093057306-e9124970a442?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Formation Women Tech" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <i class="fas fa-search-plus text-white text-3xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent text-white opacity-0 group-hover:opacity-100 transition duration-300">
+                        <p class="text-sm font-medium">Formation Women Tech - 2022</p>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-xl h-64 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Installation Green Innov" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <i class="fas fa-search-plus text-white text-3xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent text-white opacity-0 group-hover:opacity-100 transition duration-300">
+                        <p class="text-sm font-medium">Installation Green Innov - 2023</p>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-xl h-64 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1581093057920-6235e840a4a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Cérémonie de remise" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <i class="fas fa-search-plus text-white text-3xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent text-white opacity-0 group-hover:opacity-100 transition duration-300">
+                        <p class="text-sm font-medium">Cérémonie de remise - 2022</p>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-xl h-64 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" 
+                         alt="Démonstration AgriTech" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <i class="fas fa-search-plus text-white text-3xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent text-white opacity-0 group-hover:opacity-100 transition duration-300">
+                        <p class="text-sm font-medium">Démonstration AgriTech - 2022</p>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-xl h-64 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Hackathon" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <i class="fas fa-search-plus text-white text-3xl"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent text-white opacity-0 group-hover:opacity-100 transition duration-300">
+                        <p class="text-sm font-medium">Hackathon annuel - 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-r from-purple-800 to-purple-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Vous souhaitez soutenir nos projets?</h2>
+            <p class="text-xl mb-8">
+                Rejoignez-nous en tant que partenaire ou bénévole pour avoir un impact encore plus grand.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#" class="bg-white text-purple-800 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300 inline-flex items-center justify-center shadow-lg">
+                    <i class="fas fa-handshake mr-2"></i> Devenir Partenaire
+                </a>
+                <a href="#" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-purple-800 transition duration-300 inline-flex items-center justify-center">
+                    <i class="fas fa-heart mr-2"></i> Faire un Don
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Linguère Fablab</h3>
+                    <p class="text-gray-400">Inspirer, former et accompagner la nouvelle génération d'innovateurs africains.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Accueil</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Nos Projets</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Formations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2"></i> Dakar, Sénégal</li>
+                        <li class="flex items-center"><i class="fas fa-phone mr-2"></i> +221 77 123 45 67</li>
+                        <li class="flex items-center"><i class="fas fa-envelope mr-2"></i> contact@lingerfablab.sn</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Suivez-nous</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-purple-800 transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-purple-800 transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-purple-800 transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-purple-800 transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Linguère Fablab. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button class="w-16 h-16 bg-gradient-to-r from-purple-800 to-purple-600 text-white rounded-full shadow-xl flex items-center justify-center hover:from-purple-700 hover:to-purple-500 transition duration-300 floating">
+            <i class="fas fa-comment-dots text-2xl"></i>
+        </button>
+    </div>
+</body>
+</html>
