@@ -820,7 +820,7 @@ footer {
 }
 
 .services-section .section-title h1 {
-    color: #2178d0;
+    color: var(--text-color);
     font-size: 2.8rem;
     margin-bottom: 50px;
 }
