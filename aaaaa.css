@@ -979,18 +979,39 @@ footer {
         }
 
         /* Conteneur gauche */
-        .gauche {
-            width: 48%;
-            height: 400px;
-            background-image: url('aa.png');
-            background-size: cover;
-            background-position: center;
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
+        /* Nouveaux styles pour la partie gauche divisée */
+.gaucheh, .gaucheb {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.gaucheh {
+    margin-bottom: 20px;
+}
+
+.gaucheb {
+    background-image: url('aa.png');
+}
+
+.gaucheh:hover, .gaucheb:hover {
+    transform: translateY(-5px);
+}
+
+/* Ajustement pour la nouvelle structure */
+.gauche {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 48%;
+    height: auto; /* Supprime la haiture fixe */
+}
 
         /* Conteneur droite */
         .droite {
