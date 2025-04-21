@@ -144,27 +144,6 @@
             </section>
         </div>
 
-        <section class="preview-section animate__animated animate__fadeIn">
-            <h3 class="preview-title">
-                <i class="fas fa-eye"></i> Aperçu de Votre Broderie
-            </h3>
-            
-            <div class="preview-container">
-                <div class="preview-box">
-                    <div class="preview-loading"></div>
-                    <img src="https://via.placeholder.com/350x350?text=Choisissez+un+motif" 
-                         alt="Aperçu de la broderie" 
-                         class="preview-image"
-                         id="preview-image">
-                    <div class="preview-status">Prêt à personnaliser</div>
-                </div>
-            </div>
-            
-            <p class="text-center text-muted mt-3">
-                Faites défiler pour zoomer ou maintenez pour voir les détails
-            </p>
-        </section>
-
         <!-- HTML pour la section de personnalisation -->
         <section class="customization-section">
         <div class="customization-intro animate__animated animate__fadeIn">
@@ -175,11 +154,11 @@
         <div class="option-group animate__animated animate__fadeInLeft">
             <label class="option-label"><i class="fas fa-tshirt"></i> Type de support</label>
             <select class="option-select" id="support-type">
-                <option value="t-shirt">option</option>
+                <option value="choix">Choisir un support</option>
                 <option value="t-shirt">T-shirt</option>
                 <option value="casquette">Casquette</option>
+                <option value="Laoste">Laoste</option>
                 <option value="polo">Polo</option>
-                <option value="Lacoste">Lacoste</option>
                 <option value="sweat">Sweat à capuche</option>
                 <option value="serviette">Serviette</option>
                 <option value="sac">Sac</option>
@@ -232,10 +211,11 @@
             <label class="option-label"><i class="fas fa-boxes"></i> Quantité</label>
             <div style="display: flex; align-items: center; gap: 1rem;">
                 <input type="number" class="option-input" id="quantity" min="1" value="1" style="max-width: 80px;">
+                <!-- <span style="font-size: 0.9rem; color: var(--text-light);">(Remise à partir de 5 pièces)</span> -->
             </div>
         </div>
 
-            <div class="option-group animate__animated animate__fadeInRight">
+            <div class="option-group animate__animated animate__fadeInRight" style="width: 500px; margin-left: 30px;">
                 <label class="option-label"><i class="fas fa-clipboard-list"></i> Instructions spéciales</label>
                 <textarea class="option-textarea" id="special-notes" placeholder="Ajoutez des instructions particulières (position, détails, etc.)..."></textarea>
             </div>
@@ -258,119 +238,150 @@
             <span class="lightbox-nav lightbox-next">&#10095;</span>
             </div>
 
-            <!-- FORMULAIRE POUR QUE LE CLIENT -->
-            <section class="contact-form-section">
-                <div class="container">
-                    <div class="form-container animate__animated animate__fadeInUp">
-                        <h3 class="form-title">
-                            <i class="fas fa-user-edit"></i> Informations Personnelles
-                        </h3>
-                        <p class="form-subtitle">Remplissez ce formulaire pour finaliser votre demande de broderie personnalisée</p>
-                        
-                        <form id="embroidery-form">
-                            <!-- Section Informations Client -->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="fullname"><i class="fas fa-user"></i> Nom Complet *</label>
-                                        <input type="text" id="fullname" name="fullname" required class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="email"><i class="fas fa-envelope"></i> Email *</label>
-                                        <input type="email" id="email" name="email" required class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="phone"><i class="fas fa-phone"></i> Téléphone *</label>
-                                        <input type="tel" id="phone" name="phone" required class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="address"><i class="fas fa-map-marker-alt"></i> Adresse (Ville) *</label>
-                                        <input type="text" id="address" name="address" required class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Champs Cachés pour la Personnalisation -->
-                            <input type="hidden" id="selected-design" name="design">
-                            <input type="hidden" id="selected-support" name="support">
-                            <input type="hidden" id="selected-dimensions" name="dimensions">
-                            <input type="hidden" id="selected-colors" name="colors">
-                            <input type="hidden" id="selected-thread" name="thread_type">
-                            <input type="hidden" id="selected-quantity" name="quantity">
-                            <input type="hidden" id="selected-notes" name="special_notes">
-                            
-                            <!-- Mode de Livraison -->
-                            <div class="form-group">
-                                <label for="delivery"><i class="fas fa-truck"></i> Mode de Livraison *</label>
-                                <select id="delivery" name="delivery" required class="form-control">
-                                    <option value="">Sélectionnez une option</option>
-                                    <option value="pickup">Retrait sur place (Dakar)</option>
-                                    <option value="delivery_dakar">Livraison à domicile (Dakar)</option>
-                                    <option value="delivery_senegal">Livraison à domicile (Autres régions)</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Conditions Générales -->
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input type="checkbox" id="terms" name="terms" required class="form-check-input">
-                                    <label for="terms" class="form-check-label">
-                                        J'accepte les <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">conditions générales</a> *
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <!-- Bouton de Soumission -->
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-primary submit-btn">
-                                    <i class="fas fa-paper-plane"></i> Envoyer ma demande
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </section>
 
-        <!-- Modal pour les conditions générales -->
-        <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="termsModalLabel">Conditions Générales</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <h6>1. Processus de commande</h6>
-                        <p>Après soumission de votre demande, notre équipe vous contactera dans les 24 heures pour confirmer les détails et vous fournir un devis final.</p>
-                        
-                        <h6>2. Paiement</h6>
-                        <p>Un acompte de 50% sera requis avant le début de la production. Le solde devra être réglé avant la livraison.</p>
-                        
-                        <h6>3. Délais de production</h6>
-                        <p>Les délais standard sont de 3 à 5 jours ouvrés selon la complexité du design. Des délais plus courts peuvent être arrangés avec un supplément.</p>
-                        
-                        <h6>4. Livraison</h6>
-                        <p>Les frais de livraison varient selon la destination. Les retraits se font à notre atelier à Dakar.</p>
-                        
-                        <h6>5. Retours et échanges</h6>
-                        <p>En raison de la nature personnalisée de nos produits, les retours ne sont pas acceptés sauf en cas d'erreur de notre part.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">J'ai compris</button>
-                    </div>
+        <!-- Section Aperçu Général -->
+        <section class="summary-section">
+            <h3 class="section-title"><i class="fas fa-clipboard-check"></i> Aperçu général</h3>
+            <div class="summary-container" id="summary-container">
+                <!-- Le contenu sera généré dynamiquement par JavaScript -->
+            </div>
+
+            <!-- Aperçu de votre galerie déplacé ici -->
+            <div class="preview-container" style="max-width: 200px; margin: 1rem auto;">
+                <div class="preview-box">
+                    <div class="preview-loading"></div>
+                    <img src="https://via.placeholder.com/200x200?text=Choisissez+un+motif"
+                        alt="Aperçu de la broderie"
+                        class="preview-image"
+                        id="preview-image"
+                        style="width: 100%; height: auto;">
+                    <div class="preview-status">Prêt à personnaliser</div>
                 </div>
             </div>
-        </div>
+        </section>
 
+
+
+                    <!-- FORMULAIRE POUR QUE LE CLIENT -->
+                    <section class="contact-form-section">
+                        <div class="container">
+                            <div class="form-container animate__animated animate__fadeInUp">
+                                <h3 class="form-title">
+                                    <i class="fas fa-user-edit"></i> Informations Personnelles
+                                </h3>
+                                <p class="form-subtitle">Remplissez ce formulaire pour finaliser votre demande de broderie personnalisée</p>
+                                
+                                <form id="embroidery-form">
+                                    <!-- Section Informations Client -->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="fullname"><i class="fas fa-user"></i> Nom Complet *</label>
+                                                <input type="text" id="fullname" name="fullname" required class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email"><i class="fas fa-envelope"></i> Email *</label>
+                                                <input type="email" id="email" name="email" required class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phone"><i class="fas fa-phone"></i> Téléphone *</label>
+                                                <input type="tel" id="phone" name="phone" required class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="address"><i class="fas fa-map-marker-alt"></i> Adresse (Ville) *</label>
+                                                <input type="text" id="address" name="address" required class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Champs Cachés pour la Personnalisation -->
+                                    <!-- Dans la section du formulaire, remplacer les champs cachés par : -->
+                                    <input type="hidden" id="selected-design" name="design">
+                                    <input type="hidden" id="selected-support" name="support">
+                                    <input type="hidden" id="selected-dimensions" name="dimensions">
+                                    <input type="hidden" id="selected-colors" name="colors">
+                                    <input type="hidden" id="selected-thread" name="thread_type">
+                                    <input type="hidden" id="selected-quantity" name="quantity">
+                                    <input type="hidden" id="selected-notes" name="special_notes">
+
+                                    <!-- Ajouter un champ pour le design uploadé si nécessaire -->
+<input type="hidden" id="uploaded-design" name="uploaded_design">
+                                    
+                                    <!-- Mode de Livraison -->
+                                    <div class="form-group">
+                                        <label for="delivery"><i class="fas fa-truck"></i> Mode de Livraison *</label>
+                                        <select id="delivery" name="delivery" required class="form-control">
+                                            <option value="">Sélectionnez une option</option>
+                                            <option value="pickup">Retrait sur place (Dakar)</option>
+                                            <option value="delivery_dakar">Livraison à domicile (Dakar)</option>
+                                            <option value="delivery_senegal">Livraison à domicile (Autres régions)</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Conditions Générales -->
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input type="checkbox" id="terms" name="terms" required class="form-check-input">
+                                            <label for="terms" class="form-check-label">
+                                                J'accepte les <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">conditions générales</a> *
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Bouton de Soumission -->
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-primary submit-btn">
+                                            <i class="fas fa-paper-plane"></i> Envoyer ma demande
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+        
+                <!-- Modal pour les conditions générales -->
+                <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="termsModalLabel">Conditions Générales</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h6>1. Processus de commande</h6>
+                                <p>Après soumission de votre demande, notre équipe vous contactera dans les 24 heures pour confirmer les détails et vous fournir un devis final.</p>
+                                
+                                <h6>2. Paiement</h6>
+                                <p>Un acompte de 50% sera requis avant le début de la production. Le solde devra être réglé avant la livraison.</p>
+                                
+                                <h6>3. Délais de production</h6>
+                                <p>Les délais standard sont de 3 à 5 jours ouvrés selon la complexité du design. Des délais plus courts peuvent être arrangés avec un supplément.</p>
+                                
+                                <h6>4. Livraison</h6>
+                                <p>Les frais de livraison varient selon la destination. Les retraits se font à notre atelier à Dakar.</p>
+                                
+                                <h6>5. Retours et échanges</h6>
+                                <p>En raison de la nature personnalisée de nos produits, les retours ne sont pas acceptés sauf en cas d'erreur de notre part.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">J'ai compris</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+
+
+        
    
 
 
@@ -524,7 +535,16 @@
             });
         });
         
-
+        // Search bar focus effect
+        const searchInput = document.querySelector('.search-bar input');
+        
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('animate__animated', 'animate__pulse');
+        });
+        
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('animate__animated', 'animate__pulse');
+        });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -735,76 +755,106 @@
                 }
             });
         });
-        </script>
-        <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Mise à jour des champs cachés
-    function updateHiddenFields() {
-        // Support
-        const supportSelect = document.getElementById('support-type');
+    // Fonction pour mettre à jour l'aperçu général
+    function updateSummary() {
+        const summaryContainer = document.getElementById('summary-container');
+        const supportType = document.getElementById('support-type');
         const otherSupport = document.getElementById('other-support');
-        document.getElementById('selected-support').value = 
-            (supportSelect.value === 'autre') ? otherSupport.value : supportSelect.options[supportSelect.selectedIndex].text;
+        const width = document.getElementById('width');
+        const height = document.getElementById('height');
+        const selectedColors = document.getElementById('selected-colors');
+        const threadType = document.getElementById('thread-type');
+        const quantity = document.getElementById('quantity');
+        const specialNotes = document.getElementById('special-notes');
+        const previewImage = document.getElementById('preview-image').src;
         
-        // Dimensions
-        const width = document.getElementById('width').value;
-        const height = document.getElementById('height').value;
-        document.getElementById('selected-dimensions').value = `${width}x${height}cm`;
-        
-        // Couleurs (déjà géré par votre système de sélection)
-        // Type de fil
-        const threadSelect = document.getElementById('thread-type');
-        document.getElementById('selected-thread').value = threadSelect.options[threadSelect.selectedIndex].text;
-        
-        // Quantité
-        document.getElementById('selected-quantity').value = document.getElementById('quantity').value;
-        
-        // Notes
-        document.getElementById('selected-notes').value = document.getElementById('special-notes').value;
-    }
-
-    // Écouteurs d'événements
-    [
-        'support-type', 'other-support', 'width', 'height',
-        'thread-type', 'quantity', 'special-notes'
-    ].forEach(id => {
-        document.getElementById(id).addEventListener('change', updateHiddenFields);
-    });
-
-    // Sélection du design (galerie/upload)
-    document.getElementById('select-image-btn')?.addEventListener('click', function() {
-        document.getElementById('selected-design').value = 
-            document.getElementById('lightbox-img').src;
-    });
-
-    // Soumission du formulaire
-    document.getElementById('embroidery-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        if (!document.getElementById('terms').checked) {
-            alert('Veuillez accepter les conditions générales');
-            return;
+        // Déterminer le type de support
+        let supportText = supportType.options[supportType.selectedIndex].text;
+        if (supportType.value === 'autre' && otherSupport.value) {
+            supportText = otherSupport.value;
         }
-
-        // Récupération des données
-        const formData = new FormData(this);
         
-        // Exemple d'envoi (à adapter)
-        // fetch('votre-script-backend.php', {
-        //     method: 'POST',
-        //     body: formData
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     alert('Demande envoyée avec succès ! ID: ' + data.id);
-        //     this.reset();
-        // })
-        // .catch(error => {
-        //     console.error('Erreur:', error);
-        //     alert('Une erreur est survenue');
-        // });
+        // Préparer les couleurs sélectionnées
+        let colorsHtml = '';
+        if (selectedColors.value) {
+            colorsHtml = selectedColors.value.split(',').map(color => {
+                return `<span class="color-swatch" style="background: ${color}"></span>`;
+            }).join('');
+        }
+        
+        // Créer le HTML de l'aperçu
+        summaryContainer.innerHTML = `
+            <div class="summary-item">
+                <h4><i class="fas fa-tshirt"></i> Support</h4>
+                <p>${supportText}</p>
+            </div>
+            
+            <div class="summary-item">
+                <h4><i class="fas fa-ruler-combined"></i> Dimensions</h4>
+                <p>${width.value} cm × ${height.value} cm</p>
+            </div>
+            
+            <div class="summary-item">
+                <h4><i class="fas fa-palette"></i> Couleurs</h4>
+                <p>${colorsHtml || 'Aucune couleur sélectionnée'}</p>
+            </div>
+            
+            <div class="summary-item">
+                <h4><i class="fas fa-thread"></i> Type de fil</h4>
+                <p>${threadType.options[threadType.selectedIndex].text}</p>
+            </div>
+            
+            <div class="summary-item">
+                <h4><i class="fas fa-boxes"></i> Quantité</h4>
+                <p>${quantity.value} pièce(s)</p>
+            </div>
+            
+            ${specialNotes.value ? `
+            <div class="summary-item">
+                <h4><i class="fas fa-clipboard-list"></i> Instructions</h4>
+                <p>${specialNotes.value}</p>
+            </div>
+            ` : ''}
+        `;
+    }
+    
+    // Écouteurs d'événements pour mettre à jour l'aperçu
+    document.querySelectorAll('#support-type, #width, #height, #thread-type, #quantity, #special-notes').forEach(element => {
+        element.addEventListener('change', updateSummary);
     });
-});
-            </script>
+    
+    document.getElementById('other-support').addEventListener('input', updateSummary);
+    document.getElementById('selected-colors').addEventListener('change', updateSummary);
+    
+    // Mettre à jour l'aperçu lors de la sélection d'une image
+    document.getElementById('select-image-btn').addEventListener('click', updateSummary);
+    document.getElementById('file-input').addEventListener('change', function() {
+        setTimeout(updateSummary, 100);
+    });
+    // Initialiser l'aperçu au chargement
+    updateSummary();
+
+    function handleFile(file) {
+    if (file && (file.type.startsWith('image/') || file.name.endsWith('.svg'))) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewImage.src = e.target.result;
+            // Mettre à jour le champ caché pour l'image uploadée
+            document.getElementById('uploaded-design').value = file.name;
+            // Mettre à jour le résumé
+            updateSummary();
+        };
+        reader.readAsDataURL(file);
+    } else if (file && file.name.endsWith('.dst')) {
+        previewImage.src = 'https://via.placeholder.com/320x320/CCCCCC/808080?Text=Fichier+DST';
+        document.getElementById('uploaded-design').value = file.name;
+        updateSummary();
+        alert('Le fichier DST est un format de broderie, la prévisualisation peut ne pas être exacte.');
+    } else if (file) {
+        alert('Format de fichier non supporté. Veuillez utiliser une image (PNG, JPG, SVG) ou un fichier DST.');
+    }
+}
+
+                </script>
 </body>
 </html>
