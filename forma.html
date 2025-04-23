@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation en Broderie Numérique | Expertise Professionnelle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="forma.css">
+    <link rel="stylesheet" href="aaaaa.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #faf7f5;
+}
+
+
+.title-font {
+    font-family: 'Montserrat', sans-serif;
+}
+.gradient-bg {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+}
+.embroidery-card {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+.embroidery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+.software-icon {
+    transition: all 0.3s ease;
+}
+.software-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Styles pour la partie image */
+@media (min-width: 1024px) {
+.lg\:absolute {
+position: absolute;
+}
+.lg\:inset-y-0 {
+top: 0;
+bottom: 0;
+}
+.lg\:right-0 {
+right: 0;
+}
+}
+/* Styles pour uniformiser les images */
+.image-container {
+position: relative;
+width: 100%;
+padding-bottom: 75%; /* Ratio 4:3 (ajuster selon besoin) */
+overflow: hidden;
+}
+
+.image-container img {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: contain;
+object-position: center;
+transition: transform 0.5s ease;
+}
+
+.image-container:hover img {
+transform: scale(1.05);
+}
+
+/* Media Queries pour tailles responsives */
+@media (min-width: 640px) {
+.image-container {
+padding-bottom: 62.5%; /* Ratio 16:10 */
+}
+}
+
+@media (min-width: 1024px) {
+.image-container {
+padding-bottom: 56.25%; /* Ratio 16:9 */
+}
+}
+/* Animation et effets */
+.bg-gradient-to-br {
+background-size: 200% 200%;
+animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+
+.transform {
+transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.-skew-x-6 {
+transform: skewX(-6deg);
+}
+
+.origin-top-left {
+transform-origin: top left;
+}
+
+
+.custom-hero-bg {
+    background: linear-gradient(-45deg, #3b82f6, #000811, #0d4de4, #04419d, #3b82f6);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+
+
+    /* Styles de base */
+    .formation-section {
+        padding: 4rem 0;
+        background-color: white;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .formation-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    /* En-tête de section */
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+    
+    .section-title {
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: #1f2937;
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .title-underline {
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #4f46e5, #7c3aed);
+        margin: 0 auto;
+        border-radius: 2px;
+        position: relative;
+    }
+    
+    .title-underline::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, #7c3aed, #4f46e5);
+        opacity: 0;
+        animation: underlinePulse 2s infinite;
+    }
+    
+    /* Grille des formations */
+    .formation-grid {
+        display: grid;
+        gap: 2rem;
+    }
+    
+    /* Cartes de formation */
+    .formation-card {
+        background: #f9fafb;
+        border-radius: 1rem;
+        padding: 2rem;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .formation-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+        z-index: 0;
+    }
+    
+    /* En-tête de carte */
+    .card-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .card-icon {
+        background-color: #eef2ff;
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+        margin-right: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .icon-svg {
+        width: 2rem;
+        height: 2rem;
+        color: #4f46e5;
+    }
+    
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1f2937;
+    }
+    
+    /* Contenu de carte */
+    .card-text {
+        color: #4b5563;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+    
+    .highlight-text {
+        font-weight: 700;
+        color: #4f46e5;
+        position: relative;
+    }
+    
+    .highlight-text::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s ease;
+    }
+    
+    .highlight-text:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+    
+    /* Zone mise en avant */
+    .card-highlight {
+        background-color: #eef2ff;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        color: #4f46e5;
+        font-weight: 500;
+    }
+    
+    .arrow-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-right: 0.5rem;
+        animation: arrowBounce 1.5s infinite;
+    }
+    
+    /* Liste des modules */
+    .module-list {
+        display: grid;
+        gap: 0.75rem;
+    }
+    
+    .module-item {
+        display: flex;
+        align-items: flex-start;
+        color: #4b5563;
+    }
+    
+    .check-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        color: #4f46e5;
+        margin-right: 0.5rem;
+        margin-top: 0.125rem;
+        flex-shrink: 0;
+    }
+    
+    /* Animations */
+    @keyframes underlinePulse {
+        0%, 100% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes arrowBounce {
+        0%, 100% {
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX(4px);
+        }
+    }
+
+
+/* Animation d'apparition avec un effet de glissement */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Appliquer l'animation aux cartes */
+.formation-card {
+    animation: slideInUp 0.8s ease-out;
+    animation-fill-mode: both;
+    opacity: 0; /* Initialement invisible */
+}
+
+/* Ajouter un délai pour chaque carte */
+.formation-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+.formation-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+.formation-card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+.formation-card:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+    
+    /* Animation d'apparition des cartes */
+    .card-appear {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: cardAppear 0.6s forwards;
+    }
+    
+    @keyframes cardAppear {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Effet de vague en arrière-plan */
+    .formation-section::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%234f46e5'%3E%3C/path%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5' fill='%237c3aed'%3E%3C/path%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z' fill='%23eef2ff'%3E%3C/path%3E%3C/svg%3E");
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 0;
+    }
+    
+    /* Hover effects */
+    .formation-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Responsive */
+    @media (min-width: 768px) {
+        .formation-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .section-title {
+            font-size: 3rem;
+        }
+    }
+
+
+
+
+    
+
+
+
+
+/* Styles pour le modal inscription */
+#inscription-modal {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+    z-index: 50;
+}
+
+#inscription-modal:not(.hidden) {
+    display: flex;
+}
+
+/* Conteneur du formulaire */
+#inscription-modal .bg-white {
+    background: linear-gradient(135deg, #ffffff, #f9fafb);
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Titre et description */
+#inscription-modal h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#inscription-modal p {
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Champs du formulaire */
+#inscription-modal input,
+#inscription-modal select,
+#inscription-modal textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background: #f9fafb;
+    font-size: 0.875rem;
+    color: #374151;
+    transition: all 0.3s ease;
+}
+
+#inscription-modal input:focus,
+#inscription-modal select:focus,
+#inscription-modal textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+    outline: none;
+}
+
+/* Bouton d'envoi */
+#inscription-modal button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(90deg, #6366f1, #4f46e5);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#inscription-modal button[type="submit"]:hover {
+    background: linear-gradient(90deg, #4f46e5, #4338ca);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Bouton de fermeture */
+#close-inscription-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#close-inscription-modal:hover {
+    background: #e5e7eb;
+    transform: rotate(90deg);
+}
+
+/* Placeholder */
+#inscription-modal input::placeholder,
+#inscription-modal textarea::placeholder {
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Limiter la hauteur du formulaire et activer le défilement interne */
+form#inscription-form {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 0.5rem; /* Pour éviter que le contenu touche le bord */
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    #inscription-modal h2 {
+        font-size: 2rem;
+    }
+
+    #inscription-modal p {
+        font-size: 1rem;
+    }
+
+    #inscription-modal button[type="submit"] {
+        font-size: 1.125rem;
+    }
+}
+
+
+
+
+/* Styles pour le modal contact */
+#contact-modal {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+    z-index: 50;
+}
+
+#contact-modal:not(.hidden) {
+    display: flex;
+}
+
+/* Conteneur du formulaire */
+#contact-modal .bg-white {
+    background: linear-gradient(135deg, #ffffff, #f9fafb);
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Titre et description */
+#contact-modal h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#contact-modal p {
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Champs du formulaire */
+#contact-modal input,
+#contact-modal textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background: #f9fafb;
+    font-size: 0.875rem;
+    color: #374151;
+    transition: all 0.3s ease;
+}
+
+#contact-modal input:focus,
+#contact-modal textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+    outline: none;
+}
+
+/* Bouton d'envoi */
+#contact-modal button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(90deg, #6366f1, #4f46e5);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#contact-modal button[type="submit"]:hover {
+    background: linear-gradient(90deg, #4f46e5, #4338ca);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Bouton de fermeture */
+#close-contact-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#close-contact-modal:hover {
+    background: #e5e7eb;
+    transform: rotate(90deg);
+}
+
+/* Placeholder */
+#contact-modal input::placeholder,
+#contact-modal textarea::placeholder {
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Limiter la hauteur du formulaire et activer le défilement interne */
+form#contact-form {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 0.5rem; /* Pour éviter que le contenu touche le bord */
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    #contact-modal h2 {
+        font-size: 2rem;
+    }
+
+    #contact-modal p {
+        font-size: 1rem;
+    }
+
+    #contact-modal button[type="submit"] {
+        font-size: 1.125rem;
+    }
+}
+    </style>
+</head>
+<body >
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container d-flex flex-wrap justify-content-center justify-content-md-between">
+                <span><a href="localisation.html"><i class="fas fa-map-marker-alt me-2"></i> LOCALISATION</a></span>
+                <span><i class="fas fa-truck me-2"></i> Livraison Partout au Sénégal</span>
+                <span><i class="far fa-clock me-2"></i> 08:00 - 17:00</span>
+                <span><i class="fas fa-phone me-2"></i> (+221) 77 077 18 32</span>
+                <span><a href="https://wa.me/+221770771832" target="_blank"><i class="fab fa-whatsapp me-2"></i> WHATSAPP</a></span>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <nav>
+            <div class="container d-flex flex-wrap justify-content-between align-items-center">
+                <div class="logo animate__animated animate__fadeInLeft d-flex align-items-center">
+                    <a href="index.html"><img src="logos.jpeg" alt="Logo" class="logo-img me-3"></a>
+                    <span class="nav-brand">LINGUERE FABLAB</span>
+                </div>
+                
+                <div class="search-bar animate__animated animate__zoomIn">
+                    <input type="text" placeholder="Rechercher produits...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="icons d-flex align-items-center">
+                    <span class="me-3"><i class="far fa-heart"></i></span>
+                    <span class="me-3"><i class="far fa-user"></i></span>
+                    <span class="cart-count" data-count="0"><i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">0 CFA</span></span>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Navigation -->
+        <div class="nav-bar">
+            <div class="container d-flex flex-wrap justify-content-center">
+                <a href="index.html"><i class="fas fa-home me-2"></i> ACCUEIL</a>
+                <div class="dropdown">
+                    <a href="#"><i class="fas fa-list me-2"></i> CATALOGUE <i class="fas fa-chevron-down ms-1"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="arduino.html"><i class="fas fa-microchip me-2"></i> Kits Arduino et IOT</a>
+                        <a href="machine.html"><i class="fas fa-robot me-2"></i> Machines Numériques</a>
+                        <a href="installation.html"><i class="fas fa-tools me-2"></i> Installations Fablab</a>
+                        <a href="broderie.html"><i class="fas fa-tshirt me-2"></i> Broderie numérique</a>
+                        <a href="CNC.html"><i class="fas fa-cogs me-2"></i> Services CNC</a>
+                        <a href="laser.html"><i class="fas fa-cut me-2"></i> Découpe laser</a>
+                        <a href="boutique"><i class="fas fa-laptop-code me-2"></i> Logiciels</a>
+                        <a href="boutique"><i class="fas fa-plug me-2"></i> Accessoires</a>
+                    </div>
+                </div>
+                <a href="#"><i class="fas fa-certificate me-2"></i> NOUVEAUTÉS</a>
+                <a href="#" style="color: rgb(255, 68, 0);"><i class="fas fa-info-circle me-2"></i> À PROPOS</a>
+                <a href="#con"><i class="fas fa-envelope me-2"></i> CONTACT</a>
+            </div>
+        </div>
+
+
+<!-- Hero Section -->
+<section class="relative overflow-hidden hero-bg" style="padding-top: 30px; padding-bottom: 20px;">
+    <!-- Fond animé en continu -->
+    <div class="absolute inset-0 custom-hero-bg"></div>
+
+    <div class="max-w-7xl mx-auto  relative z-10">
+        <!-- Contenu identique à votre structure originale -->
+        <div class="flex flex-col lg:flex-row items-center gap-8">
+            <div class="lg:w-7/12 space-y-6">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                    <div>
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                            Maîtrisez l'Art <br>de la <span class="text-red">Broderie Numérique</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-blue-100 mt-3">
+                            Transformez vos idées en créations textiles exceptionnelles avec notre formation complète.
+                        </p>
+                    </div>
+                    <div class="bg-white text-blue-600 px-6 py-3 rounded-lg shadow-md w-fit">
+                        <div class="text-sm font-semibold">INVESTISSEMENT</div>
+                        <div class="text-3xl font-bold">499FCFA</div>
+                    </div>
+                </div>
+
+                <div class="bg-white bg-opacity-90 p-0 rounded-xl shadow-md">
+                    <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 text-gray-700">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span><strong>Durée :</strong> 30 heures</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                            </svg>
+                            <span><strong>Heures/semaine :</strong> 5h</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9-3-9m-9 9a9 9 0 019-9"></path>
+                            </svg>
+                            <span><strong>Disponibilité :</strong> En ligne/présentiel</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#telecharger" class="flex-1 flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-blue-100 transition duration-300 shadow-md">
+                        Télécharger la brochure
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
+                    </a>
+                    <a href="#contact" class="flex-1 flex items-center justify-center px-6 py-3 border border-white text-base font-medium rounded-md text-black bg-white bg-opacity-90  hover:bg-blue-500 hover:bg-opacity-20 transition duration-300 shadow-md">
+                        Contacter un conseiller
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                    </a>
+                </div>
+                </div>
+
+  
+                <!-- Partie Image Modifiée -->
+                <div class="lg:w-5/12 lg:absolute lg:inset-y-0 lg:right-0 w-full">
+                    <div class="relative h-full">
+                    <!-- Fond coloré -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-900 transform -skew-x-6 origin-top-left"></div>
+                    
+                    <!-- Conteneur image avec taille fixe -->
+                    <div class="relative h-full flex items-center justify-center p-8 lg:p-12">
+                        <div class="w-full h-64 md:h-80 lg:h-96 xl:h-[500px] relative">
+                        <img src="im_brod.jpeg" alt="Broderie Numérique" 
+                            class="absolute h-full w-full object-contain rounded-lg shadow-xl">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+    </div>
+</section>
+
+<!-- CSS personnalisé -->
+<style>
+    .custom-hero-bg {
+        background: linear-gradient(-45deg, #3b82f6, #000811, #0d4de4, #04419d, #3b82f6);
+        background-size: 400% 400%;
+        animation: gradientAnimation 15s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</style>
+
+   <!-- Formation Details -->
+<section class="formation-section">
+    <div class="formation-container">
+        <div class="section-header">
+            <h2 class="section-title">
+                Programme de Formation
+            </h2>
+            <div class="title-underline"></div>
+        </div>
+
+        <div class="formation-grid">
+            <!-- Carte Durée de formation -->
+            <div class="formation-card card-appear">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon-svg" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Durée de la formation</h3>
+                </div>
+                <p class="card-text">
+                    Un programme intensif de <span class="highlight-text">30 heures</span> réparties en sessions pratiques et théoriques pour une maîtrise complète de la broderie numérique.
+                </p>
+                <div class="card-highlight">
+                    <svg class="arrow-icon" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+                    </svg>
+                    <span>Formation disponible en présentiel ou en ligne</span>
+                </div>
+            </div>
+
+            <!-- Carte Modules Principaux -->
+            <div class="formation-card card-appear" style="animation-delay: 0.2s">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg class="icon-svg" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Modules Principaux</h3>
+                </div>
+                <ul class="module-list">
+                    <li class="module-item">
+                        <svg class="check-icon" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Introduction à la broderie numérique</span>
+                    </li>
+                    <li class="module-item">
+                        <svg class="check-icon" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Utilisation des logiciels de conception</span>
+                    </li>
+                    <li class="module-item">
+                        <svg class="check-icon" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Paramétrage et manipulation des machines</span>
+                    </li>
+                    <li class="module-item">
+                        <svg class="check-icon" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>Techniques d'optimisation et de finition</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.formation-card');
+    
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1'; // Rendre visible
+                    entry.target.style.animationPlayState = 'running'; // Démarrer l'animation
+                }
+            });
+        }, { threshold: 0.1 });
+    
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+    });
+    </script>
+
+            <!-- Maîtrise les Technologies et Compétences Essentielles  (o	Utilisation des logiciels de conception (Wilcom, Ink/Stitch, Inskape)) -->
+            <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                            <span class="relative inline-block">
+                                <span class="absolute inset-0 bg-indigo-100 transform -skew-y-2"></span>
+                                <span class="relative text-gray-900">Maîtrise les Technologies</span>
+                            </span>
+                            <br>
+                            <span class="text-indigo-600">& Compétences Essentielles</span>
+                        </h2>
+                        <div class="w-24 h-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full"></div>
+                    </div>
+            
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+                        <!-- Item 1 -->
+                        <div class="group text-center">
+                            <div class="relative inline-block mb-4 transform group-hover:-translate-y-2 transition duration-500">
+                                <div class="absolute inset-0 bg-indigo-100 rounded-full filter blur-md opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                                <img src="aaa.png" alt="Wilcom" class="relative mx-auto w-24 h-24 md:w-28 md:h-28 object-contain p-2 rounded-full bg-white shadow-lg border-2 border-gray-100 group-hover:border-indigo-200 transition duration-300 z-10">
+                            </div>
+                            <p class="text-lg font-semibold text-gray-800 group-hover:text-indigo-600 transition duration-300">Wilcom</p>
+                            <p class="text-sm text-gray-500 mt-1">Expertise avancée</p>
+                        </div>
+            
+                        <!-- Item 2 -->
+                        <div class="group text-center">
+                            <div class="relative inline-block mb-4 transform group-hover:-translate-y-2 transition duration-500">
+                                <div class="absolute inset-0 bg-purple-100 rounded-full filter blur-md opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                                <img src="Arduino nano.png" alt="Ink/Stitch" class="relative mx-auto w-24 h-24 md:w-28 md:h-28 object-contain p-2 rounded-full bg-white shadow-lg border-2 border-gray-100 group-hover:border-purple-200 transition duration-300 z-10">
+                            </div>
+                            <p class="text-lg font-semibold text-gray-800 group-hover:text-purple-600 transition duration-300">Ink/Stitch</p>
+                            <p class="text-sm text-gray-500 mt-1">Maîtrise complète</p>
+                        </div>
+            
+                        <!-- Item 3 -->
+                        <div class="group text-center">
+                            <div class="relative inline-block mb-4 transform group-hover:-translate-y-2 transition duration-500">
+                                <div class="absolute inset-0 bg-blue-100 rounded-full filter blur-md opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                                <img src="aaaa.png" alt="Inkscape" class="relative mx-auto w-24 h-24 md:w-28 md:h-28 object-contain p-2 rounded-full bg-white shadow-lg border-2 border-gray-100 group-hover:border-blue-200 transition duration-300 z-10">
+                            </div>
+                            <p class="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition duration-300">Inkscape</p>
+                            <p class="text-sm text-gray-500 mt-1">Compétences avancées</p>
+                        </div>
+            
+                        <!-- Item 4 -->
+                        <div class="group text-center">
+                            <div class="relative inline-block mb-4 transform group-hover:-translate-y-2 transition duration-500">
+                                <div class="absolute inset-0 bg-green-100 rounded-full filter blur-md opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                                <img src="kits arduino petit.png" alt="Machines de Broderie" class="relative mx-auto w-24 h-24 md:w-28 md:h-28 object-contain p-2 rounded-full bg-white shadow-lg border-2 border-gray-100 group-hover:border-green-200 transition duration-300 z-10">
+                            </div>
+                            <p class="text-lg font-semibold text-gray-800 group-hover:text-green-600 transition duration-300">Machines de Broderie</p>
+                            <p class="text-sm text-gray-500 mt-1">Expert technique</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Ce Que Vous Allez Acquérir
+                </h2>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+            </div>
+    
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Bloc 1 -->
+                <div class="embroidery-card bg-white rounded-xl p-8 text-center border border-gray-100 max-w-xs mx-auto">
+                    <div class="bg-indigo-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="title-font text-xl font-bold text-gray-900 mb-3">Maîtrise Technique</h3>
+                    <p class="text-gray-600">
+                        Apprenez à paramétrer et utiliser les machines de broderie numérique comme un professionnel.
+                    </p>
+                </div>
+    
+                <!-- Bloc 2 -->
+                <div class="embroidery-card bg-white rounded-xl p-8 text-center border border-gray-100 max-w-xs mx-auto">
+                    <div class="bg-indigo-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="title-font text-xl font-bold text-gray-900 mb-3">Créativité Libérée</h3>
+                    <p class="text-gray-600">
+                        Transformez vos idées en motifs complexes et personnalisés sur divers textiles.
+                    </p>
+                </div>
+    
+                <!-- Bloc 3 -->
+                <div class="embroidery-card bg-white rounded-xl p-8 text-center border border-gray-100 max-w-xs mx-auto">
+                    <div class="bg-indigo-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="title-font text-xl font-bold text-gray-900 mb-3">Compétences Professionnelles</h3>
+                    <p class="text-gray-600">
+                        Développez des compétences recherchées dans les industries textile et de la mode.
+                    </p>
+                </div>
+    
+                <!-- Bloc 4 -->
+                <div class="embroidery-card bg-white rounded-xl p-8 text-center border border-gray-100 max-w-xs mx-auto">
+                    <div class="bg-indigo-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21V3m0 18l-3-3m3 3l3-3"></path>
+                        </svg>
+                    </div>
+                    <h3 class="title-font text-xl font-bold text-gray-900 mb-3">Autonomie et Confiance</h3>
+                    <p class="text-gray-600">
+                        Développez une autonomie complète dans la gestion de projets de broderie numérique et gagnez en confiance pour entreprendre des créations uniques.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section Pourquoi apprendre Broderie Numérique -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Pourquoi Apprendre la Broderie Numérique ?
+                </h2>
+                <p class="text-gray-600 text-lg">
+                    Découvrez les avantages et opportunités qu'offre la maîtrise de la broderie numérique.
+                </p>
+            </div>
+    
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Image Section -->
+                <div>
+                    <img src="aaa.png" alt="Broderie Numérique" class="rounded-lg shadow-lg">
+                </div>
+    
+                <!-- Text Blocks Section -->
+                <div class="space-y-6">
+                    <!-- Bloc 1 -->
+                    <div class="bg-indigo-50 rounded-xl p-4 text-center border border-gray-100 shadow-md">
+                        <h3 class="title-font text-lg font-bold text-gray-900 mb-2">Un Marché en Pleine Croissance</h3>
+                        <p class="text-gray-600 text-sm">
+                            La broderie numérique est en forte demande dans les secteurs de la mode, du textile et de la personnalisation.
+                        </p>
+                    </div>
+    
+                    <!-- Bloc 2 -->
+                    <div class="bg-indigo-50 rounded-xl p-4 text-center border border-gray-100 shadow-md">
+                        <h3 class="title-font text-lg font-bold text-gray-900 mb-2">Libérez Votre Créativité</h3>
+                        <p class="text-gray-600 text-sm">
+                            Transformez vos idées en motifs uniques et personnalisés grâce à des outils numériques avancés.
+                        </p>
+                    </div>
+    
+                    <!-- Bloc 3 -->
+                    <div class="bg-indigo-50 rounded-xl p-4 text-center border border-gray-100 shadow-md">
+                        <h3 class="title-font text-lg font-bold text-gray-900 mb-2">Une Compétence Recherchée</h3>
+                        <p class="text-gray-600 text-sm">
+                            Acquérez une expertise qui vous démarquera sur le marché du travail ou dans vos projets entrepreneuriaux.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Témoignages
+                </h2>
+                <p class="text-gray-600 text-lg">
+                    Découvrez ce que nos anciens apprenants disent de notre formation en broderie numérique.
+                </p>
+                <div class="w-20 h-1 bg-indigo-600 mx-auto mt-4"></div>
+            </div>
+    
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="embroidery-card bg-white rounded-xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <img class="w-12 h-12 rounded-full mr-4" src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sophie L.">
+                        <div>
+                            <h4 class="font-bold text-gray-900">Sophie L.</h4>
+                            <p class="text-indigo-600 text-sm">Designer Textile</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Cette formation a transformé ma façon de travailler. Je peux maintenant créer des motifs complexes que je ne pouvais qu'imaginer auparavant. Les formateurs sont exceptionnels !"
+                    </p>
+                    <div class="flex mt-4">
+                        <!-- Star Ratings -->
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                </div>
+    
+                <!-- Testimonial 2 -->
+                <div class="embroidery-card bg-indigo-50 rounded-xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <img class="w-12 h-12 rounded-full mr-4" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Pierre M.">
+                        <div>
+                            <h4 class="font-bold text-gray-900">Pierre M.</h4>
+                            <p class="text-indigo-600 text-sm">Entrepreneur</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "J'ai pu lancer mon activité de personnalisation textile grâce à cette formation. Les modules sur l'optimisation des broderies m'ont fait gagner un temps précieux et amélioré ma productivité."
+                    </p>
+                    <div class="flex mt-4">
+                        <!-- Star Ratings -->
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <!-- Repeat stars as needed -->
+                    </div>
+                </div>
+    
+                <!-- Testimonial 3 -->
+                <div class="embroidery-card bg-white rounded-xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <img class="w-12 h-12 rounded-full mr-4" src="https://randomuser.me/api/portraits/men/45.jpg" alt="Jean D.">
+                        <div>
+                            <h4 class="font-bold text-gray-900">Jean D.</h4>
+                            <p class="text-indigo-600 text-sm">Artisan Créatif</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Grâce à cette formation, j'ai pu élargir mon activité artisanale et proposer des produits personnalisés à mes clients. Les outils et techniques enseignés sont vraiment accessibles et efficaces."
+                    </p>
+                    <div class="flex mt-4">
+                        <!-- Star Ratings -->
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section avantage de la formation -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Pourquoi Choisir Notre Formation ?
+                </h2>
+                <p class="text-gray-600 text-lg">
+                    Découvrez les avantages uniques que nous offrons pour vous aider à exceller dans la broderie numérique.
+                </p>
+            </div>
+    
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Avantage 1 -->
+                <div class="bg-indigo-50 rounded-xl p-6 text-center border border-gray-100 shadow-md">
+                    <h3 class="title-font text-xl font-bold text-gray-900 mb-3">Apprentissage Pratique</h3>
+                    <p class="text-gray-600">
+                        Travaillez sur des projets concrets pour acquérir des compétences directement applicables.
+                    </p>
+                </div>
+    
+                <!-- Avantage 2 -->
+                <div class="bg-indigo-50 rounded-xl p-6 text-center border border-gray-100 shadow-md">
+                    <h3 class="title-font text-xl font-bold text-gray-900 mb-3">Accès à des Experts</h3>
+                    <p class="text-gray-600">
+                        Apprenez auprès de formateurs expérimentés dans le domaine de la broderie numérique.
+                    </p>
+                </div>
+    
+                <!-- Avantage 3 -->
+                <div class="bg-indigo-50 rounded-xl p-6 text-center border border-gray-100 shadow-md">
+                    <h3 class="title-font text-xl font-bold text-gray-900 mb-3">Certification Reconnue</h3>
+                    <p class="text-gray-600">
+                        Obtenez une certification qui valorise vos compétences sur le marché du travail.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--  Section FAQ -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Questions Fréquemment Posées
+                </h2>
+                <p class="text-gray-600 text-lg">
+                    Vous avez des questions ? Nous avons les réponses.
+                </p>
+            </div>
+    
+            <div class="space-y-6">
+                <!-- Question 1 -->
+                <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 shadow-md">
+                    <h3 class="title-font text-lg font-bold text-gray-900 mb-2">Combien de temps dure la formation ?</h3>
+                    <p class="text-gray-600">
+                        La formation dure 30 heures, réparties sur plusieurs semaines pour un apprentissage progressif.
+                    </p>
+                </div>
+    
+                <!-- Question 2 -->
+                <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 shadow-md">
+                    <h3 class="title-font text-lg font-bold text-gray-900 mb-2">Est-ce que la formation est en ligne ?</h3>
+                    <p class="text-gray-600">
+                        Oui, la formation est disponible en ligne et en présentiel selon vos préférences.
+                    </p>
+                </div>
+    
+                <!-- Question 3 -->
+                <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 shadow-md">
+                    <h3 class="title-font text-lg font-bold text-gray-900 mb-2">Quels outils sont nécessaires ?</h3>
+                    <p class="text-gray-600">
+                        Vous aurez besoin d'un ordinateur et des logiciels de broderie numérique comme Wilcom ou Inkscape.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section id="inscription" class="py-16 bg-indigo-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="title-font text-3xl md:text-4xl font-bold mb-6 animate__animated animate__pulse animate__infinite animate__slower">
+                Prêt à Transformer Votre Passion en Expertise ?
+            </h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">
+                Rejoignez notre prochaine session et maîtrisez l'art de la broderie numérique en seulement 30 heures de formation intensive.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#inscription" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-100 transition duration-300 shadow-lg transform hover:scale-105">
+                    S'inscrire maintenant
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+<!-- Modal Form: Inscription -->
+<div id="inscription-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative overflow-hidden">
+        <!-- Bouton de fermeture -->
+        <button id="close-inscription-modal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <!-- Titre et description -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">S'inscrire à la Formation</h2>
+        <p class="text-gray-600 mb-4 text-center text-sm">
+            Remplissez ce formulaire pour réserver votre place dans notre prochaine session de formation en broderie numérique.
+        </p>
+
+        <!-- Formulaire -->
+        <form id="inscription-form" class="space-y-4 max-h-[70vh] overflow-y-auto">
+            <!-- Nom complet -->
+            <div>
+                <label for="inscription-name" class="block text-sm font-medium text-gray-700">Nom complet</label>
+                <input type="text" id="inscription-name" name="inscription-name" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Entrez votre nom complet" required>
+            </div>
+
+            <!-- Adresse e-mail -->
+            <div>
+                <label for="inscription-email" class="block text-sm font-medium text-gray-700">Adresse e-mail</label>
+                <input type="email" id="inscription-email" name="inscription-email" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Entrez votre adresse e-mail" required>
+            </div>
+
+            <!-- Numéro de téléphone -->
+            <div>
+                <label for="inscription-phone" class="block text-sm font-medium text-gray-700">Numéro de téléphone</label>
+                <input type="tel" id="inscription-phone" name="inscription-phone" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Entrez votre numéro de téléphone" required>
+            </div>
+
+            <!-- Méthode de formation -->
+            <div>
+                <label for="inscription-method" class="block text-sm font-medium text-gray-700">Méthode de formation</label>
+                <select id="inscription-method" name="inscription-method" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="en-ligne">En ligne</option>
+                    <option value="presentiel">Présentiel</option>
+                    <option value="hybride">Hybride</option>
+                </select>
+            </div>
+
+            <!-- Session de formation -->
+            <div>
+                <label for="inscription-session" class="block text-sm font-medium text-gray-700">Session souhaitée</label>
+                <select id="inscription-session" name="inscription-session" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="matin">Matin (9h-12h)</option>
+                    <option value="apres-midi">Après-midi (14h-17h)</option>
+                    <option value="soir">Soir (18h-21h)</option>
+                </select>
+            </div>
+
+            <!-- Message -->
+            <div>
+                <label for="inscription-message" class="block text-sm font-medium text-gray-700">Message (facultatif)</label>
+                <textarea id="inscription-message" name="inscription-message" rows="3" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Avez-vous des questions ou des besoins spécifiques ?"></textarea>
+            </div>
+
+            <!-- Bouton d'envoi -->
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300">
+                Valider l'inscription
+            </button>
+        </form>
+    </div>
+</div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Modal "Inscription"
+        const inscriptionModal = document.getElementById('inscription-modal');
+        const openInscriptionModalBtn = document.querySelector('a[href="#inscription"]');
+        const closeInscriptionModalBtn = document.getElementById('close-inscription-modal');
+
+        // Ouvrir le modal
+        if (openInscriptionModalBtn) {
+            openInscriptionModalBtn.addEventListener('click', function (event) {
+                event.preventDefault();
+                inscriptionModal.classList.remove('hidden');
+            });
+        }
+
+        // Fermer le modal
+        closeInscriptionModalBtn.addEventListener('click', function () {
+            inscriptionModal.classList.add('hidden');
+        });
+
+        // Fermer le modal en cliquant à l'extérieur
+        inscriptionModal.addEventListener('click', function (event) {
+            if (event.target === inscriptionModal) {
+                inscriptionModal.classList.add('hidden');
+            }
+        });
+    });
+    </script>
+
+
+    <script>
+        // Animation au scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, {threshold: 0.1});
+
+            document.querySelectorAll('.embroidery-card').forEach((card, index) => {
+                observer.observe(card);
+                card.style.setProperty('--animate-delay', `${index * 0.1}s`);
+            });
+        });
+    </script>
+
+
+<!-- Modal Form -->
+<div id="modal-form" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative overflow-hidden">
+        <!-- Bouton de fermeture -->
+        <button id="close-modal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <!-- Titre et description -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Télécharger la Brochure</h2>
+        <p class="text-gray-600 mb-4 text-center text-sm">
+            Remplissez ce formulaire pour recevoir notre brochure complète et découvrir comment notre formation peut transformer vos compétences en broderie numérique.
+        </p>
+
+        <!-- Formulaire -->
+        <form id="brochure-form" class="space-y-4 max-h-[70vh] overflow-y-auto">
+            <!-- Nom complet -->
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Nom complet</label>
+                <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Entrez votre nom complet" required>
+            </div>
+
+            <!-- Adresse e-mail -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Adresse e-mail</label>
+                <input type="email" id="email" name="email" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Entrez votre adresse e-mail" required>
+            </div>
+
+            <!-- Numéro de téléphone -->
+            <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700">Numéro de téléphone</label>
+                <input type="tel" id="phone" name="phone" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Entrez votre numéro de téléphone" required>
+            </div>
+
+            <!-- Méthode de formation -->
+            <div>
+                <label for="method" class="block text-sm font-medium text-gray-700">Méthode de formation</label>
+                <select id="method" name="method" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="en-ligne">En ligne</option>
+                    <option value="presentiel">Présentiel</option>
+                    <option value="hybride">Hybride</option>
+                </select>
+            </div>
+
+            <!-- Message -->
+            <div>
+                <label for="message" class="block text-sm font-medium text-gray-700">Message (facultatif)</label>
+                <textarea id="message" name="message" rows="3" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Ajoutez un commentaire ou une question"></textarea>
+            </div>
+
+            <!-- Bouton d'envoi -->
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300">
+                Envoyer et Télécharger
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Gestion de l'ouverture et de la fermeture du modal
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('modal-form');
+        const openModalBtn = document.querySelector('a[href="#telecharger"]');
+        const closeModalBtn = document.getElementById('close-modal');
+
+        // Ouvrir le modal
+        openModalBtn.addEventListener('click', function (event) {
+            event.preventDefault();
+            modal.classList.remove('hidden');
+        });
+
+        // Fermer le modal
+        closeModalBtn.addEventListener('click', function () {
+            modal.classList.add('hidden');
+        });
+
+        // Fermer le modal en cliquant à l'extérieur
+        modal.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    });
+</script>
+
+
+<!-- Modal Form: Contacter un Conseiller -->
+<div id="contact-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative overflow-hidden">
+        <!-- Bouton de fermeture -->
+        <button id="close-contact-modal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <!-- Titre et description -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Contacter un Conseiller</h2>
+        <p class="text-gray-600 mb-4 text-center text-sm">
+            Remplissez ce formulaire pour entrer en contact avec un conseiller. Nous vous répondrons dans les plus brefs délais.
+        </p>
+
+        <!-- Formulaire -->
+        <form id="contact-form" class="space-y-4 max-h-[70vh] overflow-y-auto">
+            <!-- Nom complet -->
+            <div>
+                <label for="contact-name" class="block text-sm font-medium text-gray-700">Nom complet</label>
+                <input type="text" id="contact-name" name="contact-name" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Entrez votre nom complet" required>
+            </div>
+
+            <!-- Adresse e-mail -->
+            <div>
+                <label for="contact-email" class="block text-sm font-medium text-gray-700">Adresse e-mail</label>
+                <input type="email" id="contact-email" name="contact-email" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Entrez votre adresse e-mail" required>
+            </div>
+
+            <!-- Numéro de téléphone -->
+            <div>
+                <label for="contact-phone" class="block text-sm font-medium text-gray-700">Numéro de téléphone</label>
+                <input type="tel" id="contact-phone" name="contact-phone" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Entrez votre numéro de téléphone" required>
+            </div>
+
+            <!-- Message -->
+            <div>
+                <label for="contact-message" class="block text-sm font-medium text-gray-700">Message</label>
+                <textarea id="contact-message" name="contact-message" rows="4" class="w-full border border-gray-300 rounded-lg p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Expliquez votre demande" required></textarea>
+            </div>
+
+            <!-- Bouton d'envoi -->
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300">
+                Envoyer
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Modal "Contacter un Conseiller"
+    const contactModal = document.getElementById('contact-modal');
+    const openContactModalBtn = document.querySelector('a[href="#contact"]');
+    const closeContactModalBtn = document.getElementById('close-contact-modal');
+
+    // Ouvrir le modal
+    openContactModalBtn.addEventListener('click', function (event) {
+        event.preventDefault();
+        contactModal.classList.remove('hidden');
+    });
+
+    // Fermer le modal
+    closeContactModalBtn.addEventListener('click', function () {
+        contactModal.classList.add('hidden');
+    });
+
+    // Fermer le modal en cliquant à l'extérieur
+    contactModal.addEventListener('click', function (event) {
+        if (event.target === contactModal) {
+            contactModal.classList.add('hidden');
+        }
+    });
+});
+</script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Modal "Contacter un Conseiller"
+        const contactModal = document.getElementById('contact-modal');
+        const openContactModalBtn = document.querySelector('a[href="#contact"]');
+        const closeContactModalBtn = document.getElementById('close-contact-modal');
+
+        // Ouvrir le modal
+        openContactModalBtn.addEventListener('click', function (event) {
+            event.preventDefault();
+            contactModal.classList.remove('hidden');
+        });
+
+        // Fermer le modal
+        closeContactModalBtn.addEventListener('click', function () {
+            contactModal.classList.add('hidden');
+        });
+
+        // Fermer le modal en cliquant à l'extérieur
+        contactModal.addEventListener('click', function (event) {
+            if (event.target === contactModal) {
+                contactModal.classList.add('hidden');
+            }
+        });
+    });
+</script>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-5 mb-md-0">
+                <h3 class="footer-heading">LINGUÈRE FABLAB</h3>
+                <p>Votre partenaire en fabrication numérique au Sénégal. Machines, formations et services sur mesure pour particuliers, écoles et entreprises.</p>
+                <div class="social-icons mt-4">
+                    <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-3 col-6 mb-5 mb-md-0">
+                <h3 class="footer-heading">LIENS RAPIDES</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Accueil</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Boutique</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Services</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Formations</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right me-2"></i>À propos</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-2 col-md-3 col-6 mb-5 mb-md-0">
+                <h3 class="footer-heading">CATÉGORIES</h3>
+                <ul class="footer-links">
+                    <li><a href="arduino.html"><i class="fas fa-chevron-right me-2"></i>Arduino & IoT</a></li>
+                    <li><a href="machine.html"><i class="fas fa-chevron-right me-2"></i>Machines</a></li>
+                    <li><a href="installation.html"><i class="fas fa-chevron-right me-2"></i>Installations</a></li>
+                    <li><a href="broderie.html"><i class="fas fa-chevron-right me-2"></i>Broderie</a></li>
+                    <li><a href="CNC.html"><i class="fas fa-chevron-right me-2"></i>Services CNC</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-4 col-md-12">
+                <div id="con"></div>
+                <h3 class="footer-heading">CONTACT</h3>
+                <ul class="footer-contact">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Avenue de l'Innovation, Dakar, Sénégal</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <span>(+221) 77 077 18 32</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>linguerefablab@gmail.com</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        <span>Lun-Ven: 08:00 - 17:00<br>Sam: 09:00 - 13:00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom pt-4 mt-5">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 Linguère Fablab. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Conçu avec <i class="fas fa-heart text-danger"></i> par Linguère Fablab Team</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+ 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialisation des animations AOS
+    AOS.init({
+        duration: 1000,
+        once: false,
+        easing: 'ease-in-out',
+        mirror: true
+    });
+    
+    // Animation des cartes au scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        // Effet parallaxe pour les images de fond
+        const sections = document.querySelectorAll('.section');
+        
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.pageYOffset;
+            
+            sections.forEach(section => {
+                const bg = section.querySelector('.section-bg');
+                if (bg) {
+                    const speed = 0.3;
+                    const yPos = -(scrollPosition * speed);
+                    bg.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                }
+            });
+        });
+        
+        // Animation au survol des cartes de valeurs
+        const valueCards = document.querySelectorAll('.value-card');
+        
+        valueCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('i');
+                icon.style.transform = 'rotate(360deg) scale(1.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('i');
+                icon.style.transform = 'rotate(0) scale(1)';
+            });
+        });
+        
+        // Effet de vague pour le bouton CTA
+        const ctaBtn = document.querySelector('.cta-section .btn');
+        if (ctaBtn) {
+            ctaBtn.addEventListener('mouseenter', function() {
+                this.querySelector('::before').style.left = '100%';
+            });
+        }
+    });
+</script>
+
+</div>
+</body>
+</html>
