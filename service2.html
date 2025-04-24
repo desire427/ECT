@@ -30,7 +30,7 @@
     <nav>
         <div class="container d-flex flex-wrap justify-content-between align-items-center">
             <div class="logo animate__animated animate__fadeInLeft d-flex align-items-center">
-                <img src="logos.jpeg" alt="Logo" class="logo-img me-3">
+                <a href="index.html"><img src="logos.jpeg" alt="Logo" class="logo-img me-3"></a>
                 <span class="nav-brand">LINGUERE FABLAB</span>
             </div>
             
@@ -171,25 +171,6 @@
         </div>
 
 
-        <div class="option-group animate__animated animate__fadeInLeft">
-            <label class="option-label"><i class="fas fa-palette"></i> Couleurs de broderie</label>
-            <div class="color-options">
-                <div class="color-option" style="background: #000000;" data-color="#000000" title="Noir"></div>
-                <div class="color-option" style="background: #FF0000;" data-color="#FF0000" title="Rouge"></div>
-                <div class="color-option" style="background: #0000FF;" data-color="#0000FF" title="Bleu"></div>
-                <div class="color-option" style="background: #FFFFFF; border: 1px solid #ddd;" data-color="#FFFFFF" title="Blanc"></div>
-                <div class="color-option" style="background: #FFC0CB;" data-color="#FFC0CB" title="Rose"></div>
-                <div class="color-option" style="background: #5E35B1;" data-color="#5E35B1" title="Violet"></div>
-                <div class="color-option" style="background: #32CD32;" data-color="#32CD32" title="Vert"></div>
-                <div class="color-option" style="background: #FFA500;" data-color="#FFA500" title="Orange"></div>
-                <div class="color-option" style="background: #FFD700;" data-color="#FFD700" title="Or"></div>
-                <div class="color-option" style="background: #C0C0C0;" data-color="#C0C0C0" title="Argent"></div>
-            </div>
-            <input type="hidden" id="selected-colors" value="">
-            <div class="selected-colors-display" id="selected-colors-display"></div>
-        </div>
-
-
         <div class="option-group animate__animated animate__fadeInRight">
             <label class="option-label"><i class="fas fa-thread"></i>Matériau utilisé</label>
             <select class="option-select" id="thread-type">
@@ -304,7 +285,6 @@
                 <input type="hidden" id="selected-design" name="design">
                 <input type="hidden" id="selected-support" name="support">
                 <input type="hidden" id="selected-dimensions" name="dimensions">
-                <input type="hidden" id="selected-colors" name="colors">
                 <input type="hidden" id="selected-thread" name="thread_type">
                 <input type="hidden" id="selected-quantity" name="quantity">
                 <input type="hidden" id="selected-notes" name="special_notes">
@@ -748,14 +728,13 @@
                 }
             });
         });
-    // Fonction pour mettre à jour l'aperçu général
-    function updateSummary() {
+// Fonction pour mettre à jour l'aperçu général
+function updateSummary() {
         const summaryContainer = document.getElementById('summary-container');
         const supportType = document.getElementById('support-type');
         const otherSupport = document.getElementById('other-support');
         const width = document.getElementById('width');
         const height = document.getElementById('height');
-        const selectedColors = document.getElementById('selected-colors');
         const threadType = document.getElementById('thread-type');
         const quantity = document.getElementById('quantity');
         const specialNotes = document.getElementById('special-notes');
@@ -763,22 +742,14 @@
         
         // Déterminer le type de support
         let supportText = supportType.options[supportType.selectedIndex].text;
-        if (supportType.value === 'autre' && otherSupport.value) {
+        if (supportType.value === 'choix' && otherSupport.value) {
             supportText = otherSupport.value;
-        }
-        
-        // Préparer les couleurs sélectionnées
-        let colorsHtml = '';
-        if (selectedColors.value) {
-            colorsHtml = selectedColors.value.split(',').map(color => {
-                return `<span class="color-swatch" style="background: ${color}"></span>`;
-            }).join('');
         }
         
         // Créer le HTML de l'aperçu
         summaryContainer.innerHTML = `
             <div class="summary-item">
-                <h4><i class="fas fa-tshirt"></i> Support</h4>
+                <h4><i class="fas fa-tshirt"></i> Type de service</h4>
                 <p>${supportText}</p>
             </div>
             
@@ -788,12 +759,7 @@
             </div>
             
             <div class="summary-item">
-                <h4><i class="fas fa-palette"></i> Couleurs</h4>
-                <p>${colorsHtml || 'Aucune couleur sélectionnée'}</p>
-            </div>
-            
-            <div class="summary-item">
-                <h4><i class="fas fa-thread"></i>Matériau utilisé</h4>
+                <h4><i class="fas fa-thread"></i> Matériau utilisé</h4>
                 <p>${threadType.options[threadType.selectedIndex].text}</p>
             </div>
             
@@ -814,16 +780,17 @@
     // Écouteurs d'événements pour mettre à jour l'aperçu
     document.querySelectorAll('#support-type, #width, #height, #thread-type, #quantity, #special-notes').forEach(element => {
         element.addEventListener('change', updateSummary);
+        element.addEventListener('input', updateSummary);
     });
     
     document.getElementById('other-support').addEventListener('input', updateSummary);
-    document.getElementById('selected-colors').addEventListener('change', updateSummary);
     
     // Mettre à jour l'aperçu lors de la sélection d'une image
-    document.getElementById('select-image-btn').addEventListener('click', updateSummary);
-    document.getElementById('file-input').addEventListener('change', function() {
+    document.getElementById('select-image-btn')?.addEventListener('click', updateSummary);
+    document.getElementById('file-input')?.addEventListener('change', function() {
         setTimeout(updateSummary, 100);
     });
+    
     // Initialiser l'aperçu au chargement
     updateSummary();
 
