@@ -75,7 +75,7 @@
             <i class="fas fa-tshirt service-icon"></i>
             Broderie Numérique
         </h2>
-        <p class="service-subtitle">Personnalisez vos vêtements et accessoires avec nos motifs uniques ou vos propres designs</p>
+        <p class="service-subtitle">Vous souhaitez personnaliser des vêtements, des accessoires ou du linge avec un motif unique ? Notre service de broderie numérique vous permet de transformer vos idées en broderies de haute qualité.</p>
     </header>
     <div class="tab-container" data-active-tab="gallery">
         <div class="tab active" data-tab="gallery">
@@ -196,17 +196,6 @@
         </div>
 
 
-        <div class="option-group animate__animated animate__fadeInRight">
-            <label class="option-label"><i class="fas fa-thread"></i> Type de fil</label>
-            <select class="option-select" id="thread-type">
-                <option value="standard">Standard (polyester)</option>
-                <option value="metallise">Métallisé (+15%)</option>
-                <option value="fluo">Fluorescent (+10%)</option>
-                <option value="brillant">Brillant (+8%)</option>
-                <option value="cotton">Coton bio (+12%)</option>
-            </select>
-        </div>
-
         <div class="option-group animate__animated animate__fadeInLeft">
             <label class="option-label"><i class="fas fa-boxes"></i> Quantité</label>
             <div style="display: flex; align-items: center; gap: 1rem;">
@@ -215,7 +204,7 @@
             </div>
         </div>
 
-            <div class="option-group animate__animated animate__fadeInRight" style="width: 500px; margin-left: 30px;">
+            <div class="option-group animate__animated animate__fadeInRight">
                 <label class="option-label"><i class="fas fa-clipboard-list"></i> Instructions spéciales</label>
                 <textarea class="option-textarea" id="special-notes" placeholder="Ajoutez des instructions particulières (position, détails, etc.)..."></textarea>
             </div>
@@ -255,129 +244,132 @@
                         class="preview-image"
                         id="preview-image"
                         style="width: 100%; height: auto;">
-                    <div class="preview-status">Prêt à personnaliser</div>
                 </div>
             </div>
         </section>
 
 
 
-                    <!-- FORMULAIRE POUR QUE LE CLIENT -->
-                    <section class="contact-form-section">
-                        <div class="container">
-                            <div class="form-container animate__animated animate__fadeInUp">
-                                <h3 class="form-title">
-                                    <i class="fas fa-user-edit"></i> Informations Personnelles
-                                </h3>
-                                <p class="form-subtitle">Remplissez ce formulaire pour finaliser votre demande de broderie personnalisée</p>
-                                
-                                <form id="embroidery-form">
-                                    <!-- Section Informations Client -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="fullname"><i class="fas fa-user"></i> Nom Complet *</label>
-                                                <input type="text" id="fullname" name="fullname" required class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="email"><i class="fas fa-envelope"></i> Email *</label>
-                                                <input type="email" id="email" name="email" required class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="phone"><i class="fas fa-phone"></i> Téléphone *</label>
-                                                <input type="tel" id="phone" name="phone" required class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="address"><i class="fas fa-map-marker-alt"></i> Adresse (Ville) *</label>
-                                                <input type="text" id="address" name="address" required class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Champs Cachés pour la Personnalisation -->
-                                    <!-- Dans la section du formulaire, remplacer les champs cachés par : -->
-                                    <input type="hidden" id="selected-design" name="design">
-                                    <input type="hidden" id="selected-support" name="support">
-                                    <input type="hidden" id="selected-dimensions" name="dimensions">
-                                    <input type="hidden" id="selected-colors" name="colors">
-                                    <input type="hidden" id="selected-thread" name="thread_type">
-                                    <input type="hidden" id="selected-quantity" name="quantity">
-                                    <input type="hidden" id="selected-notes" name="special_notes">
+<!-- Bouton pour afficher le formulaire -->
+<div class="show-form-container animate__animated animate__fadeInUp">
+    <button id="show-form-btn" class="btn btn-primary btn-lg">
+        <i class="fas fa-edit"></i> Remplir le formulaire de commande
+    </button>
+</div>
 
-                                    <!-- Ajouter un champ pour le design uploadé si nécessaire -->
-<input type="hidden" id="uploaded-design" name="uploaded_design">
-                                    
-                                    <!-- Mode de Livraison -->
-                                    <div class="form-group">
-                                        <label for="delivery"><i class="fas fa-truck"></i> Mode de Livraison *</label>
-                                        <select id="delivery" name="delivery" required class="form-control">
-                                            <option value="">Sélectionnez une option</option>
-                                            <option value="pickup">Retrait sur place (Dakar)</option>
-                                            <option value="delivery_dakar">Livraison à domicile (Dakar)</option>
-                                            <option value="delivery_senegal">Livraison à domicile (Autres régions)</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <!-- Conditions Générales -->
-                                    <div class="form-group">
-                                        <div class="form-check">
-                                            <input type="checkbox" id="terms" name="terms" required class="form-check-input">
-                                            <label for="terms" class="form-check-label">
-                                                J'accepte les <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">conditions générales</a> *
-                                            </label>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Bouton de Soumission -->
-                                    <div class="form-actions">
-                                        <button type="submit" class="btn btn-primary submit-btn">
-                                            <i class="fas fa-paper-plane"></i> Envoyer ma demande
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+<!-- Formulaire (caché initialement) -->
+<section class="contact-form-section" id="contact-form" style="display: none;">
+    <div class="container">
+        <div class="form-container animate__animated animate__fadeInUp">
+            <h3 class="form-title">
+                <i class="fas fa-user-edit"></i> Informations Personnelles
+            </h3>
+            <p class="form-subtitle">Remplissez ce formulaire pour finaliser votre demande de broderie personnalisée</p>
+            
+            <form id="embroidery-form">
+                <!-- Section Informations Client -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="fullname"><i class="fas fa-user"></i> Nom Complet *</label>
+                            <input type="text" id="fullname" name="fullname" required class="form-control">
                         </div>
-                    </section>
-        
-                <!-- Modal pour les conditions générales -->
-                <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="termsModalLabel">Conditions Générales</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <h6>1. Processus de commande</h6>
-                                <p>Après soumission de votre demande, notre équipe vous contactera dans les 24 heures pour confirmer les détails et vous fournir un devis final.</p>
-                                
-                                <h6>2. Paiement</h6>
-                                <p>Un acompte de 50% sera requis avant le début de la production. Le solde devra être réglé avant la livraison.</p>
-                                
-                                <h6>3. Délais de production</h6>
-                                <p>Les délais standard sont de 3 à 5 jours ouvrés selon la complexité du design. Des délais plus courts peuvent être arrangés avec un supplément.</p>
-                                
-                                <h6>4. Livraison</h6>
-                                <p>Les frais de livraison varient selon la destination. Les retraits se font à notre atelier à Dakar.</p>
-                                
-                                <h6>5. Retours et échanges</h6>
-                                <p>En raison de la nature personnalisée de nos produits, les retours ne sont pas acceptés sauf en cas d'erreur de notre part.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">J'ai compris</button>
-                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email *</label>
+                            <input type="email" id="email" name="email" required class="form-control">
                         </div>
                     </div>
                 </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="phone"><i class="fas fa-phone"></i> Téléphone *</label>
+                            <input type="tel" id="phone" name="phone" required class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="address"><i class="fas fa-map-marker-alt"></i> Adresse (Ville) *</label>
+                            <input type="text" id="address" name="address" required class="form-control">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Champs Cachés pour la Personnalisation -->
+                <input type="hidden" id="selected-design" name="design">
+                <input type="hidden" id="selected-support" name="support">
+                <input type="hidden" id="selected-dimensions" name="dimensions">
+                <input type="hidden" id="selected-colors" name="colors">
+                <!-- <input type="hidden" id="selected-thread" name="thread_type"> -->
+                <input type="hidden" id="selected-quantity" name="quantity">
+                <input type="hidden" id="selected-notes" name="special_notes">
+                <input type="hidden" id="uploaded-design" name="uploaded_design">
+                
+                <!-- Mode de Livraison -->
+                <div class="form-group">
+                    <label for="delivery"><i class="fas fa-truck"></i> Mode de Livraison *</label>
+                    <select id="delivery" name="delivery" required class="form-control">
+                        <option value="">Sélectionnez une option</option>
+                        <option value="pickup">Retrait sur place (Dakar)</option>
+                        <option value="delivery_dakar">Livraison à domicile (Dakar)</option>
+                        <option value="delivery_senegal">Livraison à domicile (Autres régions)</option>
+                    </select>
+                </div>
+                
+                <!-- Conditions Générales -->
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" id="terms" name="terms" required class="form-check-input">
+                        <label for="terms" class="form-check-label">
+                            J'accepte les <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">conditions générales</a> *
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Bouton de Soumission -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        <i class="fas fa-paper-plane"></i> Envoyer ma demande
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Modal pour les conditions générales (conservez cette partie inchangée) -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsModalLabel">Conditions Générales</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>1. Processus de commande</h6>
+                <p>Après soumission de votre demande, notre équipe vous contactera dans les 24 heures pour confirmer les détails et vous fournir un devis final.</p>
+                
+                <h6>2. Paiement</h6>
+                <p>Un acompte de 50% sera requis avant le début de la production. Le solde devra être réglé avant la livraison.</p>
+                
+                <h6>3. Délais de production</h6>
+                <p>Les délais standard sont de 3 à 5 jours ouvrés selon la complexité du design. Des délais plus courts peuvent être arrangés avec un supplément.</p>
+                
+                <h6>4. Livraison</h6>
+                <p>Les frais de livraison varient selon la destination. Les retraits se font à notre atelier à Dakar.</p>
+                
+                <h6>5. Retours et échanges</h6>
+                <p>En raison de la nature personnalisée de nos produits, les retours ne sont pas acceptés sauf en cas d'erreur de notre part.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">J'ai compris</button>
+            </div>
+        </div>
+    </div>
+</div>
         
 
 
@@ -763,7 +755,6 @@
         const width = document.getElementById('width');
         const height = document.getElementById('height');
         const selectedColors = document.getElementById('selected-colors');
-        const threadType = document.getElementById('thread-type');
         const quantity = document.getElementById('quantity');
         const specialNotes = document.getElementById('special-notes');
         const previewImage = document.getElementById('preview-image').src;
@@ -799,10 +790,7 @@
                 <p>${colorsHtml || 'Aucune couleur sélectionnée'}</p>
             </div>
             
-            <div class="summary-item">
-                <h4><i class="fas fa-thread"></i> Type de fil</h4>
-                <p>${threadType.options[threadType.selectedIndex].text}</p>
-            </div>
+
             
             <div class="summary-item">
                 <h4><i class="fas fa-boxes"></i> Quantité</h4>
@@ -819,7 +807,7 @@
     }
     
     // Écouteurs d'événements pour mettre à jour l'aperçu
-    document.querySelectorAll('#support-type, #width, #height, #thread-type, #quantity, #special-notes').forEach(element => {
+    document.querySelectorAll('#support-type, #width, #height, #quantity, #special-notes').forEach(element => {
         element.addEventListener('change', updateSummary);
     });
     
@@ -855,6 +843,16 @@
     }
 }
 
+// Gestion de l'affichage du formulaire
+document.getElementById('show-form-btn').addEventListener('click', function() {
+    const formSection = document.getElementById('contact-form');
+    formSection.style.display = 'block';
+    this.style.display = 'none'; // Cache le bouton après clic
+    
+    // Animation pour le formulaire
+    formSection.scrollIntoView({ behavior: 'smooth' });
+    formSection.querySelector('.form-container').classList.add('animate__fadeInUp');
+});
                 </script>
 </body>
 </html>
