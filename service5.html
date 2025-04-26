@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="service.css">
+    <link rel="stylesheet" href="service5.css">
     <link rel="stylesheet" href="aaaaa.css">
 </head>
 <body>
@@ -149,8 +149,8 @@
 
 
 
-        <!-- HTML pour la section de personnalisation -->
-        <section class="customization-section">
+        <!-- HTML pour la section de personnalisation Impression sur Papier et Supports Rigides -->
+        <section class="customization-section" id="paper-section">
         <div class="customization-intro animate__animated animate__fadeIn">
             <h3><i class="fas fa-magic"></i>Impression sur Papier et Supports Rigides</h3>
             <p>Nous réalisons des impressions sur divers supports papier et rigides pour vos supports de communication et de branding </p>
@@ -158,28 +158,28 @@
 
         <div class="option-group animate__animated animate__fadeInLeft">
             <label class="option-label"><i class="fas fa-thread"></i>Format souhaité</label>
-            <select class="option-select" id="thread-type">
+            <select class="option-select" id="format-select">
                 <option value="A3">A3</option>
                 <option value="A4">A4</option>
                 <option value="A5">A5</option>
                 <option value="autre">Autre (Presiez)</option>
             </select>
-            <input type="text" class="option-input" id="other-support" placeholder="Précisez le support" style="display: none; margin-top: 0.8rem;">
+            <input type="text" class="option-input" id="other-format" placeholder="Précisez le support" style="display: none; margin-top: 0.8rem;">
         </div>
 
         <div class="option-group animate__animated animate__fadeInRight">
             <label class="option-label"><i class="fas fa-ruler-combined"></i> Dimensions (cm)</label>
             <div style="display: flex; gap: 0.8rem; align-items: center;">
-                <input type="number" class="option-input" id="width" placeholder="Largeur" min="1" max="50" value="10">
+                <input type="number" class="option-input" id="width-paper" placeholder="Largeur" min="1" max="50" value="10">
                 <span style="font-weight: 600; color: var(--primary);">×</span>
-                <input type="number" class="option-input" id="height" placeholder="Hauteur" min="1" max="50" value="10">
+                <input type="number" class="option-input" id="height-paper" placeholder="Hauteur" min="1" max="50" value="10">
             </div>
         </div>
 
 
         <div class="option-group animate__animated animate__fadeInLeft">
             <label class="option-label"><i class="fas fa-palette"></i> Couleurs de broderie</label>
-            <div class="color-options">
+            <div class="color-options" id="color-options-paper">
                 <div class="color-option" style="background: #000000;" data-color="#000000" title="Noir"></div>
                 <div class="color-option" style="background: #FF0000;" data-color="#FF0000" title="Rouge"></div>
                 <div class="color-option" style="background: #0000FF;" data-color="#0000FF" title="Bleu"></div>
@@ -191,47 +191,50 @@
                 <div class="color-option" style="background: #FFD700;" data-color="#FFD700" title="Or"></div>
                 <div class="color-option" style="background: #C0C0C0;" data-color="#C0C0C0" title="Argent"></div>
             </div>
-            <input type="hidden" id="selected-colors" value="">
-            <div class="selected-colors-display" id="selected-colors-display"></div>
+            <input type="hidden" id="selected-colors-paper" value="">
+            <div class="selected-colors-display" id="selected-colors-display-paper"></div>
         </div>
-
 
         <div class="option-group animate__animated animate__fadeInRight">
             <label class="option-label"><i class="fas fa-thread"></i>Type de papier</label>
-            <select class="option-select" id="thread-type">
+            <select class="option-select" id="thread-type-paper">
                 <option value="standard">mat</option>
                 <option value="metallise">brillant</option>
                 <option value="PETG">recyclé</option>
                 <option value="Résine">Autre (Presiez)</option>
             </select>
+            <input type="text" class="option-input" id="other-thread-type-paper" placeholder="Précisez le matériau" style="display: none; margin-top: 0.8rem;">
         </div>
+
 
         <div class="option-group animate__animated animate__fadeInRight">
             <label class="option-label"><i class="fas fa-thread"></i>Fichier du design</label>
-            <select class="option-select" id="thread-type">
-                <option value="standard">PDF</option>
+            <select class="option-select" id="design-file-type-1">
                 <option value="PNG">PNG</option>
                 <option value="AI">AI</option>
                 <option value="PSD">PSD</option>
                 <option value="autre">Autre (Presiez)</option>
             </select>
+            <input type="text" class="option-input" id="other-design-file-1" placeholder="Précisez le type de fichier" style="display: none; margin-top: 0.8rem;">
         </div>
 
         <div class="option-group animate__animated animate__fadeInLeft">
             <label class="option-label"><i class="fas fa-boxes"></i> Quantité</label>
             <div style="display: flex; align-items: center; gap: 1rem;">
-                <input type="number" class="option-input" id="quantity" min="1" value="1" style="max-width: 80px;">
+                <input type="number" class="option-input" id="quantity-paper" min="1" value="1" style="max-width: 80px;">
             </div>
         </div>
         
 
-            <div class="option-group animate__animated animate__fadeInRight" style="width: 300px;">
-                <label class="option-label"><i class="fas fa-clipboard-list"></i> Instructions spéciales</label>
-                <textarea class="option-textarea" id="special-notes" placeholder="Ajoutez des instructions particulières (position, détails, etc.)..."></textarea>
-            </div>
+        <div class="option-group animate__animated animate__fadeInRight" style="width: 300px;">
+            <label class="option-label"><i class="fas fa-clipboard-list"></i> Instructions spéciales</label>
+            <textarea class="option-textarea" id="special-notes-paper" placeholder="Ajoutez des instructions particulières (position, détails, etc.)..."></textarea>
+        </div>
 
             <div class="option-bou animate__animated animate__fadeInRight" style="width: 500px; margin-left: 30px;">
-                <button style="background-color: #0000FF; color: #000000; padding: 10px; border-radius: 8px;">cliquer pour voir l'apercu general</button>
+                <button class="preview-btn" data-section="paper">
+                    <a href="#bt_ap">Cliquer pour voir l'aperçu général</a>
+                </button>
             </div>
             
             </section>
@@ -241,8 +244,8 @@
 
 
 
-                <!-- HTML pour la section de personnalisation -->
-                <section class="customization-section">
+                <!-- HTML pour la section de personnalisation Impression sur Textiles et Vêtements -->
+                <section class="customization-section" id="textile-section">
                     <div class="customization-intro animate__animated animate__fadeIn">
                         <h3><i class="fas fa-magic"></i>Impression sur Textiles et Vêtements</h3>
                         <p>Nous imprimons vos designs sur différents textiles pour des vêtements et accessoires personnalisés </p>
@@ -250,27 +253,27 @@
             
                     <div class="option-group animate__animated animate__fadeInLeft">
                         <label class="option-label"><i class="fas fa-thread"></i>Type de textile</label>
-                        <select class="option-select" id="thread-type">
+                        <select class="option-select" id="textile-type">
                             <option value="coton">coton</option>
                             <option value="polyester">polyester</option>
                             <option value="autre">Autre (Presiez)</option>
                         </select>
-                        <input type="text" class="option-input" id="other-support" placeholder="Précisez le support" style="display: none; margin-top: 0.8rem;">
+                        <input type="text" class="option-input" id="other-textile" placeholder="Précisez le support" style="display: none; margin-top: 0.8rem;">
                     </div>
             
                     <div class="option-group animate__animated animate__fadeInRight">
                         <label class="option-label"><i class="fas fa-ruler-combined"></i> Dimensions (cm)</label>
                         <div style="display: flex; gap: 0.8rem; align-items: center;">
-                            <input type="number" class="option-input" id="width" placeholder="Largeur" min="1" max="50" value="10">
+                            <input type="number" class="option-input" id="width-textile" placeholder="Largeur" min="1" max="50" value="10">
                             <span style="font-weight: 600; color: var(--primary);">×</span>
-                            <input type="number" class="option-input" id="height" placeholder="Hauteur" min="1" max="50" value="10">
+                            <input type="number" class="option-input" id="height-textile" placeholder="Hauteur" min="1" max="50" value="10">
                         </div>
                     </div>
             
             
                     <div class="option-group animate__animated animate__fadeInLeft">
                         <label class="option-label"><i class="fas fa-palette"></i> Couleurs de broderie</label>
-                        <div class="color-options">
+                        <div class="color-options" id="color-options-textile">
                             <div class="color-option" style="background: #000000;" data-color="#000000" title="Noir"></div>
                             <div class="color-option" style="background: #FF0000;" data-color="#FF0000" title="Rouge"></div>
                             <div class="color-option" style="background: #0000FF;" data-color="#0000FF" title="Bleu"></div>
@@ -282,14 +285,14 @@
                             <div class="color-option" style="background: #FFD700;" data-color="#FFD700" title="Or"></div>
                             <div class="color-option" style="background: #C0C0C0;" data-color="#C0C0C0" title="Argent"></div>
                         </div>
-                        <input type="hidden" id="selected-colors" value="">
-                        <div class="selected-colors-display" id="selected-colors-display"></div>
+                        <input type="hidden" id="selected-colors-textile" value="">
+                        <div class="selected-colors-display" id="selected-colors-display-textile"></div>
                     </div>
             
             
                     <div class="option-group animate__animated animate__fadeInRight">
                         <label class="option-label"><i class="fas fa-thread"></i>Technique d’impression souhaitée</label>
-                        <select class="option-select" id="thread-type">
+                        <select class="option-select" id="thread-type-textile">
                             <option value="sérigraphie">sérigraphie</option>
                             <option value="sublimation">sublimation</option>
                             <option value="impression">impression</option>
@@ -299,29 +302,32 @@
 
                     <div class="option-group animate__animated animate__fadeInRight">
                         <label class="option-label"><i class="fas fa-thread"></i>Fichier du design</label>
-                        <select class="option-select" id="thread-type">
+                        <select class="option-select" id="design-file-type-2">
                             <option value="PNG">PNG</option>
                             <option value="AI">AI</option>
                             <option value="PSD">PSD</option>
                             <option value="autre">Autre (Presiez)</option>
                         </select>
+                        <input type="text" class="option-input" id="other-design-file-2" placeholder="Précisez le type de fichier" style="display: none; margin-top: 0.8rem;">
                     </div>
             
                     <div class="option-group animate__animated animate__fadeInLeft">
                         <label class="option-label"><i class="fas fa-boxes"></i> Quantité</label>
                         <div style="display: flex; align-items: center; gap: 1rem;">
-                            <input type="number" class="option-input" id="quantity" min="1" value="1" style="max-width: 80px;">
+                            <input type="number" class="option-input" id="quantity-textile" min="1" value="1" style="max-width: 80px;">
                         </div>
                     </div>
             
                     <div class="option-group animate__animated animate__fadeInRight" style="width: 300px;">
                         <label class="option-label"><i class="fas fa-clipboard-list"></i> Instructions spéciales</label>
-                        <textarea class="option-textarea" id="special-notes" placeholder="Ajoutez des instructions particulières (position, détails, etc.)..."></textarea>
+                        <textarea class="option-textarea" id="special-notes-textile" placeholder="Ajoutez des instructions particulières (position, détails, etc.)..."></textarea>
                     </div>
 
-                        <div class="option-group animate__animated animate__fadeInRight" style="width: 500px; margin-left: 30px;">
-                            <button style="background-color: #0000FF; color: #000000; padding: 10px; border-radius: 8px;">cliquer pour voir l'apercu general</button>
-                        </div>
+                    <div class="option-bou animate__animated animate__fadeInRight" style="width: 500px; margin-left: 30px;">
+                        <button class="preview-btn" data-section="textile">
+                            <a href="#bt_ap">Cliquer pour voir l'aperçu général</a>
+                        </button>
+                    </div>
                         </section>
 
 
@@ -329,8 +335,8 @@
 
 
 
-                            <!-- HTML pour la section de personnalisation -->
-        <section class="customization-section">
+                            <!-- HTML pour la section de personnalisation Impression sur Objets Personnalisés -->
+            <section class="customization-section" id="object-section">
             <div class="customization-intro animate__animated animate__fadeIn">
                 <h3><i class="fas fa-magic"></i>Impression sur Objets Personnalisés</h3>
                 <p>Personnalisez divers objets grâce à l’impression numérique </p>
@@ -355,16 +361,16 @@
             <div class="option-group animate__animated animate__fadeInRight">
                 <label class="option-label"><i class="fas fa-ruler-combined"></i> Dimensions (cm)</label>
                 <div style="display: flex; gap: 0.8rem; align-items: center;">
-                    <input type="number" class="option-input" id="width" placeholder="Largeur" min="1" max="50" value="10">
+                    <input type="number" class="option-input" id="width-object" placeholder="Largeur" min="1" max="50" value="10">
                     <span style="font-weight: 600; color: var(--primary);">×</span>
-                    <input type="number" class="option-input" id="height" placeholder="Hauteur" min="1" max="50" value="10">
+                    <input type="number" class="option-input" id="height-object" placeholder="Hauteur" min="1" max="50" value="10">
                 </div>
             </div>
     
     
             <div class="option-group animate__animated animate__fadeInLeft">
                 <label class="option-label"><i class="fas fa-palette"></i> Couleurs de broderie</label>
-                <div class="color-options">
+                <div class="color-options" id="color-options-object">
                     <div class="color-option" style="background: #000000;" data-color="#000000" title="Noir"></div>
                     <div class="color-option" style="background: #FF0000;" data-color="#FF0000" title="Rouge"></div>
                     <div class="color-option" style="background: #0000FF;" data-color="#0000FF" title="Bleu"></div>
@@ -376,48 +382,40 @@
                     <div class="color-option" style="background: #FFD700;" data-color="#FFD700" title="Or"></div>
                     <div class="color-option" style="background: #C0C0C0;" data-color="#C0C0C0" title="Argent"></div>
                 </div>
-                <input type="hidden" id="selected-colors" value="">
-                <div class="selected-colors-display" id="selected-colors-display"></div>
+                <input type="hidden" id="selected-colors-object" value="">
+                <div class="selected-colors-display" id="selected-colors-display-object"></div>
             </div>
     
     
             <div class="option-group animate__animated animate__fadeInRight">
                 <label class="option-label"><i class="fas fa-thread"></i>Fichier du design</label>
-                <select class="option-select" id="thread-type">
+                <select class="option-select" id="design-file-type-3">
                     <option value="PNG">PNG</option>
                     <option value="AI">AI</option>
                     <option value="PSD">PSD</option>
                     <option value="autre">Autre (Presiez)</option>
                 </select>
+                <input type="text" class="option-input" id="other-design-file-3" placeholder="Précisez le type de fichier" style="display: none; margin-top: 0.8rem;">
             </div>
     
             <div class="option-group animate__animated animate__fadeInLeft">
                 <label class="option-label"><i class="fas fa-boxes"></i> Quantité</label>
                 <div style="display: flex; align-items: center; gap: 1rem;">
-                    <input type="number" class="option-input" id="quantity" min="1" value="1" style="max-width: 80px;">
+                    <input type="number" class="option-input" id="quantity-object" min="1" value="1" style="max-width: 80px;">
                 </div>
             </div>
     
             <div class="option-group animate__animated animate__fadeInRight" style="width: 300px;">
                 <label class="option-label"><i class="fas fa-clipboard-list"></i> Instructions spéciales</label>
-                <textarea class="option-textarea" id="special-notes" placeholder="Ajoutez des instructions particulières (position, détails, etc.)..."></textarea>
+                <textarea class="option-textarea" id="special-notes-object" placeholder="Ajoutez des instructions particulières (position, détails, etc.)..."></textarea>
             </div>
-            <div class="option-group animate__animated animate__fadeInRight" style="width: 500px; margin-left: 30px;">
-                <button style="background-color: #0000FF; color: #000000; padding: 10px; border-radius: 8px;">cliquer pour voir l'apercu general</button>
+            <div class="option-bou animate__animated animate__fadeInRight" style="width: 500px; margin-left: 30px;">
+                <button class="preview-btn" data-section="object">
+                    <a href="#bt_ap">Cliquer pour voir l'aperçu général</a>
+                </button>
             </div>
             </section>
                 </section>
-
-
-
-
-
-
-
-
-
-
-
 
 
                 <!-- Lightbox Structure -->
@@ -439,11 +437,13 @@
                 </div>
 
             <!-- Section Aperçu Général -->
+             <div id="bt_ap"></div>
             <section class="summary-section">
                 <h3 class="section-title"><i class="fas fa-clipboard-check"></i> Aperçu général</h3>
                 <div class="summary-container" id="summary-container">
                     <!-- Le contenu sera généré dynamiquement par JavaScript -->
                 </div>
+                
     
                 <!-- Aperçu de votre galerie déplacé ici -->
                 <div class="preview-container" style="max-width: 200px; margin: 1rem auto;">
@@ -686,6 +686,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     
     <script>
+
+
+
+
+
+
+
+
         // Initialize AOS
         AOS.init({
             duration: 800,
@@ -967,114 +975,431 @@
             });
         });
     // Fonction pour mettre à jour l'aperçu général
-    function updateSummary() {
-        const summaryContainer = document.getElementById('summary-container');
-        const supportType = document.getElementById('support-type');
-        const otherSupport = document.getElementById('other-support');
-        const width = document.getElementById('width');
-        const height = document.getElementById('height');
-        const selectedColors = document.getElementById('selected-colors');
-        const threadType = document.getElementById('thread-type');
-        const quantity = document.getElementById('quantity');
-        const specialNotes = document.getElementById('special-notes');
-        const previewImage = document.getElementById('preview-image').src;
-        
-        // Déterminer le type de support
-        let supportText = supportType.options[supportType.selectedIndex].text;
-        if (supportType.value === 'autre' && otherSupport.value) {
-            supportText = otherSupport.value;
-        }
-        
-        // Préparer les couleurs sélectionnées
-        let colorsHtml = '';
-        if (selectedColors.value) {
-            colorsHtml = selectedColors.value.split(',').map(color => {
-                return `<span class="color-swatch" style="background: ${color}"></span>`;
-            }).join('');
-        }
-        
-        // Créer le HTML de l'aperçu
-        summaryContainer.innerHTML = `
-            <div class="summary-item">
-                <h4><i class="fas fa-tshirt"></i> Support</h4>
-                <p>${supportText}</p>
-            </div>
-            
-            <div class="summary-item">
-                <h4><i class="fas fa-ruler-combined"></i> Dimensions</h4>
-                <p>${width.value} cm × ${height.value} cm</p>
-            </div>
-            
-            <div class="summary-item">
-                <h4><i class="fas fa-palette"></i> Couleurs</h4>
-                <p>${colorsHtml || 'Aucune couleur sélectionnée'}</p>
-            </div>
-            
-            <div class="summary-item">
-                <h4><i class="fas fa-thread"></i>Matériau utilisé</h4>
-                <p>${threadType.options[threadType.selectedIndex].text}</p>
-            </div>
-            
-            <div class="summary-item">
-                <h4><i class="fas fa-boxes"></i> Quantité</h4>
-                <p>${quantity.value} pièce(s)</p>
-            </div>
-            
-            ${specialNotes.value ? `
-            <div class="summary-item">
-                <h4><i class="fas fa-clipboard-list"></i> Instructions</h4>
-                <p>${specialNotes.value}</p>
-            </div>
-            ` : ''}
-        `;
-    }
-    
-    // Écouteurs d'événements pour mettre à jour l'aperçu
-    document.querySelectorAll('#support-type, #width, #height, #thread-type, #quantity, #special-notes').forEach(element => {
-        element.addEventListener('change', updateSummary);
-    });
-    
-    document.getElementById('other-support').addEventListener('input', updateSummary);
-    document.getElementById('selected-colors').addEventListener('change', updateSummary);
-    
-    // Mettre à jour l'aperçu lors de la sélection d'une image
-    document.getElementById('select-image-btn').addEventListener('click', updateSummary);
-    document.getElementById('file-input').addEventListener('change', function() {
-        setTimeout(updateSummary, 100);
-    });
-    // Initialiser l'aperçu au chargement
-    updateSummary();
+    document.addEventListener('DOMContentLoaded', function () {
+        // Fonction pour gérer la sélection des couleurs
+        function setupColorSelection(colorOptionsId, selectedColorsInputId, selectedColorsDisplayId) {
+            const colorOptions = document.querySelectorAll(`#${colorOptionsId} .color-option`);
+            const selectedColorsInput = document.getElementById(selectedColorsInputId);
+            const selectedColorsDisplay = document.getElementById(selectedColorsDisplayId);
+            let selectedColors = [];
 
-    function handleFile(file) {
-    if (file && (file.type.startsWith('image/') || file.name.endsWith('.svg'))) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            previewImage.src = e.target.result;
-            // Mettre à jour le champ caché pour l'image uploadée
-            document.getElementById('uploaded-design').value = file.name;
-            // Mettre à jour le résumé
-            updateSummary();
-        };
-        reader.readAsDataURL(file);
-    } else if (file && file.name.endsWith('.dst')) {
-        previewImage.src = 'https://via.placeholder.com/320x320/CCCCCC/808080?Text=Fichier+DST';
-        document.getElementById('uploaded-design').value = file.name;
-        updateSummary();
-        alert('Le fichier DST est un format de broderie, la prévisualisation peut ne pas être exacte.');
-    } else if (file) {
-        alert('Format de fichier non supporté. Veuillez utiliser une image (PNG, JPG, SVG) ou un fichier DST.');
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    const color = this.getAttribute('data-color');
+
+                    // Vérifier si la couleur est déjà sélectionnée
+                    const colorIndex = selectedColors.indexOf(color);
+
+                    if (colorIndex === -1) {
+                        // Ajouter la couleur
+                        selectedColors.push(color);
+                        this.classList.add('selected');
+                    } else {
+                        // Retirer la couleur
+                        selectedColors.splice(colorIndex, 1);
+                        this.classList.remove('selected');
+                    }
+
+                    // Mettre à jour le champ caché
+                    selectedColorsInput.value = selectedColors.join(',');
+
+                    // Mettre à jour l'affichage
+                    updateSelectedColorsDisplay(selectedColors, selectedColorsDisplay);
+                });
+            });
+
+            function updateSelectedColorsDisplay(colors, displayElement) {
+                displayElement.innerHTML = '';
+
+                colors.forEach(color => {
+                    const colorElement = document.createElement('div');
+                    colorElement.className = 'selected-color';
+                    colorElement.style.background = color;
+                    colorElement.setAttribute('data-color', color);
+
+                    // Ajouter un bouton pour supprimer la couleur
+                    colorElement.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        const colorToRemove = this.getAttribute('data-color');
+                        selectedColors = selectedColors.filter(c => c !== colorToRemove);
+                        selectedColorsInput.value = selectedColors.join(',');
+
+                        // Retirer la classe selected de l'option correspondante
+                        document.querySelectorAll(`#${colorOptionsId} .color-option`).forEach(opt => {
+                            if (opt.getAttribute('data-color') === colorToRemove) {
+                                opt.classList.remove('selected');
+                            }
+                        });
+
+                        updateSelectedColorsDisplay(selectedColors, displayElement);
+                    });
+
+                    displayElement.appendChild(colorElement);
+                });
+            }
+        }
+
+        // Configurer la sélection des couleurs pour chaque section
+        setupColorSelection('color-options-paper', 'selected-colors-paper', 'selected-colors-display-paper');
+        setupColorSelection('color-options-textile', 'selected-colors-textile', 'selected-colors-display-textile');
+        setupColorSelection('color-options-object', 'selected-colors-object', 'selected-colors-display-object');
+    });
+
+    // Fonction pour mettre à jour l'aperçu en fonction de la section
+    function updateSummary(sectionType) {
+    const summaryContainer = document.getElementById('summary-container');
+    let summaryHTML = '';
+
+    // Références aux champs cachés
+    const hiddenDesign = document.getElementById('selected-design');
+    const hiddenSupport = document.getElementById('selected-support');
+    const hiddenDimensions = document.getElementById('selected-dimensions');
+    const hiddenColors = document.getElementById('selected-colors');
+    const hiddenThread = document.getElementById('selected-thread');
+    const hiddenQuantity = document.getElementById('selected-quantity');
+    const hiddenNotes = document.getElementById('selected-notes');
+
+    switch (sectionType) {
+        case 'paper':
+            const formatSelect = document.getElementById('format-select');
+            const otherFormat = document.getElementById('other-format');
+            const paperType = document.getElementById('thread-type-paper');
+            const otherPaperType = document.getElementById('other-thread-type-paper');
+            const paperColors = document.getElementById('selected-colors-paper');
+            const paperQuantity = document.getElementById('quantity-paper');
+            const paperNotes = document.getElementById('special-notes-paper');
+            const widthPaper = document.getElementById('width-paper').value;
+            const heightPaper = document.getElementById('height-paper').value;
+            const designFileType1 = document.getElementById('design-file-type-1');
+            const otherDesignFile1 = document.getElementById('other-design-file-1');
+
+            summaryHTML = `
+                <div class="summary-section">
+                    <h4><i class="fas fa-file-alt"></i> Impression sur Papier</h4>
+                    <div class="summary-item">
+                        <strong>Format:</strong> ${formatSelect.value === 'autre' ? otherFormat.value : formatSelect.options[formatSelect.selectedIndex].text}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Type de papier:</strong> 
+                        ${paperType.value === 'Résine' ? otherPaperType.value : paperType.options[paperType.selectedIndex].text}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Dimensions:</strong> ${widthPaper} cm × ${heightPaper} cm
+                    </div>
+                    <div class="summary-item">
+                        <strong>Couleurs:</strong> ${paperColors.value ? paperColors.value.split(',').map(c => `<span class="color-swatch" style="background:${c}"></span>`).join('') : 'Non spécifié'}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Fichier du design:</strong> 
+                        ${designFileType1.value === 'autre' ? otherDesignFile1.value : designFileType1.options[designFileType1.selectedIndex].text}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Quantité:</strong> ${paperQuantity.value}
+                    </div>
+                    ${paperNotes.value ? `
+                    <div class="summary-item">
+                        <strong>Instructions:</strong> ${paperNotes.value}
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+
+            // Mettre à jour les champs cachés
+            hiddenDesign.value = designFileType1.value === 'autre' ? otherDesignFile1.value : designFileType1.options[designFileType1.selectedIndex].text;
+            hiddenSupport.value = formatSelect.value === 'autre' ? otherFormat.value : formatSelect.options[formatSelect.selectedIndex].text;
+            hiddenDimensions.value = `${widthPaper} cm × ${heightPaper} cm`;
+            hiddenColors.value = paperColors.value;
+            hiddenThread.value = paperType.value === 'Résine' ? otherPaperType.value : paperType.options[paperType.selectedIndex].text;
+            hiddenQuantity.value = paperQuantity.value;
+            hiddenNotes.value = paperNotes.value || '';
+            break;
+
+        case 'textile':
+            const textileType = document.getElementById('textile-type');
+            const otherTextile = document.getElementById('other-textile');
+            const technique = document.getElementById('thread-type-textile');
+            const textileColors = document.getElementById('selected-colors-textile');
+            const textileQuantity = document.getElementById('quantity-textile');
+            const textileNotes = document.getElementById('special-notes-textile');
+            const widthTextile = document.getElementById('width-textile').value;
+            const heightTextile = document.getElementById('height-textile').value;
+            const designFileType2 = document.getElementById('design-file-type-2');
+            const otherDesignFile2 = document.getElementById('other-design-file-2');
+
+            summaryHTML = `
+                <div class="summary-section">
+                    <h4><i class="fas fa-tshirt"></i> Impression sur Textile</h4>
+                    <div class="summary-item">
+                        <strong>Type de textile:</strong> ${textileType.value === 'autre' ? otherTextile.value : textileType.options[textileType.selectedIndex].text}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Dimensions:</strong> ${widthTextile} cm × ${heightTextile} cm
+                    </div>
+                    <div class="summary-item">
+                        <strong>Technique:</strong> ${technique.options[technique.selectedIndex].text}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Couleurs:</strong> ${textileColors.value ? textileColors.value.split(',').map(c => `<span class="color-swatch" style="background:${c}"></span>`).join('') : 'Non spécifié'}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Fichier du design:</strong> 
+                        ${designFileType2.value === 'autre' ? otherDesignFile2.value : designFileType2.options[designFileType2.selectedIndex].text}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Quantité:</strong> ${textileQuantity.value}
+                    </div>
+                    ${textileNotes.value ? `
+                    <div class="summary-item">
+                        <strong>Instructions:</strong> ${textileNotes.value}
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+
+            // Mettre à jour les champs cachés
+            hiddenDesign.value = designFileType2.value === 'autre' ? otherDesignFile2.value : designFileType2.options[designFileType2.selectedIndex].text;
+            hiddenSupport.value = textileType.value === 'autre' ? otherTextile.value : textileType.options[textileType.selectedIndex].text;
+            hiddenDimensions.value = `${widthTextile} cm × ${heightTextile} cm`;
+            hiddenColors.value = textileColors.value;
+            hiddenThread.value = technique.options[technique.selectedIndex].text;
+            hiddenQuantity.value = textileQuantity.value;
+            hiddenNotes.value = textileNotes.value || '';
+            break;
+
+        case 'object':
+            const objectType = document.getElementById('support-type');
+            const otherObject = document.getElementById('other-support');
+            const objectColors = document.getElementById('selected-colors-object');
+            const objectQuantity = document.getElementById('quantity-object');
+            const objectNotes = document.getElementById('special-notes-object');
+            const widthObject = document.getElementById('width-object').value;
+            const heightObject = document.getElementById('height-object').value;
+            const designFileType3 = document.getElementById('design-file-type-3');
+            const otherDesignFile3 = document.getElementById('other-design-file-3');
+
+            summaryHTML = `
+                <div class="summary-section">
+                    <h4><i class="fas fa-cube"></i> Impression sur Objet</h4>
+                    <div class="summary-item">
+                        <strong>Type d'objet:</strong> ${objectType.value === 'autre' ? otherObject.value : objectType.options[objectType.selectedIndex].text}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Dimensions:</strong> ${widthObject} cm × ${heightObject} cm
+                    </div>
+                    <div class="summary-item">
+                        <strong>Couleurs:</strong> ${objectColors.value ? objectColors.value.split(',').map(c => `<span class="color-swatch" style="background:${c}"></span>`).join('') : 'Non spécifié'}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Fichier du design:</strong> 
+                        ${designFileType3.value === 'autre' ? otherDesignFile3.value : designFileType3.options[designFileType3.selectedIndex].text}
+                    </div>
+                    <div class="summary-item">
+                        <strong>Quantité:</strong> ${objectQuantity.value}
+                    </div>
+                    ${objectNotes.value ? `
+                    <div class="summary-item">
+                        <strong>Instructions:</strong> ${objectNotes.value}
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+
+            // Mettre à jour les champs cachés
+            hiddenDesign.value = designFileType3.value === 'autre' ? otherDesignFile3.value : designFileType3.options[designFileType3.selectedIndex].text;
+            hiddenSupport.value = objectType.value === 'autre' ? otherObject.value : objectType.options[objectType.selectedIndex].text;
+            hiddenDimensions.value = `${widthObject} cm × ${heightObject} cm`;
+            hiddenColors.value = objectColors.value;
+            hiddenThread.value = ''; // Pas de type de fil pour les objets
+            hiddenQuantity.value = objectQuantity.value;
+            hiddenNotes.value = objectNotes.value || '';
+            break;
     }
+
+    summaryContainer.innerHTML = summaryHTML;
 }
-// Gestion de l'affichage du formulaire
-document.getElementById('show-form-btn').addEventListener('click', function() {
-    const formSection = document.getElementById('contact-form');
-    formSection.style.display = 'block';
-    this.style.display = 'none'; // Cache le bouton après clic
-    
-    // Animation pour le formulaire
-    formSection.scrollIntoView({ behavior: 'smooth' });
-    formSection.querySelector('.form-container').classList.add('animate__fadeInUp');
-});
-                </script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Attacher les événements aux boutons d'aperçu
+        const previewButtons = document.querySelectorAll('.preview-btn');
+        previewButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const sectionType = this.getAttribute('data-section'); // Récupérer la section à afficher
+                updateSummary(sectionType); // Appeler la fonction updateSummary avec la section correspondante
+            });
+        });
+    });
+    // Ajouter des écouteurs d'événements à tous les champs de formulaire
+    document.querySelectorAll('.customization-section input, .customization-section select, .customization-section textarea').forEach(element => {
+        element.addEventListener('change', updateSummary);
+        element.addEventListener('input', updateSummary);
+    });
+    document.querySelectorAll('.preview-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const sectionType = this.getAttribute('data-section');
+            updateSummary(sectionType);
+        });
+    });
+    // Initialiser l'aperçu
+    updateSummary();
+        // Écouteurs d'événements pour mettre à jour l'aperçu
+        document.querySelectorAll('#support-type, #width, #height, #thread-type, #quantity, #special-notes').forEach(element => {
+            element.addEventListener('change', updateSummary);
+        });
+        
+        document.getElementById('other-support').addEventListener('input', updateSummary);
+        document.getElementById('selected-colors').addEventListener('change', updateSummary);
+        
+        // Mettre à jour l'aperçu lors de la sélection d'une image
+        document.getElementById('select-image-btn').addEventListener('click', updateSummary);
+        document.getElementById('file-input').addEventListener('change', function() {
+            setTimeout(updateSummary, 100);
+        });
+        // Initialiser l'aperçu au chargement
+        updateSummary();
+
+        function handleFile(file) {
+        if (file && (file.type.startsWith('image/') || file.name.endsWith('.svg'))) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                // Mettre à jour le champ caché pour l'image uploadée
+                document.getElementById('uploaded-design').value = file.name;
+                // Mettre à jour le résumé
+                updateSummary();
+            };
+            reader.readAsDataURL(file);
+        } else if (file && file.name.endsWith('.dst')) {
+            previewImage.src = 'https://via.placeholder.com/320x320/CCCCCC/808080?Text=Fichier+DST';
+            document.getElementById('uploaded-design').value = file.name;
+            updateSummary();
+            alert('Le fichier DST est un format de broderie, la prévisualisation peut ne pas être exacte.');
+        } else if (file) {
+            alert('Format de fichier non supporté. Veuillez utiliser une image (PNG, JPG, SVG) ou un fichier DST.');
+        }
+    }
+    // Gestion de l'affichage du formulaire
+    document.getElementById('show-form-btn').addEventListener('click', function() {
+        const formSection = document.getElementById('contact-form');
+        formSection.style.display = 'block';
+        this.style.display = 'none'; // Cache le bouton après clic
+        
+        // Animation pour le formulaire
+        formSection.scrollIntoView({ behavior: 'smooth' });
+        formSection.querySelector('.form-container').classList.add('animate__fadeInUp');
+    });
+
+
+
+    // Gestion de l'affichage de l'input "Autre" pour le format
+    document.addEventListener('DOMContentLoaded', function () {
+        const formatSelect = document.getElementById('format-select');
+        const otherFormatInput = document.getElementById('other-format');
+
+        formatSelect.addEventListener('change', function () {
+            if (this.value === 'autre') {
+                otherFormatInput.style.display = 'block'; // Affiche l'input
+            } else {
+                otherFormatInput.style.display = 'none'; // Cache l'input
+            }
+        });
+    });
+
+
+
+    // Gestion de l'affichage de l'input "Autre" pour le type de fil
+    document.addEventListener('DOMContentLoaded', function () {
+        const threadTypePaper = document.getElementById('thread-type-paper');
+        const otherThreadTypePaper = document.getElementById('other-thread-type-paper');
+
+        threadTypePaper.addEventListener('change', function () {
+            if (this.value === 'Résine') {
+                otherThreadTypePaper.style.display = 'block'; // Affiche l'input
+            } else {
+                otherThreadTypePaper.style.display = 'none'; // Cache l'input
+            }
+        });
+    });
+
+
+
+    // Gestion de l'affichage de l'input "Autre" pour le type de fichier de design
+    document.addEventListener('DOMContentLoaded', function () {
+        const designFileTypeSelect = document.getElementById('design-file-type');
+        const otherDesignFileInput = document.getElementById('other-design-file');
+
+        designFileTypeSelect.addEventListener('change', function () {
+            if (this.value === 'autre') {
+                otherDesignFileInput.style.display = 'block'; // Affiche l'input
+            } else {
+                otherDesignFileInput.style.display = 'none'; // Cache l'input
+            }
+        });
+    });
+
+
+    // Gestion de l'affichage de l'input "Autre" pour le type de support
+    document.addEventListener('DOMContentLoaded', function () {
+        const textileTypeSelect = document.getElementById('textile-type');
+        const otherTextileInput = document.getElementById('other-textile');
+
+        textileTypeSelect.addEventListener('change', function () {
+            if (this.value === 'autre') {
+                otherTextileInput.style.display = 'block'; // Affiche l'input
+            } else {
+                otherTextileInput.style.display = 'none'; // Cache l'input
+            }
+        });
+    });
+
+
+
+    // Gestion de l'affichage de l'input "Autre" pour le type de support
+    document.addEventListener('DOMContentLoaded', function () {
+        const supportTypeSelect = document.getElementById('support-type');
+        const otherSupportInput = document.getElementById('other-support');
+
+        supportTypeSelect.addEventListener('change', function () {
+            if (this.value === 'autre') {
+                otherSupportInput.style.display = 'block'; // Affiche l'input
+            } else {
+                otherSupportInput.style.display = 'none'; // Cache l'input
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    // Première section
+    const designFileTypeSelect1 = document.getElementById('design-file-type-1');
+    const otherDesignFileInput1 = document.getElementById('other-design-file-1');
+    designFileTypeSelect1.addEventListener('change', function () {
+        if (this.value === 'autre') {
+            otherDesignFileInput1.style.display = 'block';
+        } else {
+            otherDesignFileInput1.style.display = 'none';
+        }
+    });
+
+    // Deuxième section
+    const designFileTypeSelect2 = document.getElementById('design-file-type-2');
+    const otherDesignFileInput2 = document.getElementById('other-design-file-2');
+    designFileTypeSelect2.addEventListener('change', function () {
+        if (this.value === 'autre') {
+            otherDesignFileInput2.style.display = 'block';
+        } else {
+            otherDesignFileInput2.style.display = 'none';
+        }
+    });
+
+        // Troisième section
+        const designFileTypeSelect3 = document.getElementById('design-file-type-3');
+        const otherDesignFileInput3 = document.getElementById('other-design-file-3');
+        designFileTypeSelect3.addEventListener('change', function () {
+            if (this.value === 'autre') {
+                otherDesignFileInput3.style.display = 'block';
+            } else {
+                otherDesignFileInput3.style.display = 'none';
+            }
+        });
+    });
+</script>
 </body>
 </html>
