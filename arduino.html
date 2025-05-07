@@ -974,6 +974,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ------------------------------------------------------------------------------------------------------------------------------
 // Variables pour le paiement
 let selectedPaymentMethod = 'orange'; // Par défaut Orange Money
@@ -1055,15 +1093,6 @@ function processPayment() {
     // Message de confirmation
     let confirmationMessage = `Paiement ${selectedPaymentMethod === 'orange' ? 'Orange Money' : 'Wave'} de ${subtotal.toLocaleString()} CFA effectué avec succès!`;
     
-    // Détails supplémentaires
-    if (discount > 0) {
-        confirmationMessage += `\n\nVous avez bénéficié d'une réduction de 10% (${discount.toLocaleString()} CFA) pour votre commande de 10+ kits Arduino/Robotique.`;
-    }
-    
-    if (gift) {
-        confirmationMessage += `\n\n${gift}`;
-    }
-    
     // Informations client
     const customerName = `${document.getElementById('first-name').value} ${document.getElementById('last-name').value}`;
     confirmationMessage += `\n\nMerci ${customerName} pour votre commande !`;
@@ -1100,65 +1129,15 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
-
-
-
-
-
-
-
-// Fonction pour calculer les réductions et cadeaux selon les nouvelles règles
+// Fonction simplifiée sans réductions ni cadeaux
 function calculateDiscounts() {
-    let discount = 0;
-    let gift = '';
-    let subtotal = total;
-    
-    // Vérifier si le panier contient des kits Arduino et Robotique
-    const hasArduino = cart.some(item => item.category.includes('Kits Arduino'));
-    const hasRobotics = cart.some(item => item.category.includes('Robotique'));
-    
-    // Vérifier si le panier contient d'autres catégories
-    const hasOtherCategories = cart.some(item => 
-        !item.category.includes('Kits Arduino') && 
-        !item.category.includes('Robotique')
-    );
-    
-    // Cas 1: Uniquement kits Arduino et Robotique
-    if ((hasArduino || hasRobotics) && !hasOtherCategories) {
-        const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-        
-        // Appliquer 10% de réduction si 10+ produits
-        if (totalQuantity >= 10) {
-            discount = total * 0.1; // 10% de réduction sur le total
-            subtotal = total - discount;
-        }
-    } 
-    // Cas 2: Panier mixte (avec d'autres catégories)
-    else if (hasOtherCategories) {
-        // Calculer le total des autres catégories
-        const otherCategoriesTotal = cart.reduce((sum, item) => {
-            if (!item.category.includes('Kits Arduino') && !item.category.includes('Robotique')) {
-                return sum + (item.price * item.quantity);
-            }
-            return sum;
-        }, 0);
-        
-        // Offrir un cadeau si le total des autres catégories >= 100000 CFA
-        if (otherCategoriesTotal >= 100000) {
-            gift = 'Un cadeau surprise vous sera offert avec votre commande !';
-        }
-    }
-    
-    return { discount, subtotal, gift };
+    // Retourne simplement le total sans aucune réduction
+    return { 
+        discount: 0, 
+        subtotal: total, 
+        gift: '' 
+    };
 }
-
-
-
-
-
-
-
 
 // Fonction pour mettre à jour l'affichage du panier avec les nouvelles règles
 function updateCartDisplay() {
