@@ -802,3 +802,34 @@
 .container a{
     text-decoration: none;
 }
+
+
+
+
+
+
+/* -----------Li des smarts Coders---------- */
+.stat-label ul li{
+    list-style: none;
+    padding: 0.5rem 0;
+    font-size: 13px;
+    color: var(--dark);
+    position: relative;
+    padding-left: 0px;
+}
+
+
+/* ----------P pour les 3 modules enseigne--- */
+.stat-label ul p{
+    font-size: 13px;
+    color: var(--dark);
+    position: relative;
+    padding-left: 0px;
+}
+
+.stat-labelp{
+    font-size: 13px;
+    color: var(--dark);
+    position: relative;
+    padding-left: 0px;
+}
