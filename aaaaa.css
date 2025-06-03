@@ -423,7 +423,7 @@ box-sizing: border-box;
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 15px;
-    color: var(--secondary-color);
+    color: var(--dark-color);
 }
 
 .card-description {
@@ -1172,3 +1172,86 @@ footer {
                 font-size: 0.85rem;
             }
         }
+
+
+
+/* ---pour la partie service 5--- */
+    .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+.modal-content .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    width: 100%; 
+    max-width: 900px;
+}
+.close {
+    color: #0a0000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.card {
+    position: relative;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background: linear-gradient(135deg, rgba(102, 175, 248, 0.9) 0%, rgba(79, 226, 245, 0.8) 100%); */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.card:hover .overlay {
+    opacity: 1;
+}
+
+.card-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.card-description {
+    text-align: center;
+    padding: 10px;
+}
