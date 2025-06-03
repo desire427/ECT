@@ -251,16 +251,48 @@
             </div>
 
             <div class="card" data-aos="fade-up" data-aos-delay="300">
-                <a href="service5.html"></a>
+                <a href="#"></a>
                 <div class="overlay">
-                    <div class="card-title">Impressions Numériques Proposées</div>
-                    <div class="card-description">Nous réalisons des impressions sur divers supports papier et rigides pour vos supports de communication et de branding .<br><br><a href="service5.html">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a></div>
+                    <div class="card-title">Impressions Numériques</div>
+                    <div class="card-description">Nous réalisons des impressions sur divers supports papier et rigides pour vos supports de communication et de branding.<br><br><a class="modal-trigger" href="#">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a></div>
                 </div>
                 <h2 class="card-image-title">Impressions Numériques Proposées</h2>
             </div>
+
         </div>
     </div>
-    
+    <!-- Modal pour les elements du service 5 -->
+    <div id="modal-service5" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="grid">
+                <div class="card">
+                    <!-- <a href="impress_sur_papier.html"><img src="mini kits.png" alt="Impressions"></a> -->
+                    <div class="overlay">
+                        <div class="card-title">Impression sur Papier et Supports Rigides</div>
+                        <div class="card-description">Prototypage rapide et production de pièces en PLA, ABS, résine et autres matériaux techniques.<br><br><a href="impress_sur_papier.html">en savoir plus </a></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <!-- <a href="impress_sur_textil.html"><img src="mini kits.png" alt="Impressions"></a> -->
+                    <div class="overlay">
+                        <div class="card-title">Impression sur Textiles et Vêtements</div>
+                        <div class="card-description">Prototypage rapide et production de pièces en PLA, ABS, résine et autres matériaux techniques.<br><br><a href="impress_sur_textil.html">en savoir plus</a></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <!-- <a href="impress_sur_objet.html"><img src="mini kits.png" alt="Impressions"></a> -->
+                    <div class="overlay">
+                        <div class="card-title">Impression sur Objets Personnalisés</div>
+                        <div class="card-description">Prototypage rapide et production de pièces en PLA, ABS, résine et autres matériaux techniques.<br><br><a href="impress_sur_objet.html">en savoir plus</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Video Section 2 -->
     <section class="video-section">
         <video autoplay muted loop>
@@ -300,7 +332,7 @@
                             <div class="description fade-in-description">
                                 Apprenez à concevoir et usiner des pièces avec nos machines CNC. De la modélisation à la production.
                                 <div class="cta-button">
-                                    <a href="#" class="btn-pulse">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a>
+                                    <a href="forma_fraiseuse.html" class="btn-pulse">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -637,5 +669,29 @@
             searchInput.parentElement.classList.remove('animate__animated', 'animate__pulse');
         });
     </script>
+    <!-- ---les card de la partie service 5---- -->
+     <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById("modal-service5");
+    var btn = document.querySelector(".modal-trigger"); 
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function(event) {
+        event.preventDefault(); 
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+});
+
+</script>  
 </body>
 </html>
