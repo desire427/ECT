@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINGUERE FABLAB - Innovation et Fabrication Numérique au Sénégal</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="{% static 'AntaBackEnd/header_footer/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="aaaaa.css">
+        <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container d-flex flex-wrap justify-content-center justify-content-md-between">
+            <span><a href="localisation.html"><i class="fas fa-map-marker-alt me-2"></i> LOCALISATION</a></span>
+            <span><i class="fas fa-truck me-2"></i> Livraison Partout au Sénégal</span>
+            <span><i class="far fa-clock me-2"></i> 08:00 - 17:00</span>
+            <span><i class="fas fa-phone me-2"></i> (+221) 77 077 18 32</span>
+            <span><a href="https://wa.me/+221770771832" target="_blank"><i class="fab fa-whatsapp me-2"></i> WHATSAPP</a></span>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div class="logo animate__animated animate__fadeInLeft d-flex align-items-center">
+                <img src="logos.jpeg" alt="Logo" class="logo-img me-3">
+                <span class="nav-brand">LINGUERE FABLAB</span>
+            </div>
+            
+            <div class="search-bar animate__animated animate__zoomIn">
+                <input type="text" placeholder="Rechercher produits...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="icons d-flex align-items-center">
+                <span class="me-3"><i class="far fa-heart"></i></span>
+                <span class="me-3"><i class="far fa-user"></i></span>
+                <span class="cart-count" data-count="0"><i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">0 CFA</span></span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Navigation -->
+    <div class="nav-bar">
+        <div class="container d-flex flex-wrap justify-content-center">
+            <a href="#" style="color: rgb(255, 68, 0);"><i class="fas fa-home me-2"></i> ACCUEIL</a>
+            <div class="dropdown">
+                <a href="#"><i class="fas fa-list me-2"></i> CATALOGUE <i class="fas fa-chevron-down ms-1"></i></a>
+                <div class="dropdown-menu">
+                    <a href="#boutique"><i class="fas fa-microchip me-2"></i>Boutique</a>
+                    <a href="#services"><i class="fas fa-robot me-2"></i> Services</a>
+                    <a href="#formations"><i class="fas fa-tools me-2"></i> Formations</a>
+                    <a href="#projets"><i class="fas fa-tshirt me-2"></i> Projets et Initiatives</a>
+                </div>
+            </div> 
+            <a href="#"><i class="fas fa-certificate me-2"></i> NOUVEAUTÉS</a>
+            <a href="apropos.html"><i class="fas fa-info-circle me-2"></i> À PROPOS</a>
+            <a href="#con"><i class="fas fa-envelope me-2"></i> CONTACT</a>
+        </div>
+    </div>
+    
+
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .account-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 60px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            padding: 20px;
+            border-right: 1px solid #eaeaea;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .header {
+            color: #2178d0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2178d0;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #2178d0;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #2178d0;
+            margin-top: 20px;
+        }
+
+        .menu-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+
+        .menu-item a:hover {
+            color: #2178d0;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #eaeaea;
+            margin: 20px 0;
+        }
+
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            margin-top: 15px;
+        }
+
+        .info-label:first-child {
+            margin-top: 0;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .btn-primary {
+            background-color: #2178d0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1a5fa8;
+        }
+
+        .logout-btn {   
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Corrections spécifiques pour le modal */
+        .modal {
+            z-index: 1055; /* Assure que le modal est au-dessus */
+        }
+
+        .modal-dialog {
+            max-width: 600px;
+            margin: 1.75rem auto;
+        }
+
+        .modal-content {
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            background-color: #2178d0;
+            color: white;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .modal-title {
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .btn-close {
+            filter: invert(1);
+            opacity: 0.8;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #eaeaea;
+            padding: 1rem 2rem;
+            background-color: #f8f9fa;
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Style des champs du formulaire */
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            padding: 10px 15px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #2178d0;
+            box-shadow: 0 0 0 0.2rem rgba(33, 120, 208, 0.25);
+            outline: 0;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+
+        .mb-3 {
+            margin-bottom: 1.5rem !important;
+        }
+
+        /* Boutons du modal */
+        .modal-footer .btn {
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 6px;
+            margin-left: 10px;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+        /* Animation du modal */
+        .modal.fade .modal-dialog {
+            transform: translateY(-50px);
+            transition: transform 0.3s ease-out;
+        }
+
+        .modal.show .modal-dialog {
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 576px) {
+            .modal-dialog {
+                margin: 1rem;
+                max-width: calc(100% - 2rem);
+            }
+            
+            .modal-body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="account-container">
+        <div class="sidebar">
+            <h2>Votre compte</h2>
+            <div class="menu-item"><a href="#">Vos commandes</a></div>
+            <div class="menu-item"><a href="#">Favoris</a></div>
+            <div class="menu-item"><a href="#">Livraisons suivis</a></div>
+            <button type="button" class="logout-btn">Se déconnecter</button>
+        </div>
+
+        <!-- Toast de succès -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="success-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    <strong class="me-auto">Félicitations</strong>
+                    <small>il y a un instant</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    Vos modifications ont été enregistrées avec succès.
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal corrigé -->
+        <div class="modal fade" id="edit-user-infos" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">
+                            <i class="fas fa-user-edit me-2"></i>
+                            Modifiez vos informations
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="edit-user-form" method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="first_name" class="form-label">
+                                            <i class="fas fa-user me-1"></i>
+                                            Nom
+                                        </label>
+                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Votre nom">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="last_name" class="form-label">
+                                            <i class="fas fa-user me-1"></i>
+                                            Prénoms
+                                        </label>
+                                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Vos prénoms">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="username" class="form-label">
+                                    <i class="fas fa-at me-1"></i>
+                                    Nom d'utilisateur
+                                </label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Votre nom d'utilisateur">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">
+                                    <i class="fas fa-envelope me-1"></i>
+                                    Email
+                                </label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="votre@email.com">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="password" class="form-label">
+                                    <i class="fas fa-lock me-1"></i>
+                                    Mot de passe
+                                </label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Laissez vide pour ne pas changer">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="tel_num" class="form-label">
+                                    <i class="fas fa-phone me-1"></i>
+                                    Numéro de téléphone
+                                </label>
+                                <input type="tel" class="form-control" id="tel_num" name="tel_num" placeholder="Votre numéro de téléphone">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="adress" class="form-label">
+                                    <i class="fas fa-map-marker-alt me-1"></i>
+                                    Votre adresse
+                                </label>
+                                <textarea class="form-control" id="adress" name="adress" rows="3" placeholder="Votre adresse complète"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-1"></i>
+                            Annuler
+                        </button>
+                        <button type="submit" form="edit-user-form" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i>
+                            Enregistrer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h2>INFORMATIONS PERSONNELLES</h2>
+            <div class="info-section">
+                <div class="info-label">Nom complet</div>
+                <div>Alphonse Desire HABA</div>
+
+                <div class="info-label">Email</div>
+                <div>alphonsedesirehaba427@gmail.com</div>
+
+                <div class="info-label">Nom d'utilisateur</div>
+                <div>Prims le Premier</div>
+
+                <div class="info-label">Numéro de téléphone</div>
+                <div>77374653647</div>
+
+                <div class="info-label">Adresse</div>
+                <div>HLM</div>
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-user-infos">
+                    <i class="fas fa-edit me-2"></i>
+                    Modifier les informations
+                </button>
+            </div>
+
+            <div class="divider"></div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Simulation du WebSocket (remplacez par votre vraie implémentation)
+        document.getElementById('edit-user-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simuler l'enregistrement
+            setTimeout(() => {
+                // Fermer le modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('edit-user-infos'));
+                modal.hide();
+                
+                // Afficher le toast de succès
+                const toast = new bootstrap.Toast(document.getElementById('success-toast'));
+                toast.show();
+            }, 500);
+        });
+
+        // Pré-remplir le formulaire avec les données actuelles
+        document.getElementById('edit-user-infos').addEventListener('show.bs.modal', function() {
+            document.getElementById('first_name').value = 'Alphonse Desire';
+            document.getElementById('last_name').value = 'HABA';
+            document.getElementById('username').value = 'Prims le Premier';
+            document.getElementById('email').value = 'alphonsedesirehaba427@gmail.com';
+            document.getElementById('tel_num').value = '77374653647';
+            document.getElementById('adress').value = 'HLM';
+        });
+    </script>
+
+    <!-- -------------------------------------------------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-5 mb-md-0">
+                    <h3 class="footer-heading">LINGUÈRE FABLAB</h3>
+                    <p>Votre partenaire en fabrication numérique au Sénégal. Machines, formations et services sur mesure pour particuliers, écoles et entreprises.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-3 col-6 mb-5 mb-md-0">
+                    <h3 class="footer-heading">LIENS RAPIDES</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Accueil</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Boutique</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Services</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Formations</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>À propos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-3 col-6 mb-5 mb-md-0">
+                    <h3 class="footer-heading">CATÉGORIES</h3>
+                    <ul class="footer-links">
+                        <li><a href="arduino.html"><i class="fas fa-chevron-right me-2"></i>Arduino & IoT</a></li>
+                        <li><a href="machine.html"><i class="fas fa-chevron-right me-2"></i>Machines</a></li>
+                        <li><a href="installation.html"><i class="fas fa-chevron-right me-2"></i>Installations</a></li>
+                        <li><a href="broderie.html"><i class="fas fa-chevron-right me-2"></i>Broderie</a></li>
+                        <li><a href="CNC.html"><i class="fas fa-chevron-right me-2"></i>Fraiseuses Numérique</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-12">
+                    <div id="con"></div>
+                    <h3 class="footer-heading">CONTACT</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Avenue de l'Innovation, Dakar, Sénégal</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>(+221) 77 077 18 32</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>linguerefablab@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Lun-Ven: 08:00 - 17:00<br>Sam: 09:00 - 13:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom pt-4 mt-5">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-0">&copy; 2025 Linguère Fablab. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="mb-0">Conçu avec <i class="fas fa-heart text-danger"></i> par Linguère Fablab Team</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Cart Counter Animation
+        const cartCount = document.querySelector('.cart-count');
+        let count = 0;
+        
+        // Simulate adding items to cart (for demo)
+        setInterval(() => {
+            if (count < 5) {
+                count++;
+                cartCount.setAttribute('data-count', count);
+                
+                // Add animation
+                cartCount.classList.add('animate__animated', 'animate__bounceIn');
+                setTimeout(() => {
+                    cartCount.classList.remove('animate__animated', 'animate__bounceIn');
+                }, 1000);
+            }
+        }, 5000);
+        
+        // Dropdown menu animation
+        const dropdowns = document.querySelectorAll('.dropdown');
+        
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const menu = dropdown.querySelector('.dropdown-menu');
+                menu.style.display = 'block';
+                menu.classList.add('animate__animated', 'animate__fadeIn');
+            });
+            
+            dropdown.addEventListener('mouseleave', () => {
+                const menu = dropdown.querySelector('.dropdown-menu');
+                menu.style.display = 'none';
+                menu.classList.remove('animate__animated', 'animate__fadeIn');
+            });
+        });
+        
+        // Search bar focus effect
+        const searchInput = document.querySelector('.search-bar input');
+        
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('animate__animated', 'animate__pulse');
+        });
+        
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('animate__animated', 'animate__pulse');
+        });
+    </script>
+    <!-- ---les card de la partie service 5---- -->
+     <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById("modal-service5");
+    var btn = document.querySelector(".modal-trigger"); 
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function(event) {
+        event.preventDefault(); 
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+});
+
+</script>  
+</body>
+</html>

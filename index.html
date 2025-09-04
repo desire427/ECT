@@ -48,7 +48,7 @@
             
             <div class="icons d-flex align-items-center">
                 <span class="me-3"><i class="far fa-heart"></i></span>
-                <span class="me-3"><i class="far fa-user"></i></span>
+                <a href="user.html"><span class="me-3"><i class="far fa-user"></i></span></a>
                 <span class="cart-count" data-count="0"><i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">0 CFA</span></span>
             </div>
         </div>
@@ -583,6 +583,624 @@
         </div>
     </footer>
     
+
+
+
+
+<!-- HTML pour le modal du panier -->
+<div id="cart-modal" class="cart-modal">
+    <div class="cart-header">
+        <h3><i class="fas fa-shopping-cart me-2"></i> Votre Panier</h3>
+        <button id="close-cart" class="btn btn-sm btn-outline-danger">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+        <!-- Les éléments du panier seront ajoutés ici dynamiquement -->
+    </div>
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Total :</span>
+            <span id="total-price">0 CFA</span>
+        </div>
+        <button id="checkout-button" class="checkout-btn">
+            <i class="fas fa-credit-card me-2"></i> Passer la commande
+        </button>
+    </div>
+</div>
+
+<!-- Modal de paiement -->
+<div id="payment-modal" class="payment-modal">
+    <div class="payment-content">
+        <span class="close-payment" onclick="closePaymentModal()">&times;</span>
+        <h3>Finalisation de la Commande</h3>
+        
+        <!-- Informations client -->
+        <div class="section">
+            <h4><i class="fas fa-user"></i> Informations Client</h4>
+            <form id="customer-info-form">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="first-name" class="form-label">Prénom</label>
+                        <input type="text" id="first-name" class="form-control" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="last-name" class="form-label">Nom</label>
+                        <input type="text" id="last-name" class="form-control" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Téléphone</label>
+                    <input type="tel" id="phone" class="form-control" required>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Informations de livraison -->
+        <div class="section">
+            <h4><i class="fas fa-truck"></i> Livraison</h4>
+            <div class="mb-3">
+                <label for="address" class="form-label">Adresse</label>
+                <input type="text" id="address" class="form-control" required>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <label for="city" class="form-label">Ville</label>
+                    <input type="text" id="city" class="form-control" required>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Méthodes de paiement -->
+        <div class="section">
+            <h4><i class="fas fa-credit-card"></i> Paiement</h4>
+            
+            <div class="payment-methods mb-4 text-center">
+                <div class="d-flex justify-content-center gap-4">
+                    <div class="payment-method-option">
+                        <input type="radio" id="orange-money" name="payment-method" value="orange-money" checked>
+                        <label for="orange-money" class="payment-method-label">
+                            <img src="a.png" alt="Orange Money">
+                        </label>
+                    </div>
+                    <div class="payment-method-option">
+                        <input type="radio" id="wave" name="payment-method" value="wave">
+                        <label for="wave" class="payment-method-label">
+                            <img src="a.png" alt="Wave">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="payment-form">
+                <div class="mb-3">
+                    <label for="payment-phone" class="form-label">Numéro de téléphone</label>
+                    <input type="tel" id="payment-phone" class="form-control" placeholder="77 123 45 67" required>
+                </div>
+                <div class="mb-3">
+                    <label for="payment-code" class="form-label">Code de transaction (si applicable)</label>
+                    <input type="text" id="payment-code" class="form-control" placeholder="Optionnel">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-lock"></i> Payer <span id="total-amount">0</span> CFA
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Message -->
+<div id="confirmation-message" class="confirmation-message">
+    <i class="fas fa-check-circle me-2"></i> Produit ajouté au panier!
+</div>
+
+<style>
+/* CSS pour le panier */
+.cart-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+}
+
+.cart-header {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.cart-items {
+    padding: 15px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    gap: 10px;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cart-item-info {
+    flex-grow: 1;
+}
+
+.cart-item-info h5 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.cart-item-info p {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.cart-item-info small {
+    color: #6c757d;
+    font-size: 12px;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cart-item-quantity button {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.cart-item-total {
+    font-weight: bold;
+}
+
+.cart-footer {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    background-color: #f8f9fa;
+    position: sticky;
+    bottom: 0;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.checkout-btn:hover {
+    background-color: #0b5ed7;
+}
+
+.cart-discounts {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.discount-item, .gift-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+/* Modal de paiement */
+.payment-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    overflow-y: auto;
+}
+
+.payment-content {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.close-payment {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.section {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.payment-methods {
+    margin: 20px 0;
+}
+
+.payment-method-option {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.payment-method-option input {
+    display: none;
+}
+
+.payment-method-option input:checked + label {
+    border: 2px solid #0d6efd;
+}
+
+.payment-method-label {
+    display: block;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.payment-method-label img {
+    height: 30px;
+}
+
+/* Message de confirmation */
+.confirmation-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1050;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+</style>
+
+<script>
+// JavaScript pour le panier
+let cart = [];
+let total = 0;
+
+// Fonction pour ajouter un produit au panier
+function addToCart(name, price, category, image, quantity = 1) {
+    // Vérifier si le produit est déjà dans le panier
+    const existingItem = cart.find(item => item.name === name);
+    
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            category: category,
+            image: image,
+            quantity: quantity
+        });
+    }
+    
+    // Mettre à jour le total
+    total += price * quantity;
+    
+    // Mettre à jour l'affichage du panier
+    updateCartDisplay();
+    
+    // Afficher la confirmation
+    showConfirmation();
+}
+
+// Fonction pour mettre à jour l'affichage du panier
+function updateCartDisplay() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartCountElement = document.querySelector('.cart-count');
+    const totalPriceElement = document.getElementById('total-price');
+    
+    // Calculer les réductions selon les nouvelles règles
+    const { discount, subtotal, gift } = calculateDiscounts();
+    
+    // Vider le conteneur
+    cartItemsContainer.innerHTML = '';
+    
+    // Ajouter chaque article
+    cart.forEach((item, index) => {
+        const itemElement = document.createElement('div');
+        itemElement.className = 'cart-item';
+        itemElement.innerHTML = `
+            <div class="cart-item-image">
+                <img src="${item.image}" alt="${item.name}" loading="lazy">
+            </div>
+            <div class="cart-item-info">
+                <h5>${item.name}</h5>
+                <p>${item.price.toLocaleString()} CFA</p>
+                <small>${item.category}</small>
+            </div>
+            <div class="cart-item-quantity">
+                <button class="btn btn-sm btn-outline-secondary" onclick="changeCartItemQuantity(${index}, -1)">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <span class="quantity-value">${item.quantity}</span>
+                <button class="btn btn-sm btn-outline-secondary" onclick="changeCartItemQuantity(${index}, 1)">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            <div class="cart-item-actions">
+                <span class="cart-item-total">${(item.price * item.quantity).toLocaleString()} CFA</span>
+                <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `;
+        cartItemsContainer.appendChild(itemElement);
+    });
+    
+    // Ajouter la section des réductions/cadeaux
+    if (discount > 0 || gift) {
+        const discountElement = document.createElement('div');
+        discountElement.className = 'cart-discounts';
+        
+        let discountHTML = '';
+        if (discount > 0) {
+            discountHTML += `
+                <div class="discount-item">
+                    <span>Réduction (10% sur kits Arduino/Robotique)</span>
+                    <span class="text-danger">-${discount.toLocaleString()} CFA</span>
+                </div>
+            `;
+        }
+        
+        if (gift) {
+            discountHTML += `
+                <div class="gift-item">
+                    <span><i class="fas fa-gift text-success"></i> ${gift}</span>
+                </div>
+            `;
+        }
+        
+        discountElement.innerHTML = discountHTML;
+        cartItemsContainer.appendChild(discountElement);
+    }
+    
+    // Mettre à jour le total
+    const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    if (cartCountElement) {
+        cartCountElement.setAttribute('data-count', itemCount);
+        cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">${subtotal.toLocaleString()} CFA</span>`;
+    }
+    
+    if (totalPriceElement) {
+        totalPriceElement.textContent = `${subtotal.toLocaleString()} CFA`;
+    }
+    
+    const totalAmountElement = document.getElementById('total-amount');
+    if (totalAmountElement) {
+        totalAmountElement.textContent = subtotal.toLocaleString();
+    }
+}
+
+// Fonction pour calculer les réductions et cadeaux
+function calculateDiscounts() {
+    let discount = 0;
+    let gift = '';
+    
+    // Calculer le total des kits Arduino/Robotique
+    const arduinoRobotTotal = cart
+        .filter(item => item.category.includes('Arduino') || item.category.includes('Robotique'))
+        .reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
+    // Appliquer 10% de réduction si le total Arduino/Robotique dépasse 100 000 CFA
+    if (arduinoRobotTotal > 100000) {
+        discount = arduinoRobotTotal * 0.1;
+    }
+    
+    // Calculer le sous-total après réduction
+    const subtotal = total - discount;
+    
+    return { discount, subtotal, gift };
+}
+
+// Fonction pour modifier la quantité d'un article
+function changeCartItemQuantity(index, change) {
+    const newQuantity = cart[index].quantity + change;
+    
+    if (newQuantity < 1) {
+        removeFromCart(index);
+    } else {
+        total += cart[index].price * change;
+        cart[index].quantity = newQuantity;
+        updateCartDisplay();
+    }
+}
+
+// Fonction pour supprimer un article
+function removeFromCart(index) {
+    const item = cart[index];
+    total -= item.price * item.quantity;
+    cart.splice(index, 1);
+    updateCartDisplay();
+}
+
+// Fonction pour afficher la confirmation
+function showConfirmation() {
+    const confirmation = document.getElementById('confirmation-message');
+    if (confirmation) {
+        confirmation.style.display = 'block';
+        confirmation.style.opacity = '1';
+        
+        setTimeout(() => {
+            confirmation.style.opacity = '0';
+            setTimeout(() => confirmation.style.display = 'none', 300);
+        }, 3000);
+    }
+}
+
+// Gestion des modales
+function toggleCartModal() {
+    const cartModal = document.getElementById('cart-modal');
+    if (cartModal.style.display === 'block') {
+        cartModal.style.display = 'none';
+    } else {
+        cartModal.style.display = 'block';
+    }
+}
+
+function openPaymentModal() {
+    if (cart.length === 0) {
+        alert('Votre panier est vide. Ajoutez des produits avant de passer commande.');
+        return;
+    }
+    document.getElementById('payment-modal').style.display = 'block';
+    document.getElementById('cart-modal').style.display = 'none';
+}
+
+function closePaymentModal() {
+    document.getElementById('payment-modal').style.display = 'none';
+}
+
+// Gestion du formulaire de paiement
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentForm = document.getElementById('payment-form');
+    if (paymentForm) {
+        paymentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validation
+            const requiredFields = ['first-name', 'last-name', 'email', 'phone', 'address'];
+            let isValid = true;
+            
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('is-invalid');
+                } else {
+                    field.classList.remove('is-invalid');
+                }
+            });
+            
+            if (!isValid) {
+                alert('Veuillez remplir tous les champs obligatoires.');
+                return;
+            }
+            
+            // Simulation de paiement réussi
+            const { subtotal } = calculateDiscounts();
+            alert(`Paiement réussi!\n\nMerci pour votre commande de ${subtotal.toLocaleString()} CFA.`);
+            
+            // Réinitialisation
+            cart = [];
+            total = 0;
+            updateCartDisplay();
+            this.reset();
+            closePaymentModal();
+        });
+    }
+    
+    // Événements pour le panier
+    const cartCountElement = document.querySelector('.cart-count');
+    if (cartCountElement) {
+        cartCountElement.addEventListener('click', toggleCartModal);
+    }
+    
+    const closeCartButton = document.getElementById('close-cart');
+    if (closeCartButton) {
+        closeCartButton.addEventListener('click', toggleCartModal);
+    }
+    
+    const checkoutButton = document.getElementById('checkout-button');
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', openPaymentModal);
+    }
+    
+    // Fermer les modales en cliquant à l'extérieur
+    window.addEventListener('click', function(event) {
+        if (event.target === document.getElementById('cart-modal')) {
+            toggleCartModal();
+        }
+        if (event.target === document.getElementById('payment-modal')) {
+            closePaymentModal();
+        }
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+    
     <!-- Back to Top Button -->
     <div class="back-to-top">
         <i class="fas fa-arrow-up"></i>
@@ -622,24 +1240,6 @@
                 behavior: 'smooth'
             });
         });
-        
-        // Cart Counter Animation
-        const cartCount = document.querySelector('.cart-count');
-        let count = 0;
-        
-        // Simulate adding items to cart (for demo)
-        setInterval(() => {
-            if (count < 5) {
-                count++;
-                cartCount.setAttribute('data-count', count);
-                
-                // Add animation
-                cartCount.classList.add('animate__animated', 'animate__bounceIn');
-                setTimeout(() => {
-                    cartCount.classList.remove('animate__animated', 'animate__bounceIn');
-                }, 1000);
-            }
-        }, 5000);
         
         // Dropdown menu animation
         const dropdowns = document.querySelectorAll('.dropdown');

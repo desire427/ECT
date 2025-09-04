@@ -11,9 +11,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="arduino.css">
+    <style>
+        /* Styles pour l'effet de loupe sur l'image */
+        .quick-view-body {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .quick-view-main {
+            position: relative; /* Nécessaire pour positionner la loupe */
+            cursor: crosshair;
+            flex: 0 0 40%; 
+            max-width: 40%;
+        }
+
+        .quick-view-details {
+            flex: 1; /* La section des détails prend le reste de l'espace */
+            padding-left: 2rem; /* Espace entre l'image et les détails */
+        }
+
+        #magnifying-glass {
+            position: absolute;
+            border: 3px solid rgba(221, 221, 221, 0.9);
+            box-shadow: 0 0 15px rgba(0,0,0,0.25);
+            border-radius: 50%; /* Loupe circulaire */
+            width: 175px; /* Taille de la loupe */
+            height: 175px;
+            display: none; /* Cachée par défaut */
+            background-repeat: no-repeat;
+            pointer-events: none; /* La loupe ne doit pas intercepter les clics */
+        }
+    </style>
     
 </head>
 <body>
+    <header>
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="container d-flex flex-wrap justify-content-center justify-content-md-between">
@@ -45,6 +77,7 @@
             </div>
         </div>
     </nav>
+    </header>
     
     <!-- Main Navigation -->
     <div class="nav-bar">
@@ -77,9 +110,15 @@
     <!-- Main Content -->
     <main class="shop-container container py-4">
         <!-- Filter Section -->
-        <aside class="filter-section">
-            <h3 class="mb-4"><i class="fas fa-filter me-2"></i> Filtres</h3>
-            
+    <aside class="filter-section" id="mobile-filter-section">
+        <div class="filter-toggle d-md-none" onclick="toggleMobileFilters()">
+            <i class="fas fa-filter me-2"></i> Filtres
+            <i class="fas fa-chevron-down ms-auto" id="filter-chevrondown"></i>
+        </div>
+        <div class="filter-content" id="filter-content">
+            <h3 class="mb-4 d-none d-md-block"><i class="fas fa-filter me-2"></i> Filtres</h3>
+
+            <!-- Vos filtres existants restent inchangés -->
             <div class="filter-group">
                 <div class="filter-title" onclick="toggleFilter('category-filter')">
                     <span>Catégories</span>
@@ -148,7 +187,7 @@
                 <h1><i class="fas fa-microchip me-2"></i> Kits Arduino et IOT</h1>
                 <div class="sort-options">
                     <select class="form-select">
-                        <option>croissance ou Decroissance</option>
+                        <option>Tri par ordre de prix</option>
                         <option>Prix croissant</option>
                         <option>Prix décroissant</option>
                     </select>
@@ -159,7 +198,7 @@
                 <!-- Product Card 1 -->
                 <div class="product-card" data-aos="fade-up" data-category="Kits Arduino">
                     <span class="product-badge">Nouveau</span>
-                    <img src="Arduino mega.png" alt="Arduino Méga">
+                    <img src="Arduino mega.png" alt="Arduino Méga" onclick="showQuickView('Arduino Méga', 'Arduino mega.png', 'Carte puissante avec plus d\'entrées/sorties que l\'Uno.', 15000, 50, 'Kits Arduino')" style="cursor: pointer;">
                     <div class="quick-view">
                         <button class="quick-view-btn" onclick="showQuickView('Arduino Méga', 'Arduino mega.png', 'Carte puissante avec plus d\'entrées/sorties que l\'Uno.', 15000, 50, 'Kits Arduino')">
                             <i class="fas fa-eye me-1"></i> Aperçu rapide
@@ -188,7 +227,7 @@
         
                 <!-- Product Card 2 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Kits Arduino">
-                    <img src="Arduino uno.png" alt="Arduino Uno">
+                    <img src="Arduino uno.png" alt="Arduino Uno" onclick="showQuickView('Arduino Uno', 'Arduino uno.png', 'La carte Arduino la plus populaire pour les débutants.', 10000, 100, 'Kits Arduino')" style="cursor: pointer;">
                     <div class="quick-view">
                         <button class="quick-view-btn" onclick="showQuickView('Arduino Uno', 'Arduino uno.png', 'La carte Arduino la plus populaire pour les débutants.', 10000, 100, 'Kits Arduino')">
                             <i class="fas fa-eye me-1"></i> Aperçu rapide
@@ -218,7 +257,7 @@
                 <!-- Product Card 3 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200" data-category="Kits Arduino">
                     <span class="product-badge" style="background: #27ae60;">Promo</span>
-                    <img src="Arduino nano.png" alt="Arduino Nano">
+                    <img src="Arduino nano.png" alt="Arduino Nano" onclick="showQuickView('Arduino Nano', 'Arduino nano.png', 'Version compacte de l\'Arduino pour les projets avec espace limité.', 8000, 30, 'Kits Arduino')" style="cursor: pointer;">
                     <div class="quick-view">
                         <button class="quick-view-btn" onclick="showQuickView('Arduino Nano', 'Arduino nano.png', 'Version compacte de l\'Arduino pour les projets avec espace limité.', 8000, 30, 'Kits Arduino')">
                             <i class="fas fa-eye me-1"></i> Aperçu rapide
@@ -247,7 +286,7 @@
                 
                 <!-- Product Card 4 -->
                 <div class="product-card" data-aos="fade-up" data-category="Composants IoT">
-                    <img src="esp32.png" alt="ESP32">
+                    <img src="esp32.png" alt="ESP32" onclick="showQuickView('ESP32', 'esp32.png', 'Microcontrôleur avec Wi-Fi et Bluetooth intégrés pour projets IoT.', 12000, 15, 'Composants IoT')" style="cursor: pointer;">
                     <div class="quick-view">
                         <button class="quick-view-btn" onclick="showQuickView('ESP32', 'esp32.png', 'Microcontrôleur avec Wi-Fi et Bluetooth intégrés pour projets IoT.', 12000, 15, 'Composants IoT')">
                             <i class="fas fa-eye me-1"></i> Aperçu rapide
@@ -276,7 +315,7 @@
                 
                 <!-- Product Card 5 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Capteurs">
-                    <img src="Capteur DHT11.png" alt="Capteur DHT11">
+                    <img src="Capteur DHT11.png" alt="Capteur DHT11" onclick="showQuickView('Capteur DHT11', 'Capteur DHT11.png', 'Capteur de température et d\'humidité numérique.', 5000, 25, 'Capteurs')" style="cursor: pointer;">
                     <div class="quick-view">
                         <button class="quick-view-btn" onclick="showQuickView('Capteur DHT11', 'Capteur DHT11.png', 'Capteur de température et d\'humidité numérique.', 5000, 25, 'Capteurs')">
                             <i class="fas fa-eye me-1"></i> Aperçu rapide
@@ -305,7 +344,7 @@
                 
                 <!-- Product Card 6 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200" data-category="Capteurs">
-                    <img src="Capteur ultrason.png" alt="Capteur ultrason">
+                    <img src="Capteur ultrason.png" alt="Capteur ultrason" onclick="showQuickView('Capteur ultrason', 'Capteur ultrason.png', 'Utilisé pour mesurer des distances avec précision ou détecter des obstacles.', 7500, 10, 'Capteurs')" style="cursor: pointer;">
                     <div class="quick-view">
                         <button class="quick-view-btn" onclick="showQuickView('Capteur ultrason', 'Capteur ultrason.png', 'Utilisé pour mesurer des distances avec précision ou détecter des obstacles.', 7500, 10, 'Capteurs')">
                             <i class="fas fa-eye me-1"></i> Aperçu rapide
@@ -334,7 +373,7 @@
                 
                 <!-- Product Card 7 -->
                 <div class="product-card" data-aos="fade-up" data-category="Kits Arduino">
-                    <img src="kits de demarrage.png" alt="Kit de démarrage">
+                    <img src="kits de demarrage.png" alt="Kit de démarrage" onclick="showQuickView('Kit de démarrage', 'kits de demarrage.png', 'Tout ce dont vous avez besoin pour commencer avec Arduino.', 25000, 8, 'Kits Arduino')" style="cursor: pointer;">
                     <div class="quick-view">
                         <button class="quick-view-btn" onclick="showQuickView('Kit de démarrage', 'kits de demarrage.png', 'Tout ce dont vous avez besoin pour commencer avec Arduino.', 25000, 8, 'Kits Arduino')">
                             <i class="fas fa-eye me-1"></i> Aperçu rapide
@@ -364,7 +403,7 @@
                 <!-- Product Card 8 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
                     <span class="product-badge" style="background: #9b59b6;">Top vente</span>
-                    <img src="kits robotique 1.jpg" alt="Kit robotique">
+                    <img src="kits robotique 1.jpg" alt="Kit robotique" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')" style="cursor: pointer;">
                     <div class="quick-view">
                         <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
                             <i class="fas fa-eye me-1"></i> Aperçu rapide
@@ -393,7 +432,7 @@
                 <!-- Product Card 8 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
                     <span class="product-badge" style="background: #9b59b6;">Top vente</span>
-                    <img src="kits robotique 1.jpg" alt="Kit robotique">
+                    <img src="kits robotique 1.jpg" alt="Kit robotique" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')" style="cursor: pointer;">
                     <div class="quick-view">
                         <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
                             <i class="fas fa-eye me-1"></i> Aperçu rapide
@@ -404,7 +443,7 @@
                         <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
                         <p class="product-price">35 000 CFA</p>
                         <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
-                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique')">
+                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique', 'kits robotique 1.jpg')">
                             <i class="fas fa-cart-plus"></i> Ajouter au panier
                         </button>
                         <div class="product-meta">
@@ -422,7 +461,7 @@
                 <!-- Product Card 8 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
                     <span class="product-badge" style="background: #9b59b6;">Top vente</span>
-                    <img src="kits robotique 1.jpg" alt="Kit robotique">
+                    <img src="kits robotique 1.jpg" alt="Kit robotique" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')" style="cursor: pointer;">
                     <div class="quick-view">
                         <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
                             <i class="fas fa-eye me-1"></i> Aperçu rapide
@@ -433,7 +472,7 @@
                         <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
                         <p class="product-price">35 000 CFA</p>
                         <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
-                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique')">
+                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique', 'kits robotique 1.jpg')">
                             <i class="fas fa-cart-plus"></i> Ajouter au panier
                         </button>
                         <div class="product-meta">
@@ -451,7 +490,7 @@
                 <!-- Product Card 8 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
                     <span class="product-badge" style="background: #9b59b6;">Top vente</span>
-                    <img src="kits robotique 1.jpg" alt="Kit robotique">
+                    <img src="kits robotique 1.jpg" alt="Kit robotique" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')" style="cursor: pointer;">
                     <div class="quick-view">
                         <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
                             <i class="fas fa-eye me-1"></i> Aperçu rapide
@@ -462,7 +501,7 @@
                         <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
                         <p class="product-price">35 000 CFA</p>
                         <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
-                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique')">
+                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique', 'kits robotique 1.jpg')">
                             <i class="fas fa-cart-plus"></i> Ajouter au panier
                         </button>
                         <div class="product-meta">
@@ -480,7 +519,7 @@
                 <!-- Product Card 8 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
                     <span class="product-badge" style="background: #9b59b6;">Top vente</span>
-                    <img src="kits robotique 1.jpg" alt="Kit robotique">
+                    <img src="kits robotique 1.jpg" alt="Kit robotique" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')" style="cursor: pointer;">
                     <div class="quick-view">
                         <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
                             <i class="fas fa-eye me-1"></i> Aperçu rapide
@@ -491,7 +530,7 @@
                         <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
                         <p class="product-price">35 000 CFA</p>
                         <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
-                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique')">
+                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique', 'kits robotique 1.jpg')">
                             <i class="fas fa-cart-plus"></i> Ajouter au panier
                         </button>
                         <div class="product-meta">
@@ -532,59 +571,67 @@
     </main>
 
     <!-- Quick View Modal -->
-    <div class="quick-view-modal" id="quick-view-modal">
-        <div class="quick-view-content">
-            <span class="close-quick-view" onclick="closeQuickView()">&times;</span>
-            <div class="row">
-                <div class="col-md-6 p-4">
-                    <img src="" alt="" id="quick-view-img" class="w-100">
+<!-- Quick View Modal - Pleine page -->
+<div class="quick-view-modal" id="quick-view-modal">
+    <input type="hidden" name="prd_id" id='prd_id'>
+    <div class="quick-view-content">
+        <div class="quick-view-close" onclick="closeQuickView()">&times;</div>
+        <div class="quick-view-body">
+            <div class="quick-view-main">
+                <img id="quick-view-img" src="" alt="">
+                <div id="magnifying-glass"></div>
+            </div>
+            <div class="quick-view-details">
+                <h2 id="quick-view-title"></h2>
+                <div class="rating mb-2">
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star text-warning"></i>
+                    <i class="fas fa-star-half-alt text-warning"></i>
+                    <span class="ms-2">(12 avis)</span>
                 </div>
-                <div class="col-md-6 p-4">
-                    <h2 id="quick-view-title"></h2>
-                    <div class="rating mb-3">
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star text-warning"></i>
-                        <i class="fas fa-star-half-alt text-warning"></i>
-                        <span class="ms-2">(12 avis)</span>
+                <p id="quick-view-price" class="h4 text-danger mb-2"></p>
+                <p id="quick-view-desc" class="mb-3"></p>
+
+                <div class="availability mb-3">
+                    <strong>Disponibilité : </strong>
+                    <span id="quick-view-stock"></span>
+                </div>
+
+                <div class="quantity-selector mb-3">
+                    <label for="quantity" class="form-label">Quantité :</label>
+                    <div class="input-group" style="max-width: 150px;">
+                        <button class="btn btn-outline-secondary" type="button" onclick="decreaseQuantity()">-</button>
+                        <input type="number" class="form-control text-center" id="quantity" value="1" min="1">
+                        <button class="btn btn-outline-secondary" type="button" onclick="increaseQuantity()">+</button>
                     </div>
-                    <p id="quick-view-price" class="h4 text-danger mb-3"></p>
-                    <p id="quick-view-desc" class="mb-4"></p>
-                    
-                    <div class="availability mb-4">
-                        <strong>Disponibilité : </strong>
-                        <span id="quick-view-stock"></span>
+                </div>
+
+                <button class="btn btn-primary btn-lg w-100 mb-2" onclick="addToCartFromQuickView()">
+                    <i class="fas fa-cart-plus me-2"></i> Ajouter au panier
+                </button>
+
+                <div class="product-meta mt-3">
+                    <div class="meta-item">
+                        <strong>Référence :</strong> <span id="quick-view-sku">ARD-MEGA-01</span>
                     </div>
-                    
-                    <div class="quantity-selector mb-4">
-                        <label for="quantity" class="form-label">Quantité :</label>
-                        <div class="input-group" style="max-width: 150px;">
-                            <button class="btn btn-outline-secondary" type="button" onclick="decreaseQuantity()">-</button>
-                            <input type="number" class="form-control text-center" id="quantity" value="1" min="1">
-                            <button class="btn btn-outline-secondary" type="button" onclick="increaseQuantity()">+</button>
-                        </div>
+                    <div class="meta-item">
+                        <strong>Catégorie :</strong> <span id="quick-view-category">Kits Arduino</span>
                     </div>
-                    
-                    <button class="btn btn-primary btn-lg w-100 mb-3" onclick="addToCartFromQuickView()">
-                        <i class="fas fa-cart-plus me-2"></i> Ajouter au panier
-                    </button>
-                    
-                    <div class="product-meta mt-4">
-                        <div class="meta-item">
-                            <strong>Référence :</strong> <span id="quick-view-sku">ARD-MEGA-01</span>
-                        </div>
-                        <div class="meta-item">
-                            <strong>Catégorie :</strong> <span id="quick-view-category">Kits Arduino</span>
-                        </div>
-                        <div class="meta-item">
-                            <strong>Tags :</strong> <span>Arduino, Microcontrôleur, DIY</span>
-                        </div>
+                    <div class="meta-item">
+                        <strong>Tags :</strong> <span>Arduino, Microcontrôleur, DIY</span>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="quick-view-related">
+            <h3>Produits similaires</h3>
+            <div class="quick-view-related-grid"></div>
+        </div>
     </div>
+</div>
+
 
     <!-- Cart Modal -->
     <div id="cart-modal" class="cart-modal">
@@ -973,6 +1020,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Gestion des menus déroulants sur mobile
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        link.addEventListener('click', function(e) {
+            if (window.innerWidth <= 576) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            }
+        });
+    });
+
+    // Fermer les menus déroulants si on clique ailleurs
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 576) {
+            if (!e.target.closest('.dropdown')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        }
+    });
+
+    // Ajustement de la grille des produits pour les petits écrans
+    function adjustProductGrid() {
+        const productGrid = document.querySelector('.product-grid');
+        if (window.innerWidth <= 576) {
+            productGrid.style.gridTemplateColumns = '1fr';
+            productGrid.style.gap = '12px';
+        }
+    }
+
+    // Appeler la fonction au chargement et au redimensionnement
+    adjustProductGrid();
+    window.addEventListener('resize', adjustProductGrid);
+});
 
 
 
@@ -988,6 +1073,55 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Gestion des menus déroulants sur mobile
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        link.addEventListener('click', function(e) {
+            if (window.innerWidth <= 576) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            }
+        });
+    });
+
+    // Fermer les menus déroulants si on clique ailleurs
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 576) {
+            if (!e.target.closest('.dropdown')) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        }
+    });
+
+    // Ajustement dynamique de la grille des produits
+    function adjustProductGrid() {
+        const productGrid = document.querySelector('.product-grid');
+        if (window.innerWidth <= 576) {
+            productGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(140px, 1fr))';
+            productGrid.style.gap = '8px';
+        }
+    }
+
+    // Appeler au chargement et au redimensionnement
+    adjustProductGrid();
+    window.addEventListener('resize', adjustProductGrid);
+
+    // Optimisation des images pour le chargement
+    function optimizeImages() {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            img.loading = 'lazy';
+            img.decode().catch(() => {});
+        });
+    }
+
+    optimizeImages();
+});
 
 
 
@@ -1357,6 +1491,20 @@ function updateCartDisplay() {
 
 
 
+// Ajoutez cette fonction JavaScript
+function toggleMobileFilters() {
+    const filterContent = document.getElementById('filter-content');
+    const chevron = document.getElementById('filter-chevrondown');
+
+    filterContent.classList.toggle('show');
+
+    // Animation de la flèche
+    if (filterContent.classList.contains('show')) {
+        chevron.classList.replace('fa-chevron-down', 'fa-chevron-up');
+    } else {
+        chevron.classList.replace('fa-chevron-up', 'fa-chevron-down');
+    }
+}
 
 
 
@@ -1545,7 +1693,12 @@ function showConfirmation() {
 }
 
 // Fonctions pour l'aperçu rapide
+// Variables globales
+let currentProductCategory = "";
+
+// Fonction pour afficher l'aperçu rapide
 function showQuickView(name, image, description, price, stock, category) {
+    currentProductCategory = category;
     const modal = document.getElementById('quick-view-modal');
     document.getElementById('quick-view-title').textContent = name;
     document.getElementById('quick-view-img').src = image;
@@ -1553,7 +1706,8 @@ function showQuickView(name, image, description, price, stock, category) {
     document.getElementById('quick-view-price').textContent = price.toLocaleString() + ' CFA';
     document.getElementById('quick-view-category').textContent = category;
     document.getElementById('quantity').value = 1;
-    
+
+    // Mettre à jour le stock
     let stockHtml = '';
     if (stock > 10) {
         stockHtml = `<span class="text-success"><i class="fas fa-check-circle me-1"></i> En stock (${stock} unités)</span>`;
@@ -1563,14 +1717,93 @@ function showQuickView(name, image, description, price, stock, category) {
         stockHtml = `<span class="text-danger"><i class="fas fa-times-circle me-1"></i> En rupture de stock</span>`;
     }
     document.getElementById('quick-view-stock').innerHTML = stockHtml;
-    
-    modal.style.display = 'flex';
+
+    // Charger les produits similaires
+    loadRelatedProducts(category, name);
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
 }
 
+// Fonction pour fermer l'aperçu rapide
 function closeQuickView() {
     document.getElementById('quick-view-modal').style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
+// Fonction pour charger les produits similaires
+function loadRelatedProducts(category, currentProductName) {
+    const relatedGrid = document.querySelector('.quick-view-related-grid');
+    relatedGrid.innerHTML = '';
+
+    // Sélectionner tous les produits de la même catégorie
+    const allProducts = document.querySelectorAll('.product-card');
+    allProducts.forEach(product => {
+        if (product.dataset.category === category && product.querySelector('.product-name').textContent !== currentProductName) {
+            const name = product.querySelector('.product-name').textContent;
+            const imgSrc = product.querySelector('img').src;
+            const description = product.querySelector('.product-description').textContent;
+            const priceText = product.querySelector('.product-price').textContent;
+            const price = parseInt(priceText.replace(/\D/g, ''));
+
+            const relatedCard = document.createElement('div');
+            relatedCard.className = 'quick-view-related-card';
+            relatedCard.onclick = () => showQuickView(
+                name,
+                imgSrc,
+                description,
+                price,
+                parseInt(product.querySelector('.product-stock').textContent.match(/\d+/)[0]),
+                category
+            );
+
+            relatedCard.innerHTML = `
+                <img src="${imgSrc}" alt="${name}">
+                <div class="quick-view-related-info">
+                    <h4>${name}</h4>
+                    <p>${description}</p>
+                    <div class="price">${price.toLocaleString()} CFA</div>
+                </div>
+            `;
+
+            relatedGrid.appendChild(relatedCard);
+        }
+    });
+}
+
+// Fonction pour ajouter au panier depuis l'aperçu rapide
+function addToCartFromQuickView() {
+    const name = document.getElementById('quick-view-title').textContent;
+    const priceText = document.getElementById('quick-view-price').textContent;
+    const price = parseInt(priceText.replace(/\D/g, ''));
+    const category = document.getElementById('quick-view-category').textContent;
+    const image = document.getElementById('quick-view-img').src;
+    const quantity = parseInt(document.getElementById('quantity').value);
+
+    // Ajouter au panier
+    addToCart(name, price, category, image, quantity);
+
+    // Afficher la confirmation (sans fermer le modal)
+    showConfirmation();
+
+    // Réinitialiser la quantité à 1
+    document.getElementById('quantity').value = 1;
+
+    // Changement temporaire du bouton
+    const addToCartButton = document.querySelector('.quick-view-actions .add-to-cart');
+    addToCartButton.textContent = 'Ajouté !';
+    addToCartButton.style.backgroundColor = '#27ae60'; // Vert pour confirmation
+
+    // Réinitialiser après 2 secondes
+    setTimeout(() => {
+        addToCartButton.textContent = 'Ajouter au panier';
+        addToCartButton.style.backgroundColor = '';
+    }, 2000);
+
+}
+
+
+// Gestion de la quantité
 function increaseQuantity() {
     const quantityInput = document.getElementById('quantity');
     quantityInput.value = parseInt(quantityInput.value) + 1;
@@ -1583,17 +1816,14 @@ function decreaseQuantity() {
     }
 }
 
-// Fonction pour ajouter depuis l'aperçu rapide
-function addToCartFromQuickView() {
-    const name = document.getElementById('quick-view-title').textContent;
-    const priceText = document.getElementById('quick-view-price').textContent;
-    const price = parseInt(priceText.replace(/\D/g, ''));
-    const category = document.getElementById('quick-view-category').textContent;
-    const image = document.getElementById('quick-view-img').src;
-    const quantity = parseInt(document.getElementById('quantity').value);
-    
-    addToCart(name, price, category, image, quantity);
-}
+// Fermer le modal en cliquant à l'extérieur
+window.addEventListener('click', (event) => {
+    const modal = document.getElementById('quick-view-modal');
+    if (event.target === modal) {
+        closeQuickView();
+    }
+});
+
 
 
 
@@ -1690,6 +1920,56 @@ function toggleFilter(id) {
     icon.classList.toggle('fa-chevron-down');
     icon.classList.toggle('fa-chevron-up');
 }
+    </script>
+
+    <script>
+        // ==================================================================
+        // Logique de Zoom sur l'image (Loupe)
+        // ==================================================================
+        function setupImageZoom() {
+            const container = document.querySelector('.quick-view-main');
+            const img = document.getElementById('quick-view-img');
+            const glass = document.getElementById('magnifying-glass');
+            const zoom = 2.5; // Niveau de zoom
+
+            const moveMagnifier = (e) => {
+                if (glass.style.display !== 'block') return;
+
+                const rect = container.getBoundingClientRect();
+                let x = e.clientX - rect.left;
+                let y = e.clientY - rect.top;
+
+                // Empêcher la loupe de sortir des limites de l'image
+                if (x > img.width) { x = img.width; }
+                if (x < 0) { x = 0; }
+                if (y > img.height) { y = img.height; }
+                if (y < 0) { y = 0; }
+
+                // Positionner la loupe (centrée sur le curseur)
+                glass.style.left = (x - glass.offsetWidth / 2) + "px";
+                glass.style.top = (y - glass.offsetHeight / 2) + "px";
+
+                // Calculer la position de l'arrière-plan de la loupe pour l'effet de zoom
+                let bgX = -(x * zoom - glass.offsetWidth / 2);
+                let bgY = -(y * zoom - glass.offsetHeight / 2);
+                glass.style.backgroundPosition = `${bgX}px ${bgY}px`;
+            };
+
+            container.addEventListener('mouseenter', () => {
+                glass.style.backgroundImage = `url('${img.src}')`;
+                glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+                glass.style.display = 'block';
+            });
+
+            container.addEventListener('mouseleave', () => {
+                glass.style.display = 'none';
+            });
+
+            container.addEventListener('mousemove', moveMagnifier);
+        }
+
+        // Initialisation de la fonction de zoom une fois la page chargée
+        document.addEventListener('DOMContentLoaded', setupImageZoom);
     </script>
 </body>
 </html>
