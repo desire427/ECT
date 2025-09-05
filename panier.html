@@ -12,6 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- AOS Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="arduino.css">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
@@ -698,7 +699,6 @@
                 <h3 class="summary-title">Récapitulatif de la commande</h3>
                 <div class="summary-row">
                     <span>Sous-total (3 articles)</span>
-                    <span>25 000 CFA</span>
                 </div>
                 <div class="summary-total">
                     <div class="summary-row">
@@ -728,9 +728,9 @@
 
         <!-- Section recommandations -->
         <section class="cart-recommendations">
-            <a href="#" class="back-to-shop">
-                <i class="fas fa-arrow-left"></i> Retour à la boutique
-            </a>
+        <a href="arduino.html" class="back-to-shop">
+            <i class="fas fa-arrow-left"></i> Retour à la boutique
+        </a>
             <div class="recommendations-header">
                 <h3 class="recommendations-title">Articles fréquemment achetés ensemble</h3>
                 <h3 class="recommendations-title">Découvrez d'autres produits</h3>
@@ -874,12 +874,78 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-light py-4 mt-5">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2025 LINGUERE FABLAB. Tous droits réservés.</p>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-5 mb-md-0">
+                    <h3 class="footer-heading">LINGUÈRE FABLAB</h3>
+                    <p>Votre partenaire en fabrication numérique au Sénégal. Machines, formations et services sur mesure pour particuliers, écoles et entreprises.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-3 col-6 mb-5 mb-md-0">
+                    <h3 class="footer-heading">LIENS RAPIDES</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Accueil</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Boutique</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Services</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Formations</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>À propos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-3 col-6 mb-5 mb-md-0">
+                    <h3 class="footer-heading">CATÉGORIES</h3>
+                    <ul class="footer-links">
+                        <li><a href="arduino.html"><i class="fas fa-chevron-right me-2"></i>Arduino & IoT</a></li>
+                        <li><a href="machine.html"><i class="fas fa-chevron-right me-2"></i>Machines</a></li>
+                        <li><a href="installation.html"><i class="fas fa-chevron-right me-2"></i>Installations</a></li>
+                        <li><a href="broderie.html"><i class="fas fa-chevron-right me-2"></i>Broderie</a></li>
+                        <li><a href="CNC.html"><i class="fas fa-chevron-right me-2"></i>Services CNC</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-12">
+                    <h3 class="footer-heading">CONTACT</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Avenue de l'Innovation, Dakar, Sénégal</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>(+221) 77 077 18 32</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>linguerefablab@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Lun-Ven: 08:00 - 17:00<br>Sam: 09:00 - 13:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom pt-4 mt-5">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-0">&copy; 2025 Linguère Fablab. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="mb-0">Conçu avec <i class="fas fa-heart text-danger"></i> par Linguère Fablab Team</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
-
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -893,139 +959,168 @@
             once: true
         });
 
-        // Données du panier (simulées)
-        let cartItems = [
-            { id: 1, name: "Arduino Méga", price: 15000, quantity: 1, image: "Arduino mega.png", category: "Kits Arduino", stock: "in-stock" },
-            { id: 2, name: "Capteur DHT11", price: 5000, quantity: 2, image: "Capteur DHT11.png", category: "Capteurs", stock: "low-stock" }
-        ];
+// Variables globales
+let cartItems = [];
+let total = 0;
 
-        // Fonctions de gestion du panier
-        function updateQuantity(index, change) {
-            const newQuantity = cartItems[index].quantity + change;
-            if (newQuantity < 1) {
-                removeItem(index);
-            } else {
-                cartItems[index].quantity = newQuantity;
-                updateCartDisplay();
-            }
+// Charger le panier depuis le localStorage
+function loadCartFromStorage() {
+    const savedCart = localStorage.getItem('cart');
+    const savedTotal = localStorage.getItem('cartTotal');
+    
+    if (savedCart) {
+        cartItems = JSON.parse(savedCart);
+        total = parseInt(savedTotal) || 0;
+        updateCartDisplay();
+    } else {
+        // Si le panier est vide, afficher un message
+        document.querySelector('.cart-items').innerHTML = `
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <h4>Votre panier est vide</h4>
+                <p>Ajoutez des produits depuis la boutique</p>
+                <a href="arduino.html" class="btn btn-primary">Voir la boutique</a>
+            </div>
+        `;
+        
+        // Masquer le récapitulatif
+        document.querySelector('.cart-summary').style.display = 'none';
+    }
+}
+// Fonction pour retourner à la boutique
+function backToShop() {
+    // Sauvegarder le panier avant de quitter
+    saveCartToStorage();
+    window.location.href = "arduino.html";
+}
+// Mettre à jour l'affichage du panier
+function updateCartDisplay() {
+    const cartContainer = document.querySelector('.cart-items');
+    const totalElement = document.querySelector('.summary-total .summary-row span:last-child');
+    const subtotalElement = document.querySelector('.summary-row span:last-child');
+    
+    // Vider le conteneur
+    cartContainer.innerHTML = '';
+    
+    // Ajouter chaque article
+    cartItems.forEach((item, index) => {
+        const itemElement = document.createElement('div');
+        itemElement.className = 'cart-item';
+        itemElement.setAttribute('data-aos', 'fade-right');
+        if (index > 0) {
+            itemElement.setAttribute('data-aos-delay', index * 100);
         }
-
-        function removeItem(index) {
-            cartItems.splice(index, 1);
-            updateCartDisplay();
-        }
-
-        function saveForLater(index) {
-            Swal.fire({
-                icon: 'info',
-                title: 'Article sauvegardé',
-                text: `L'article "${cartItems[index].name}" a été sauvegardé pour plus tard.`,
-                confirmButtonColor: '#2178d0'
-            });
-        }
-
-        function addToCart(name, price, category, image) {
-            const existingItem = cartItems.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cartItems.push({
-                    id: cartItems.length + 1,
-                    name: name,
-                    price: price,
-                    quantity: 1,
-                    image: image,
-                    category: category,
-                    stock: "in-stock"
-                });
-            }
-            updateCartDisplay();
-            Toastify({
-                text: `${name} ajouté au panier!`,
-                duration: 3000,
-                close: true,
-                gravity: "top",
-                position: "right",
-                backgroundColor: "#28a745",
-            }).showToast();
-        }
-
-        function updateCartDisplay() {
-            console.log("Panier mis à jour:", cartItems);
-        }
-
-        // Modal de paiement
-        function proceedToCheckout() {
-            const paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
-            paymentModal.show();
-        }
-
-        function selectPaymentMethod(method) {
-            document.querySelectorAll('.payment-method').forEach(option => {
-                option.classList.remove('selected');
-            });
-            document.querySelector(`.payment-method[onclick*="${method}"]`).classList.add('selected');
-            document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
-                radio.checked = (radio.value === method);
-            });
-            document.getElementById('confirmPaymentBtn').disabled = false;
-
-            const instructions = document.getElementById('paymentInstructions');
-            if (method === 'wave') {
-                instructions.innerHTML = `
-                    <h6><i class="fas fa-info-circle"></i> Instructions pour Wave</h6>
-                    <ol>
-                        <li>Ouvrez l'application <strong>Wave</strong>.</li>
-                        <li>Allez dans "Payer".</li>
-                        <li>Scannez le QR code ou entrez le numéro de marchand : <strong>771234567</strong>.</li>
-                        <li>Validez le paiement de <strong>25 000 CFA</strong>.</li>
-                    </ol>
-                    <div class="qrcode-placeholder">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=WAVE_771234567_25000" alt="QR Code Wave">
-                        <p class="mt-2 small text-muted">Code marchand : 771234567</p>
+        
+        itemElement.innerHTML = `
+            <div class="cart-item-image">
+                <img src="${item.image}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/100x100/cccccc/ffffff?text=Produit'">
+            </div>
+            <div class="cart-item-info">
+                <h4>${item.name}</h4>
+                <p>${item.price.toLocaleString()} CFA</p>
+                <small>${item.category}</small>
+                <div class="cart-item-stock in-stock">
+                    <i class="fas fa-check-circle me-1"></i> En stock
+                </div>
+                <div class="cart-item-quantity">
+                    <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                    <span class="quantity-value">${item.quantity}</span>
+                    <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                </div>
+            </div>
+            <div class="cart-item-actions">
+                <div class="cart-item-price">${(item.price * item.quantity).toLocaleString()} CFA</div>
+                <div>
+                    <div class="remove-item" onclick="removeItem(${index})">
+                        <i class="fas fa-trash me-1"></i> Supprimer
                     </div>
-                `;
-            } else {
-                instructions.innerHTML = `
-                    <h6><i class="fas fa-info-circle"></i> Instructions pour Orange Money</h6>
-                    <ol>
-                        <li>Composez <strong>*144#</strong>.</li>
-                        <li>Sélectionnez "Payer un marchand".</li>
-                        <li>Entrez le code marchand : <strong>123456</strong>.</li>
-                        <li>Validez le paiement de <strong>25 000 CFA</strong>.</li>
-                    </ol>
-                    <div class="qrcode-placeholder">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=ORANGE_123456_25000" alt="QR Code Orange Money">
-                        <p class="mt-2 small text-muted">Code marchand : 123456</p>
-                    </div>
-                `;
-            }
-            instructions.style.display = 'block';
-        }
+                </div>
+            </div>
+        `;
+        cartContainer.appendChild(itemElement);
+    });
+    
+    // Mettre à jour le total
+    if (totalElement) {
+        totalElement.textContent = `${total.toLocaleString()} CFA`;
+    }
+    
+    // Mettre à jour le sous-total
+    if (subtotalElement) {
+        const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+        subtotalElement.textContent = `${total.toLocaleString()} CFA`;
+        document.querySelector('.summary-row span:first-child').textContent = `Sous-total (${itemCount} article${itemCount > 1 ? 's' : ''})`;
+    }
+}
 
-        // Confirmation de paiement
-        document.getElementById('confirmPaymentBtn').addEventListener('click', function() {
-            const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            const methodName = selectedMethod === 'wave' ? 'Wave Money' : 'Orange Money';
+// Modifier la quantité d'un article
+function updateQuantity(index, change) {
+    const newQuantity = cartItems[index].quantity + change;
+    
+    if (newQuantity < 1) {
+        removeItem(index);
+        return;
+    }
+    
+    // Mettre à jour la quantité et le total
+    const priceChange = cartItems[index].price * change;
+    cartItems[index].quantity = newQuantity;
+    total += priceChange;
+    
+    // Sauvegarder et mettre à jour l'affichage
+    saveCartToStorage();
+    updateCartDisplay();
+}
 
-            const modal = bootstrap.Modal.getInstance(document.getElementById('paymentModal'));
-            modal.hide();
+// Supprimer un article du panier
+function removeItem(index) {
+    // Mettre à jour le total
+    total -= cartItems[index].price * cartItems[index].quantity;
+    
+    // Supprimer l'article
+    cartItems.splice(index, 1);
+    
+    // Sauvegarder et mettre à jour l'affichage
+    saveCartToStorage();
+    updateCartDisplay();
+}
 
-            Swal.fire({
-                title: 'Traitement en cours...',
-                html: `Validation de votre paiement <strong>${methodName}</strong>.`,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: () => Swal.showLoading()
-            }).then(() => {
+// Sauvegarder le panier dans le localStorage
+function saveCartToStorage() {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+    localStorage.setItem('cartTotal', total);
+}
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', function() {
+    // Charger le panier
+    loadCartFromStorage();
+    
+    // Initialiser AOS
+    if (typeof AOS !== 'undefined') {
+        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+    }
+    
+    // Ajouter l'écouteur d'événement pour le bouton de paiement
+    const checkoutBtn = document.querySelector('.checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', function() {
+            if (cartItems.length === 0) {
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Paiement réussi!',
-                    text: `Votre commande a été payée avec ${methodName}.`,
+                    icon: 'warning',
+                    title: 'Panier vide',
+                    text: 'Votre panier est vide. Ajoutez des produits avant de passer commande.',
                     confirmButtonColor: '#2178d0'
                 });
-            });
+                return;
+            }
+            
+            // Ouvrir le modal de paiement
+            const paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
+            paymentModal.show();
         });
+    }
+});
     </script>
 </body>
 </html>

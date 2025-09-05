@@ -17,32 +17,40 @@
             display: flex;
             align-items: flex-start;
         }
-
         .quick-view-main {
-            position: relative; /* Nécessaire pour positionner la loupe */
+            position: relative;
             cursor: crosshair;
-            flex: 0 0 40%; 
+            flex: 0 0 40%;
             max-width: 40%;
         }
-
         .quick-view-details {
-            flex: 1; /* La section des détails prend le reste de l'espace */
-            padding-left: 2rem; /* Espace entre l'image et les détails */
+            flex: 1;
+            padding-left: 2rem;
         }
-
         #magnifying-glass {
             position: absolute;
             border: 3px solid rgba(221, 221, 221, 0.9);
             box-shadow: 0 0 15px rgba(0,0,0,0.25);
-            border-radius: 50%; /* Loupe circulaire */
-            width: 175px; /* Taille de la loupe */
-            height: 175px;
-            display: none; /* Cachée par défaut */
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+            display: none;
             background-repeat: no-repeat;
-            pointer-events: none; /* La loupe ne doit pas intercepter les clics */
+            pointer-events: none;
         }
     </style>
-    
+    <style>
+    .cart-badge {
+        background-color: #e74c3c;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 12px;
+        position: relative;
+        top: -10px;
+        right: 5px;
+    }
+</style>
 </head>
 <body>
     <header>
@@ -61,7 +69,7 @@
     <nav>
         <div class="container d-flex flex-wrap justify-content-between align-items-center">
             <div class="logo animate__animated animate__fadeInLeft d-flex align-items-center">
-                <a href="index.html"><img src="logos.jpeg" alt="Logo" class="logo-img me-3"></a>
+                <a href="index.html#boutiquee"><img src="logos.jpeg" alt="Logo" class="logo-img me-3"></a>
                 <span class="nav-brand">LINGUERE FABLAB</span>
             </div>
             
@@ -73,7 +81,11 @@
             <div class="icons d-flex align-items-center">
                 <span class="me-3"><i class="far fa-heart"></i></span>
                 <span class="me-3"><i class="far fa-user"></i></span>
-                <span class="cart-count" data-count="0"><i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">0 CFA</span></span>
+                
+                <a href="panier.html" target="_blank" class="cart-count" id="cart-icon" style="text-decoration: none; color: inherit; cursor: pointer;">
+                    <i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">0 CFA</span>
+                    <span class="cart-badge">0</span>
+                </a>
             </div>
         </div>
     </nav>
@@ -429,122 +441,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Product Card 8 -->
-                <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
-                    <span class="product-badge" style="background: #9b59b6;">Top vente</span>
-                    <img src="kits robotique 1.jpg" alt="Kit robotique" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')" style="cursor: pointer;">
-                    <div class="quick-view">
-                        <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
-                            <i class="fas fa-eye me-1"></i> Aperçu rapide
-                        </button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Kit robotique</h3>
-                        <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
-                        <p class="product-price">35 000 CFA</p>
-                        <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
-                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique', 'kits robotique 1.jpg')">
-                            <i class="fas fa-cart-plus"></i> Ajouter au panier
-                        </button>
-                        <div class="product-meta">
-                            <span class="product-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </span>
-                            <span class="product-sku">REF: KIT-ROBOT-01</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 8 -->
-                <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
-                    <span class="product-badge" style="background: #9b59b6;">Top vente</span>
-                    <img src="kits robotique 1.jpg" alt="Kit robotique" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')" style="cursor: pointer;">
-                    <div class="quick-view">
-                        <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
-                            <i class="fas fa-eye me-1"></i> Aperçu rapide
-                        </button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Kit robotique</h3>
-                        <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
-                        <p class="product-price">35 000 CFA</p>
-                        <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
-                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique', 'kits robotique 1.jpg')">
-                            <i class="fas fa-cart-plus"></i> Ajouter au panier
-                        </button>
-                        <div class="product-meta">
-                            <span class="product-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </span>
-                            <span class="product-sku">REF: KIT-ROBOT-01</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 8 -->
-                <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
-                    <span class="product-badge" style="background: #9b59b6;">Top vente</span>
-                    <img src="kits robotique 1.jpg" alt="Kit robotique" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')" style="cursor: pointer;">
-                    <div class="quick-view">
-                        <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
-                            <i class="fas fa-eye me-1"></i> Aperçu rapide
-                        </button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Kit robotique</h3>
-                        <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
-                        <p class="product-price">35 000 CFA</p>
-                        <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
-                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique', 'kits robotique 1.jpg')">
-                            <i class="fas fa-cart-plus"></i> Ajouter au panier
-                        </button>
-                        <div class="product-meta">
-                            <span class="product-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </span>
-                            <span class="product-sku">REF: KIT-ROBOT-01</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 8 -->
-                <div class="product-card" data-aos="fade-up" data-aos-delay="100" data-category="Robotique">
-                    <span class="product-badge" style="background: #9b59b6;">Top vente</span>
-                    <img src="kits robotique 1.jpg" alt="Kit robotique" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')" style="cursor: pointer;">
-                    <div class="quick-view">
-                        <button class="quick-view-btn" onclick="showQuickView('Kit robotique', 'kits robotique 1.jpg', 'Kit complet pour construire votre premier robot programmable.', 35000, 5, 'Robotique')">
-                            <i class="fas fa-eye me-1"></i> Aperçu rapide
-                        </button>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Kit robotique</h3>
-                        <p class="product-description">Kit complet pour construire votre premier robot programmable.</p>
-                        <p class="product-price">35 000 CFA</p>
-                        <p class="product-stock low-stock"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (5 unités)</p>
-                        <button class="add-to-cart-button" onclick="addToCart('Kit robotique', 35000, 'Robotique', 'kits robotique 1.jpg')">
-                            <i class="fas fa-cart-plus"></i> Ajouter au panier
-                        </button>
-                        <div class="product-meta">
-                            <span class="product-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </span>
-                            <span class="product-sku">REF: KIT-ROBOT-01</span>
-                        </div>
-                    </div>
-                </div>
             </div>
             
             <!-- Pagination -->
@@ -632,26 +528,6 @@
     </div>
 </div>
 
-
-    <!-- Cart Modal -->
-    <div id="cart-modal" class="cart-modal">
-        <div class="cart-header">
-            <h3><i class="fas fa-shopping-cart me-2"></i> Votre Panier</h3>
-            <button id="close-cart" class="btn btn-sm btn-outline-danger">&times;</button>
-        </div>
-        <div class="cart-items" id="cart-items">
-            <!-- Les éléments du panier seront ajoutés ici dynamiquement -->
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total :</span>
-                <span id="total-price">0 CFA</span>
-            </div>
-            <button id="checkout-button" class="checkout-btn">
-                <i class="fas fa-credit-card me-2"></i> Passer la commande
-            </button>
-        </div>
-    </div>
 
 <!-- Modal de paiement complet -->
 <div id="payment-modal" class="payment-modal">
@@ -813,1163 +689,482 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialisation AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // Fonction pour extraire le prix numérique d'un élément de prix
-function extractPrice(priceElement) {
-    const priceText = priceElement.textContent;
-    return parseInt(priceText.replace(/\D/g, '')) || 0;
-}
-
-// Fonction pour appliquer tous les filtres
-function applyFilters() {
-    const productCards = document.querySelectorAll('.product-card');
-    const priceRange = document.querySelector('.price-range').value;
-    const categoryFilters = {
-        arduino: document.getElementById('arduino').checked,
-        iot: document.getElementById('iot').checked,
-        robotics: document.getElementById('robotics').checked,
-        sensors: document.getElementById('sensors').checked
-    };
-    const stockFilters = {
-        inStock: document.getElementById('in-stock').checked,
-        lowStock: document.getElementById('low-stock').checked,
-        outOfStock: document.getElementById('out-of-stock').checked
-    };
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // ==================================================================
+    // Gestion du panier - NOUVELLES FONCTIONS
+    // ==================================================================
     
-    // Si aucune option de disponibilité n'est cochée, toutes les afficher
-    const noStockFilterSelected = !stockFilters.inStock && !stockFilters.lowStock && !stockFilters.outOfStock;
-    if (noStockFilterSelected) {
-        document.getElementById('in-stock').checked = true;
-        document.getElementById('low-stock').checked = true;
-        document.getElementById('out-of-stock').checked = true;
-        stockFilters.inStock = true;
-        stockFilters.lowStock = true;
-        stockFilters.outOfStock = true;
+    // Variables globales pour le panier
+    let cart = [];
+    let total = 0;
+
+    // Charger le panier depuis le localStorage
+    function loadCartFromStorage() {
+        const savedCart = localStorage.getItem('cart');
+        const savedTotal = localStorage.getItem('cartTotal');
+        
+        if (savedCart) {
+            cart = JSON.parse(savedCart);
+            total = parseInt(savedTotal) || 0;
+            updateCartIcon();
+        }
     }
 
-    productCards.forEach(card => {
-        const priceElement = card.querySelector('.product-price');
-        const productPrice = extractPrice(priceElement);
-        const productCategory = card.dataset.category;
-        const stockElement = card.querySelector('.product-stock');
-        const isInStock = stockElement.classList.contains('in-stock');
-        const isLowStock = stockElement.classList.contains('low-stock');
-        const isOutOfStock = !isInStock && !isLowStock;
+    // Sauvegarder le panier dans le localStorage
+    function saveCartToStorage() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('cartTotal', total);
+    }
 
-        // Vérifier les filtres
-        let shouldShow = true;
+    // Mettre à jour l'icône du panier
+    function updateCartIcon() {
+        const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartBadge = document.querySelector('.cart-badge');
+        const cartText = document.querySelector('.cart-count span');
+        const cartElement = document.querySelector('.cart-count');
+        
+        if (cartBadge) cartBadge.textContent = cartCount;
+        if (cartText) cartText.textContent = `${total.toLocaleString()} CFA`;
+        if (cartElement) cartElement.setAttribute('data-count', cartCount);
+    }
 
-        // Filtre par prix
-        if (productPrice > parseInt(priceRange)) {
-    shouldShow = false;
-}
+    // Fonction pour ajouter au panier (version modifiée)
+    function addToCart(name, price, category, image, quantity = 1) {
+        // Vérifier si le produit est déjà dans le panier
+        const existingItemIndex = cart.findIndex(item => item.name === name);
+        
+        if (existingItemIndex >= 0) {
+            cart[existingItemIndex].quantity += quantity;
+        } else {
+            cart.push({
+                name: name,
+                price: price,
+                category: category,
+                image: image,
+                quantity: quantity
+            });
+        }
+        
+        // Mettre à jour le total
+        total += price * quantity;
+        
+        // Sauvegarder dans le localStorage
+        saveCartToStorage();
+        
+        // Mettre à jour l'icône du panier
+        updateCartIcon();
+        
+        // Afficher la confirmation
+        showConfirmation();
+    }
 
-        // Filtre par catégorie
-        if (shouldShow) {
-            const categoryMatch = 
-                (productCategory.includes('Kits Arduino') && categoryFilters.arduino) ||
-                (productCategory.includes('Composants IoT') && categoryFilters.iot) ||
-                (productCategory.includes('Robotique') && categoryFilters.robotics) ||
-                (productCategory.includes('Capteurs') && categoryFilters.sensors);
+    // Redirection vers la page panier
+    function redirectToCart() {
+        // Sauvegarder le panier avant de rediriger
+        saveCartToStorage();
+        window.location.href = "panier.html";
+    }
+
+    // Fonction pour afficher la confirmation
+    function showConfirmation() {
+        const confirmation = document.getElementById('confirmation-message');
+        confirmation.style.display = 'block';
+        confirmation.style.opacity = '1';
+        
+        setTimeout(() => {
+            confirmation.style.opacity = '0';
+            setTimeout(() => confirmation.style.display = 'none', 300);
+        }, 2000);
+    }
+
+    // ==================================================================
+    // FONCTIONS EXISTANTES (CONSERVER)
+    // ==================================================================
+
+    // Initialisation AOS
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+    });
+
+    // Fonction pour extraire le prix numérique d'un élément de prix
+    function extractPrice(priceElement) {
+        const priceText = priceElement.textContent;
+        return parseInt(priceText.replace(/\D/g, '')) || 0;
+    }
+
+    // Fonction pour appliquer tous les filtres
+    function applyFilters() {
+        const productCards = document.querySelectorAll('.product-card');
+        const priceRange = document.querySelector('.price-range').value;
+        const categoryFilters = {
+            arduino: document.getElementById('arduino').checked,
+            iot: document.getElementById('iot').checked,
+            robotics: document.getElementById('robotics').checked,
+            sensors: document.getElementById('sensors').checked
+        };
+        const stockFilters = {
+            inStock: document.getElementById('in-stock').checked,
+            lowStock: document.getElementById('low-stock').checked,
+            outOfStock: document.getElementById('out-of-stock').checked
+        };
+        
+        // Si aucune option de disponibilité n'est cochée, toutes les afficher
+        const noStockFilterSelected = !stockFilters.inStock && !stockFilters.lowStock && !stockFilters.outOfStock;
+        if (noStockFilterSelected) {
+            document.getElementById('in-stock').checked = true;
+            document.getElementById('low-stock').checked = true;
+            document.getElementById('out-of-stock').checked = true;
+            stockFilters.inStock = true;
+            stockFilters.lowStock = true;
+            stockFilters.outOfStock = true;
+        }
+
+        productCards.forEach(card => {
+            const priceElement = card.querySelector('.product-price');
+            const productPrice = extractPrice(priceElement);
+            const productCategory = card.dataset.category;
+            const stockElement = card.querySelector('.product-stock');
+            const isInStock = stockElement.classList.contains('in-stock');
+            const isLowStock = stockElement.classList.contains('low-stock');
+            const isOutOfStock = !isInStock && !isLowStock;
+
+            // Vérifier les filtres
+            let shouldShow = true;
+
+            // Filtre par prix
+            if (productPrice > parseInt(priceRange)) {
+                shouldShow = false;
+            }
+
+            // Filtre par catégorie
+            if (shouldShow) {
+                const categoryMatch = 
+                    (productCategory.includes('Kits Arduino') && categoryFilters.arduino) ||
+                    (productCategory.includes('Composants IoT') && categoryFilters.iot) ||
+                    (productCategory.includes('Robotique') && categoryFilters.robotics) ||
+                    (productCategory.includes('Capteurs') && categoryFilters.sensors);
+                
+                shouldShow = shouldShow && categoryMatch;
+            }
+
+            // Filtre par disponibilité
+            if (shouldShow) {
+                const stockMatch = 
+                    (isInStock && stockFilters.inStock) ||
+                    (isLowStock && stockFilters.lowStock) ||
+                    (isOutOfStock && stockFilters.outOfStock);
+                
+                shouldShow = shouldShow && stockMatch;
+            }
+
+            // Appliquer le filtre
+            if (shouldShow) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Mettre à jour l'affichage des valeurs de prix
+        updatePriceValues();
+    }
+
+    // Fonction pour mettre à jour l'affichage des valeurs de prix
+    function updatePriceValues() {
+        const priceRange = document.querySelector('.price-range');
+        const priceValues = document.querySelectorAll('.price-values span');
+        priceValues[1].textContent = parseInt(priceRange.value).toLocaleString() + ' CFA';
+    }
+
+    // Initialisation des événements des filtres
+    function initFilters() {
+        // Événement pour le range de prix
+        const priceRange = document.querySelector('.price-range');
+        if (priceRange) {
+            priceRange.addEventListener('input', applyFilters);
+        }
+
+        // Événements pour les cases à cocher
+        const checkboxes = document.querySelectorAll('.filter-option input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', applyFilters);
+        });
+
+        // Initialiser les valeurs de prix
+        updatePriceValues();
+    }
+
+    // Fonction pour trier les produits
+    function sortProducts(sortBy) {
+        const productContainer = document.querySelector('.product-grid');
+        const products = Array.from(productContainer.querySelectorAll('.product-card'));
+        
+        products.sort((a, b) => {
+            const priceA = extractPrice(a.querySelector('.product-price'));
+            const priceB = extractPrice(b.querySelector('.product-price'));
             
-            shouldShow = shouldShow && categoryMatch;
-        }
+            switch(sortBy) {
+                case 'Prix croissant':
+                    return priceA - priceB;
+                case 'Prix décroissant':
+                    return priceB - priceA;
+                default: // 'Pertinence'
+                    return 0; // Ordre original
+            }
+        });
+        
+        // Vider le conteneur
+        productContainer.innerHTML = '';
+        
+        // Réinsérer les produits dans le nouvel ordre
+        products.forEach(product => {
+            productContainer.appendChild(product);
+        });
+    }
 
-        // Filtre par disponibilité
-        if (shouldShow) {
-            const stockMatch = 
-                (isInStock && stockFilters.inStock) ||
-                (isLowStock && stockFilters.lowStock) ||
-                (isOutOfStock && stockFilters.outOfStock);
-            
-            shouldShow = shouldShow && stockMatch;
-        }
+    // Fonction pour l'aperçu rapide
+    let currentProductCategory = "";
 
-        // Appliquer le filtre
-        if (shouldShow) {
-            card.style.display = 'block';
+    function showQuickView(name, image, description, price, stock, category) {
+        currentProductCategory = category;
+        const modal = document.getElementById('quick-view-modal');
+        document.getElementById('quick-view-title').textContent = name;
+        document.getElementById('quick-view-img').src = image;
+        document.getElementById('quick-view-desc').textContent = description;
+        document.getElementById('quick-view-price').textContent = price.toLocaleString() + ' CFA';
+        document.getElementById('quick-view-category').textContent = category;
+        document.getElementById('quantity').value = 1;
+
+        // Mettre à jour le stock
+        let stockHtml = '';
+        if (stock > 10) {
+            stockHtml = `<span class="text-success"><i class="fas fa-check-circle me-1"></i> En stock (${stock} unités)</span>`;
+        } else if (stock > 0) {
+            stockHtml = `<span class="text-warning"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (${stock} unités)</span>`;
         } else {
-            card.style.display = 'none';
+            stockHtml = `<span class="text-danger"><i class="fas fa-times-circle me-1"></i> En rupture de stock</span>`;
         }
-    });
+        document.getElementById('quick-view-stock').innerHTML = stockHtml;
 
-    // Mettre à jour l'affichage des valeurs de prix
-    updatePriceValues();
-}
+        // Charger les produits similaires
+        loadRelatedProducts(category, name);
 
-// Fonction pour mettre à jour l'affichage des valeurs de prix
-function updatePriceValues() {
-    const priceRange = document.querySelector('.price-range');
-    const priceValues = document.querySelectorAll('.price-values span');
-    priceValues[1].textContent = parseInt(priceRange.value).toLocaleString() + ' CFA';
-}
-
-// Initialisation des événements des filtres
-function initFilters() {
-    // Événement pour le range de prix
-    const priceRange = document.querySelector('.price-range');
-    priceRange.addEventListener('input', applyFilters);
-
-    // Événements pour les cases à cocher
-    const checkboxes = document.querySelectorAll('.filter-option input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', applyFilters);
-    });
-
-    // Événement pour le bouton "Appliquer les filtres"
-    const applyButton = document.querySelector('.filter-section button');
-    applyButton.addEventListener('click', applyFilters);
-
-    // Initialiser les valeurs de prix
-    updatePriceValues();
-}
-
-// Appeler initFilters lorsque le DOM est chargé
-document.addEventListener('DOMContentLoaded', function() {
-    initFilters();
-    
-    // Ajouter également cette ligne si vous avez d'autres initialisations
-    if (typeof AOS !== 'undefined') {
-        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
     }
-});
 
-
-
-
-
-
-
-
-
-
-// Fonction pour trier les produits
-function sortProducts(sortBy) {
-    const productContainer = document.querySelector('.product-grid');
-    const products = Array.from(productContainer.querySelectorAll('.product-card'));
-    
-    products.sort((a, b) => {
-        const priceA = extractPrice(a.querySelector('.product-price'));
-        const priceB = extractPrice(b.querySelector('.product-price'));
-        
-        switch(sortBy) {
-            case 'Prix croissant':
-                return priceA - priceB;
-            case 'Prix décroissant':
-                return priceB - priceA;
-            default: // 'Pertinence'
-                return 0; // Ordre original
-        }
-    });
-    
-    // Vider le conteneur
-    productContainer.innerHTML = '';
-    
-    // Réinsérer les produits dans le nouvel ordre
-    products.forEach(product => {
-        productContainer.appendChild(product);
-    });
-}
-
-// Écouteur d'événement pour le menu déroulant de tri
-document.addEventListener('DOMContentLoaded', function() {
-    const sortSelect = document.querySelector('.sort-options select');
-    if (sortSelect) {
-        sortSelect.addEventListener('change', function() {
-            sortProducts(this.value);
-        });
+    function closeQuickView() {
+        document.getElementById('quick-view-modal').style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
-    
-    // Initialiser les autres fonctions comme avant
-    initFilters();
-    if (typeof AOS !== 'undefined') {
-        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
-    }
-});
 
+    function loadRelatedProducts(category, currentProductName) {
+        const relatedGrid = document.querySelector('.quick-view-related-grid');
+        relatedGrid.innerHTML = '';
 
+        // Sélectionner tous les produits de la même catégorie
+        const allProducts = document.querySelectorAll('.product-card');
+        allProducts.forEach(product => {
+            if (product.dataset.category === category && product.querySelector('.product-name').textContent !== currentProductName) {
+                const name = product.querySelector('.product-name').textContent;
+                const imgSrc = product.querySelector('img').src;
+                const description = product.querySelector('.product-description').textContent;
+                const priceText = product.querySelector('.product-price').textContent;
+                const price = parseInt(priceText.replace(/\D/g, ''));
 
+                const relatedCard = document.createElement('div');
+                relatedCard.className = 'quick-view-related-card';
+                relatedCard.onclick = () => showQuickView(
+                    name,
+                    imgSrc,
+                    description,
+                    price,
+                    parseInt(product.querySelector('.product-stock').textContent.match(/\d+/)[0]),
+                    category
+                );
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Gestion des menus déroulants sur mobile
-    const dropdowns = document.querySelectorAll('.dropdown');
+                relatedCard.innerHTML = `
+                    <img src="${imgSrc}" alt="${name}">
+                    <div class="quick-view-related-info">
+                        <h4>${name}</h4>
+                        <p>${description}</p>
+                        <div class="price">${price.toLocaleString()} CFA</div>
+                    </div>
+                `;
 
-    dropdowns.forEach(dropdown => {
-        const link = dropdown.querySelector('a');
-        link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 576) {
-                e.preventDefault();
-                dropdown.classList.toggle('active');
+                relatedGrid.appendChild(relatedCard);
             }
         });
-    });
-
-    // Fermer les menus déroulants si on clique ailleurs
-    document.addEventListener('click', function(e) {
-        if (window.innerWidth <= 576) {
-            if (!e.target.closest('.dropdown')) {
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            }
-        }
-    });
-
-    // Ajustement de la grille des produits pour les petits écrans
-    function adjustProductGrid() {
-        const productGrid = document.querySelector('.product-grid');
-        if (window.innerWidth <= 576) {
-            productGrid.style.gridTemplateColumns = '1fr';
-            productGrid.style.gap = '12px';
-        }
     }
 
-    // Appeler la fonction au chargement et au redimensionnement
-    adjustProductGrid();
-    window.addEventListener('resize', adjustProductGrid);
-});
+    function addToCartFromQuickView() {
+        const name = document.getElementById('quick-view-title').textContent;
+        const priceText = document.getElementById('quick-view-price').textContent;
+        const price = parseInt(priceText.replace(/\D/g, ''));
+        const category = document.getElementById('quick-view-category').textContent;
+        const image = document.getElementById('quick-view-img').src;
+        const quantity = parseInt(document.getElementById('quantity').value);
 
+        // Ajouter au panier
+        addToCart(name, price, category, image, quantity);
 
+        // Afficher la confirmation (sans fermer le modal)
+        showConfirmation();
 
+        // Réinitialiser la quantité à 1
+        document.getElementById('quantity').value = 1;
+    }
 
+    function increaseQuantity() {
+        const quantityInput = document.getElementById('quantity');
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+    }
 
-
-
-
-
-
-
-
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Gestion des menus déroulants sur mobile
-    const dropdowns = document.querySelectorAll('.dropdown');
-
-    dropdowns.forEach(dropdown => {
-        const link = dropdown.querySelector('a');
-        link.addEventListener('click', function(e) {
-            if (window.innerWidth <= 576) {
-                e.preventDefault();
-                dropdown.classList.toggle('active');
-            }
-        });
-    });
-
-    // Fermer les menus déroulants si on clique ailleurs
-    document.addEventListener('click', function(e) {
-        if (window.innerWidth <= 576) {
-            if (!e.target.closest('.dropdown')) {
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            }
-        }
-    });
-
-    // Ajustement dynamique de la grille des produits
-    function adjustProductGrid() {
-        const productGrid = document.querySelector('.product-grid');
-        if (window.innerWidth <= 576) {
-            productGrid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(140px, 1fr))';
-            productGrid.style.gap = '8px';
+    function decreaseQuantity() {
+        const quantityInput = document.getElementById('quantity');
+        if (parseInt(quantityInput.value) > 1) {
+            quantityInput.value = parseInt(quantityInput.value) - 1;
         }
     }
 
-    // Appeler au chargement et au redimensionnement
-    adjustProductGrid();
-    window.addEventListener('resize', adjustProductGrid);
+    // Fonction pour les filtres mobiles
+    function toggleMobileFilters() {
+        const filterContent = document.getElementById('filter-content');
+        const chevron = document.getElementById('filter-chevrondown');
 
-    // Optimisation des images pour le chargement
-    function optimizeImages() {
-        const images = document.querySelectorAll('img');
-        images.forEach(img => {
-            img.loading = 'lazy';
-            img.decode().catch(() => {});
-        });
-    }
+        filterContent.classList.toggle('show');
 
-    optimizeImages();
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ------------------------------------------------------------------------------------------------------------------------------
-// Variables pour le paiement
-let selectedPaymentMethod = 'orange'; // Par défaut Orange Money
-
-// Fonction pour sélectionner le mode de paiement
-function selectPayment(method) {
-    selectedPaymentMethod = method;
-    
-    // Retirer la classe active de toutes les options
-    document.querySelectorAll('.payment-option').forEach(option => {
-        option.classList.remove('active');
-    });
-    
-    // Ajouter la classe active à l'option sélectionnée
-    const options = document.querySelectorAll('.payment-option');
-    if (method === 'orange') {
-        options[0].classList.add('active');
-    } else if (method === 'wave') {
-        options[1].classList.add('active');
-    }
-}
-
-// Fonction pour ouvrir le modal de paiement
-function openPaymentModal() {
-    if (cart.length === 0) {
-        alert('Votre panier est vide. Ajoutez des produits avant de passer commande.');
-        return;
-    }
-    
-    // Mettre à jour le montant total dans le modal
-    document.getElementById('total-amount').textContent = total.toLocaleString();
-    
-    // Réinitialiser le formulaire
-    document.getElementById('payment-form').reset();
-    
-    // Afficher le modal
-    document.getElementById('payment-modal').style.display = 'block';
-    document.getElementById('cart-modal').style.display = 'none';
-}
-
-// Fonction pour fermer le modal de paiement
-function closePaymentModal() {
-    document.getElementById('payment-modal').style.display = 'none';
-}
-
-// Gestion de la soumission du formulaire de paiement
-document.getElementById('payment-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Validation des champs
-    const requiredFields = ['first-name', 'last-name', 'email', 'phone', 'address', 'postal-code', 'city', 'mobile-number'];
-    let isValid = true;
-    
-    requiredFields.forEach(fieldId => {
-        const field = document.getElementById(fieldId);
-        if (!field.value.trim()) {
-            isValid = false;
-            field.classList.add('is-invalid');
+        // Animation de la flèche
+        if (filterContent.classList.contains('show')) {
+            chevron.classList.replace('fa-chevron-down', 'fa-chevron-up');
         } else {
-            field.classList.remove('is-invalid');
+            chevron.classList.replace('fa-chevron-up', 'fa-chevron-down');
         }
-    });
-    
-    if (!isValid) {
-        alert('Veuillez remplir tous les champs obligatoires.');
-        return;
     }
-    
-    // Simulation du processus de paiement
-    processPayment();
-});
 
-// Fonction pour simuler le processus de paiement (version corrigée)
-function processPayment() {
-    const { discount, subtotal, gift } = calculateDiscounts();
-    const phoneNumber = document.getElementById('mobile-number').value;
-    const paymentCode = document.getElementById('payment-code').value;
-    
-    // Message de confirmation
-    let confirmationMessage = `Paiement ${selectedPaymentMethod === 'orange' ? 'Orange Money' : 'Wave'} de ${subtotal.toLocaleString()} CFA effectué avec succès!`;
-    
-    // Informations client
-    const customerName = `${document.getElementById('first-name').value} ${document.getElementById('last-name').value}`;
-    confirmationMessage += `\n\nMerci ${customerName} pour votre commande !`;
-    
-    alert(confirmationMessage);
-  
-    // Réinitialiser le panier
-    cart = [];
-    total = 0;
-    updateCartDisplay();
-    
-    // Fermer le modal
-    closePaymentModal();
-    
-    // Réinitialiser les formulaires
-    document.getElementById('customer-info-form').reset();
-    document.getElementById('payment-form').reset();
-}
-
-// Initialisation au chargement de la page
-document.addEventListener('DOMContentLoaded', function() {
-    // Sélectionner Orange Money par défaut
-    selectPayment('orange');
-    
-    // Événement pour le bouton de commande
-    document.getElementById('checkout-button').addEventListener('click', openPaymentModal);
-    
-    // Fermer le modal en cliquant à l'extérieur
-    window.addEventListener('click', function(event) {
-        if (event.target === document.getElementById('payment-modal')) {
-            closePaymentModal();
-        }
-    });
-});
-
-
-// Fonction simplifiée sans réductions ni cadeaux
-function calculateDiscounts() {
-    // Retourne simplement le total sans aucune réduction
-    return { 
-        discount: 0, 
-        subtotal: total, 
-        gift: '' 
-    };
-}
-
-// Fonction pour mettre à jour l'affichage du panier avec les nouvelles règles
-function updateCartDisplay() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartCountElement = document.querySelector('.cart-count');
-    const totalPriceElement = document.getElementById('total-price');
-    
-    // Calculer les réductions selon les nouvelles règles
-    const { discount, subtotal, gift } = calculateDiscounts();
-    
-    // Vider le conteneur
-    cartItemsContainer.innerHTML = '';
-    
-    // Ajouter chaque article
-    cart.forEach((item, index) => {
-        const itemElement = document.createElement('div');
-        itemElement.className = 'cart-item';
-        itemElement.innerHTML = `
-            <div class="cart-item-image">
-                <img src="${item.image}" alt="${item.name}" loading="lazy">
-            </div>
-            <div class="cart-item-info">
-                <h5>${item.name}</h5>
-                <p>${item.price.toLocaleString()} CFA</p>
-                <small>${item.category}</small>
-            </div>
-            <div class="cart-item-quantity">
-                <button class="btn btn-sm btn-outline-secondary" onclick="changeCartItemQuantity(${index}, -1)">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <span class="quantity-value">${item.quantity}</span>
-                <button class="btn btn-sm btn-outline-secondary" onclick="changeCartItemQuantity(${index}, 1)">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-            <div class="cart-item-actions">
-                <span class="cart-item-total">${(item.price * item.quantity).toLocaleString()} CFA</span>
-                <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        `;
-        cartItemsContainer.appendChild(itemElement);
-    });
-    
-    // Ajouter la section des réductions/cadeaux
-    if (discount > 0 || gift) {
-        const discountElement = document.createElement('div');
-        discountElement.className = 'cart-discounts';
-        
-        let discountHTML = '';
-        if (discount > 0) {
-            discountHTML += `
-                <div class="discount-item">
-                    <span>Réduction (10% sur kits Arduino/Robotique)</span>
-                    <span class="text-danger">-${discount.toLocaleString()} CFA</span>
-                </div>
-            `;
-        }
-        
-        if (gift) {
-            discountHTML += `
-                <div class="gift-item">
-                    <span><i class="fas fa-gift text-success"></i> ${gift}</span>
-                </div>
-            `;
-        }
-        
-        discountElement.innerHTML = discountHTML;
-        cartItemsContainer.appendChild(discountElement);
-    }
-    
-    // Mettre à jour le total
-    const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCountElement.setAttribute('data-count', itemCount);
-    cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">${subtotal.toLocaleString()} CFA</span>`;
-    
-    totalPriceElement.textContent = `${subtotal.toLocaleString()} CFA`;
-    document.getElementById('total-amount').textContent = subtotal.toLocaleString();
-}
-
-
-
-
-
-
-
-
-
-
-
-// Fonction pour mettre à jour l'affichage du panier
-function updateCartDisplay() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartCountElement = document.querySelector('.cart-count');
-    const totalPriceElement = document.getElementById('total-price');
-    
-    // Calculer les réductions selon les nouvelles règles
-    const { discount, subtotal, gift } = calculateDiscounts();
-    
-    // Vider le conteneur
-    cartItemsContainer.innerHTML = '';
-    
-    // Ajouter chaque article
-    cart.forEach((item, index) => {
-        const itemElement = document.createElement('div');
-        itemElement.className = 'cart-item';
-        itemElement.innerHTML = `
-            <div class="cart-item-image">
-                <img src="${item.image}" alt="${item.name}" loading="lazy">
-            </div>
-            <div class="cart-item-info">
-                <h5>${item.name}</h5>
-                <p>${item.price.toLocaleString()} CFA</p>
-                <small>${item.category}</small>
-            </div>
-            <div class="cart-item-quantity">
-                <button class="btn btn-sm btn-outline-secondary" onclick="changeCartItemQuantity(${index}, -1)">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <span class="quantity-value">${item.quantity}</span>
-                <button class="btn btn-sm btn-outline-secondary" onclick="changeCartItemQuantity(${index}, 1)">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-            <div class="cart-item-actions">
-                <span class="cart-item-total">${(item.price * item.quantity).toLocaleString()} CFA</span>
-                <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        `;
-        cartItemsContainer.appendChild(itemElement);
-    });
-    
-    // Ajouter la section des réductions/cadeaux
-    if (discount > 0 || gift) {
-        const discountElement = document.createElement('div');
-        discountElement.className = 'cart-discounts';
-        
-        let discountHTML = '';
-        if (discount > 0) {
-            discountHTML += `
-                <div class="discount-item">
-                    <span>Réduction (10% sur 10+ kits Arduino/Robotique)</span>
-                    <span class="text-danger">-${discount.toLocaleString()} CFA</span>
-                </div>
-            `;
-        }
-        
-        if (gift) {
-            discountHTML += `
-                <div class="gift-item">
-                    <span><i class="fas fa-gift text-success"></i> ${gift}</span>
-                </div>
-            `;
-        }
-        
-        discountElement.innerHTML = discountHTML;
-        cartItemsContainer.appendChild(discountElement);
-    }
-    
-    // Mettre à jour le total
-    const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCountElement.setAttribute('data-count', itemCount);
-    cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">${subtotal.toLocaleString()} CFA</span>`;
-    
-    totalPriceElement.textContent = `${subtotal.toLocaleString()} CFA`;
-    document.getElementById('total-amount').textContent = subtotal.toLocaleString();
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Ajoutez cette fonction JavaScript
-function toggleMobileFilters() {
-    const filterContent = document.getElementById('filter-content');
-    const chevron = document.getElementById('filter-chevrondown');
-
-    filterContent.classList.toggle('show');
-
-    // Animation de la flèche
-    if (filterContent.classList.contains('show')) {
-        chevron.classList.replace('fa-chevron-down', 'fa-chevron-up');
-    } else {
-        chevron.classList.replace('fa-chevron-up', 'fa-chevron-down');
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Initialisation du panier
-let cart = [];
-let total = 0;
-
-// Fonction pour ajouter un produit au panier (avec image)
-function addToCart(name, price, category, image, quantity = 1) {
-    // Vérifier si le produit est déjà dans le panier
-    const existingItem = cart.find(item => item.name === name);
-    
-    if (existingItem) {
-        existingItem.quantity += quantity;
-    } else {
-        cart.push({
-            name: name,
-            price: price,
-            category: category,
-            image: image,
-            quantity: quantity
-        });
-    }
-    
-    // Mettre à jour le total
-    total += price * quantity;
-    
-    // Mettre à jour l'affichage du panier
-    updateCartDisplay();
-    
-    // Afficher la confirmation
-    showConfirmation();
-}
-function updateCartDisplay() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartCountElement = document.querySelector('.cart-count');
-    const totalPriceElement = document.getElementById('total-price');
-    
-    // Calculer les réductions selon les nouvelles règles
-    const { discount, subtotal, gift } = calculateDiscounts();
-    
-    // Vider le conteneur
-    cartItemsContainer.innerHTML = '';
-    
-    // Ajouter chaque article
-    cart.forEach((item, index) => {
-        const itemElement = document.createElement('div');
-        itemElement.className = 'cart-item';
-        itemElement.innerHTML = `
-            <div class="cart-item-image">
-                <img src="${item.image}" alt="${item.name}" loading="lazy">
-            </div>
-            <div class="cart-item-info">
-                <h5>${item.name}</h5>
-                <p>${item.price.toLocaleString()} CFA</p>
-                <small>${item.category}</small>
-            </div>
-            <div class="cart-item-quantity">
-                <button class="btn btn-sm btn-outline-secondary" onclick="changeCartItemQuantity(${index}, -1)">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <span class="quantity-value">${item.quantity}</span>
-                <button class="btn btn-sm btn-outline-secondary" onclick="changeCartItemQuantity(${index}, 1)">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-            <div class="cart-item-actions">
-                <span class="cart-item-total">${(item.price * item.quantity).toLocaleString()} CFA</span>
-                <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        `;
-        cartItemsContainer.appendChild(itemElement);
-    });
-    
-    // Ajouter la section des réductions/cadeaux
-    if (discount > 0 || gift) {
-        const discountElement = document.createElement('div');
-        discountElement.className = 'cart-discounts';
-        
-        let discountHTML = '';
-        if (discount > 0) {
-            discountHTML += `
-                <div class="discount-item">
-                    <span>Réduction (10% sur kits Arduino/Robotique)</span>
-                    <span class="text-danger">-${discount.toLocaleString()} CFA</span>
-                </div>
-            `;
-        }
-        
-        if (gift) {
-            discountHTML += `
-                <div class="gift-item">
-                    <span><i class="fas fa-gift text-success"></i> ${gift}</span>
-                </div>
-            `;
-        }
-        
-        discountElement.innerHTML = discountHTML;
-        cartItemsContainer.appendChild(discountElement);
-    }
-    
-    // Mettre à jour le total
-    const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCountElement.setAttribute('data-count', itemCount);
-    cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">${subtotal.toLocaleString()} CFA</span>`;
-    
-    totalPriceElement.textContent = `${subtotal.toLocaleString()} CFA`;
-    document.getElementById('total-amount').textContent = subtotal.toLocaleString();
-}
-
-
-
-
-// Fonction pour modifier la quantité d'un article
-function changeCartItemQuantity(index, change) {
-    const newQuantity = cart[index].quantity + change;
-    
-    if (newQuantity < 1) {
-        removeFromCart(index);
-    } else {
-        total += cart[index].price * change;
-        cart[index].quantity = newQuantity;
-        updateCartDisplay();
-    }
-}
-
-// Fonction pour supprimer un article
-function removeFromCart(index) {
-    const item = cart[index];
-    total -= item.price * item.quantity;
-    cart.splice(index, 1);
-    updateCartDisplay();
-}
-
-// Fonction pour afficher la confirmation
-function showConfirmation() {
-    const confirmation = document.getElementById('confirmation-message');
-    confirmation.style.display = 'block';
-    confirmation.style.opacity = '1';
-    
-    setTimeout(() => {
-        confirmation.style.opacity = '0';
-        setTimeout(() => confirmation.style.display = 'none', 300);
-    }, 3000);
-}
-
-// Fonctions pour l'aperçu rapide
-// Variables globales
-let currentProductCategory = "";
-
-// Fonction pour afficher l'aperçu rapide
-function showQuickView(name, image, description, price, stock, category) {
-    currentProductCategory = category;
-    const modal = document.getElementById('quick-view-modal');
-    document.getElementById('quick-view-title').textContent = name;
-    document.getElementById('quick-view-img').src = image;
-    document.getElementById('quick-view-desc').textContent = description;
-    document.getElementById('quick-view-price').textContent = price.toLocaleString() + ' CFA';
-    document.getElementById('quick-view-category').textContent = category;
-    document.getElementById('quantity').value = 1;
-
-    // Mettre à jour le stock
-    let stockHtml = '';
-    if (stock > 10) {
-        stockHtml = `<span class="text-success"><i class="fas fa-check-circle me-1"></i> En stock (${stock} unités)</span>`;
-    } else if (stock > 0) {
-        stockHtml = `<span class="text-warning"><i class="fas fa-exclamation-circle me-1"></i> Stock limité (${stock} unités)</span>`;
-    } else {
-        stockHtml = `<span class="text-danger"><i class="fas fa-times-circle me-1"></i> En rupture de stock</span>`;
-    }
-    document.getElementById('quick-view-stock').innerHTML = stockHtml;
-
-    // Charger les produits similaires
-    loadRelatedProducts(category, name);
-
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
-
-// Fonction pour fermer l'aperçu rapide
-function closeQuickView() {
-    document.getElementById('quick-view-modal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// Fonction pour charger les produits similaires
-function loadRelatedProducts(category, currentProductName) {
-    const relatedGrid = document.querySelector('.quick-view-related-grid');
-    relatedGrid.innerHTML = '';
-
-    // Sélectionner tous les produits de la même catégorie
-    const allProducts = document.querySelectorAll('.product-card');
-    allProducts.forEach(product => {
-        if (product.dataset.category === category && product.querySelector('.product-name').textContent !== currentProductName) {
-            const name = product.querySelector('.product-name').textContent;
-            const imgSrc = product.querySelector('img').src;
-            const description = product.querySelector('.product-description').textContent;
-            const priceText = product.querySelector('.product-price').textContent;
-            const price = parseInt(priceText.replace(/\D/g, ''));
-
-            const relatedCard = document.createElement('div');
-            relatedCard.className = 'quick-view-related-card';
-            relatedCard.onclick = () => showQuickView(
-                name,
-                imgSrc,
-                description,
-                price,
-                parseInt(product.querySelector('.product-stock').textContent.match(/\d+/)[0]),
-                category
-            );
-
-            relatedCard.innerHTML = `
-                <img src="${imgSrc}" alt="${name}">
-                <div class="quick-view-related-info">
-                    <h4>${name}</h4>
-                    <p>${description}</p>
-                    <div class="price">${price.toLocaleString()} CFA</div>
-                </div>
-            `;
-
-            relatedGrid.appendChild(relatedCard);
-        }
-    });
-}
-
-// Fonction pour ajouter au panier depuis l'aperçu rapide
-function addToCartFromQuickView() {
-    const name = document.getElementById('quick-view-title').textContent;
-    const priceText = document.getElementById('quick-view-price').textContent;
-    const price = parseInt(priceText.replace(/\D/g, ''));
-    const category = document.getElementById('quick-view-category').textContent;
-    const image = document.getElementById('quick-view-img').src;
-    const quantity = parseInt(document.getElementById('quantity').value);
-
-    // Ajouter au panier
-    addToCart(name, price, category, image, quantity);
-
-    // Afficher la confirmation (sans fermer le modal)
-    showConfirmation();
-
-    // Réinitialiser la quantité à 1
-    document.getElementById('quantity').value = 1;
-
-    // Changement temporaire du bouton
-    const addToCartButton = document.querySelector('.quick-view-actions .add-to-cart');
-    addToCartButton.textContent = 'Ajouté !';
-    addToCartButton.style.backgroundColor = '#27ae60'; // Vert pour confirmation
-
-    // Réinitialiser après 2 secondes
-    setTimeout(() => {
-        addToCartButton.textContent = 'Ajouter au panier';
-        addToCartButton.style.backgroundColor = '';
-    }, 2000);
-
-}
-
-
-// Gestion de la quantité
-function increaseQuantity() {
-    const quantityInput = document.getElementById('quantity');
-    quantityInput.value = parseInt(quantityInput.value) + 1;
-}
-
-function decreaseQuantity() {
-    const quantityInput = document.getElementById('quantity');
-    if (parseInt(quantityInput.value) > 1) {
-        quantityInput.value = parseInt(quantityInput.value) - 1;
-    }
-}
-
-// Fermer le modal en cliquant à l'extérieur
-window.addEventListener('click', (event) => {
-    const modal = document.getElementById('quick-view-modal');
-    if (event.target === modal) {
-        closeQuickView();
-    }
-});
-
-
-
-
-
-
-// Gestion des modales
-function toggleCartModal() {
-    const cartModal = document.getElementById('cart-modal');
-    if (cartModal.style.display === 'block') {
-        cartModal.style.display = 'none';
-    } else {
-        cartModal.style.display = 'block';
-    }
-}
-
-function openPaymentModal() {
-    if (cart.length === 0) {
-        alert('Votre panier est vide. Ajoutez des produits avant de passer commande.');
-        return;
-    }
-    document.getElementById('payment-modal').style.display = 'block';
-    document.getElementById('cart-modal').style.display = 'none';
-}
-
-function closePaymentModal() {
-    document.getElementById('payment-modal').style.display = 'none';
-}
-
-// Gestion du formulaire de paiement
-document.getElementById('payment-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Validation
-    const requiredFields = ['first-name', 'last-name', 'email', 'phone', 'address'];
-    let isValid = true;
-    
-    requiredFields.forEach(fieldId => {
-        const field = document.getElementById(fieldId);
-        if (!field.value.trim()) {
-            isValid = false;
-            field.classList.add('is-invalid');
-        } else {
-            field.classList.remove('is-invalid');
-        }
-    });
-    
-    if (!isValid) {
-        alert('Veuillez remplir tous les champs obligatoires.');
-        return;
-    }
-    
-    // Simulation de paiement réussi
-    alert(`Paiement réussi!\n\nMerci pour votre commande de ${total.toLocaleString()} CFA.`);
-    
-    // Réinitialisation
-    cart = [];
-    total = 0;
-    updateCartDisplay();
-    this.reset();
-    closePaymentModal();
-});
-
-// Initialisation
-document.addEventListener('DOMContentLoaded', function() {
-    // Événements
-    document.querySelector('.cart-count').addEventListener('click', toggleCartModal);
-    document.getElementById('close-cart').addEventListener('click', toggleCartModal);
-    document.getElementById('checkout-button').addEventListener('click', openPaymentModal);
-    
-    // Fermer les modales en cliquant à l'extérieur
-    window.addEventListener('click', function(event) {
-        if (event.target === document.getElementById('quick-view-modal')) {
-            closeQuickView();
-        }
-        if (event.target === document.getElementById('cart-modal')) {
-            toggleCartModal();
-        }
-        if (event.target === document.getElementById('payment-modal')) {
-            closePaymentModal();
-        }
-    });
-    
-    // Initialiser AOS (si présent)
-    if (typeof AOS !== 'undefined') {
-        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
-    }
-});
-
-// Fonction pour les filtres
-function toggleFilter(id) {
-    const filter = document.getElementById(id);
-    const icon = filter.previousElementSibling.querySelector('i');
-    filter.classList.toggle('show');
-    icon.classList.toggle('fa-chevron-down');
-    icon.classList.toggle('fa-chevron-up');
-}
-    </script>
-
-    <script>
-        // ==================================================================
-        // Logique de Zoom sur l'image (Loupe)
-        // ==================================================================
+    // Fonction pour le zoom d'image
         function setupImageZoom() {
             const container = document.querySelector('.quick-view-main');
             const img = document.getElementById('quick-view-img');
             const glass = document.getElementById('magnifying-glass');
-            const zoom = 2.5; // Niveau de zoom
-
+            const zoom = 2.5;
             const moveMagnifier = (e) => {
                 if (glass.style.display !== 'block') return;
-
                 const rect = container.getBoundingClientRect();
                 let x = e.clientX - rect.left;
                 let y = e.clientY - rect.top;
-
-                // Empêcher la loupe de sortir des limites de l'image
                 if (x > img.width) { x = img.width; }
                 if (x < 0) { x = 0; }
                 if (y > img.height) { y = img.height; }
                 if (y < 0) { y = 0; }
-
-                // Positionner la loupe (centrée sur le curseur)
                 glass.style.left = (x - glass.offsetWidth / 2) + "px";
                 glass.style.top = (y - glass.offsetHeight / 2) + "px";
-
-                // Calculer la position de l'arrière-plan de la loupe pour l'effet de zoom
                 let bgX = -(x * zoom - glass.offsetWidth / 2);
                 let bgY = -(y * zoom - glass.offsetHeight / 2);
                 glass.style.backgroundPosition = `${bgX}px ${bgY}px`;
             };
-
             container.addEventListener('mouseenter', () => {
                 glass.style.backgroundImage = `url('${img.src}')`;
                 glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
                 glass.style.display = 'block';
             });
-
             container.addEventListener('mouseleave', () => {
                 glass.style.display = 'none';
             });
-
             container.addEventListener('mousemove', moveMagnifier);
         }
 
-        // Initialisation de la fonction de zoom une fois la page chargée
-        document.addEventListener('DOMContentLoaded', setupImageZoom);
-    </script>
+    // ==================================================================
+    // INITIALISATION
+    // ==================================================================
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Charger le panier depuis le localStorage
+        loadCartFromStorage();
+        
+        // Ajouter l'écouteur d'événement sur l'icône du panier
+        const cartIcon = document.getElementById('cart-icon');
+        if (cartIcon) {
+            cartIcon.addEventListener('click', function(e) {
+                e.preventDefault();
+                redirectToCart();
+            });
+        }
+        
+        // Initialiser les filtres
+        initFilters();
+        
+        // Écouteur d'événement pour le menu déroulant de tri
+        const sortSelect = document.querySelector('.sort-options select');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function() {
+                sortProducts(this.value);
+            });
+        }
+        
+        // Gestion des menus déroulants sur mobile
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('a');
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 576) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        // Fermer les menus déroulants si on clique ailleurs
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 576) {
+                if (!e.target.closest('.dropdown')) {
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            }
+        });
+
+        // Ajustement de la grille des produits pour les petits écrans
+        function adjustProductGrid() {
+            const productGrid = document.querySelector('.product-grid');
+            if (window.innerWidth <= 576) {
+                productGrid.style.gridTemplateColumns = '1fr';
+                productGrid.style.gap = '12px';
+            }
+        }
+
+        // Appeler la fonction au chargement et au redimensionnement
+        adjustProductGrid();
+        window.addEventListener('resize', adjustProductGrid);
+
+        // Optimisation des images pour le chargement
+        function optimizeImages() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.loading = 'lazy';
+                img.decode().catch(() => {});
+            });
+        }
+
+        optimizeImages();
+
+        // Initialiser le zoom d'image
+        setupImageZoom();
+
+        // Fermer le modal en cliquant à l'extérieur
+        window.addEventListener('click', (event) => {
+            const modal = document.getElementById('quick-view-modal');
+            if (event.target === modal) {
+                closeQuickView();
+            }
+        });
+    });
+</script>
 </body>
 </html>
