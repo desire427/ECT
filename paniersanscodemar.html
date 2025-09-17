@@ -246,7 +246,7 @@
             background: white;
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-sm);
-            padding: 20px;
+            padding: 24px;
             height: fit-content;
             position: sticky;
             top: 20px;
@@ -254,42 +254,115 @@
         }
 
         .summary-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-color);
+            color: var(--dark-color);
         }
 
         .summary-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-size: 1rem;
         }
 
         .summary-total {
             font-weight: bold;
-            font-size: 1.2rem;
-            margin: 20px 0;
-            padding-top: 10px;
-            border-top: 1px solid var(--border-color);
+            font-size: 1.25rem;
+            margin: 20px 0 24px;
+            padding: 16px 0;
+            border-top: 2px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            color: var(--dark-color);
         }
 
+        /* ===== BOUTON CHECKOUT PROFESSIONNEL ===== */
         .checkout-btn {
             width: 100%;
-            padding: 15px;
-            background: var(--secondary-color);
+            padding: 18px 24px;
+            background: linear-gradient(135deg, #28a745, #20c997);
             color: white;
             border: none;
-            border-radius: var(--radius-sm);
+            border-radius: var(--radius-md);
             font-weight: 600;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .checkout-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
         }
 
         .checkout-btn:hover {
-            background: #c0392b;
+            background: linear-gradient(135deg, #218838, #1ba085);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .checkout-btn:hover::before {
+            left: 100%;
+        }
+
+        .checkout-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .checkout-btn i {
+            font-size: 1.2rem;
+        }
+
+        .checkout-loading {
+            display: none;
+        }
+
+        .checkout-btn.loading {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+            cursor: not-allowed;
+        }
+
+        .checkout-btn.loading .checkout-text {
+            display: none;
+        }
+
+        .checkout-btn.loading .checkout-loading {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 2px solid white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .trust-signals {
@@ -416,80 +489,177 @@
             margin-right: 8px;
         }
 
-        /* ===== Modal de paiement professionnel ===== */
+        /* ===== MODAL DE PAIEMENT ULTRA-PROFESSIONNEL ===== */
         .modal-content {
             border: none;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            animation: fadeIn 0.3s ease-out;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: modalFadeIn 0.4s ease-out;
+            background: white;
         }
 
         .modal-header {
-            padding: 24px;
-            background: white;
-            border-bottom: 1px solid var(--border-color);
+            padding: 28px 32px 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-bottom: 2px solid #e9ecef;
+            position: relative;
+        }
+
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
         }
 
         .modal-header .modal-title {
-            font-size: 1.4rem;
-            font-weight: 600;
+            font-size: 1.6rem;
+            font-weight: 700;
             color: var(--dark-color);
             text-align: center;
             width: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .modal-header .modal-title i {
+            color: var(--success-color);
+            font-size: 1.4rem;
         }
 
         .modal-body {
-            padding: 32px;
-            background: var(--light-color);
+            padding: 36px 32px;
+            background: #fafbfc;
+        }
+
+        .order-summary {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 28px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .order-summary h6 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .order-summary h6 i {
+            color: var(--primary-color);
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            padding: 16px 0;
+            border-top: 2px solid #e9ecef;
+            margin-top: 12px;
         }
 
         .payment-methods {
             display: flex;
             flex-direction: column;
             gap: 16px;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
         .payment-method {
             background: white;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            padding: 16px;
+            border: 2px solid #e9ecef;
+            border-radius: var(--radius-md);
+            padding: 20px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-method::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(33, 120, 208, 0.1), transparent);
+            transition: left 0.6s;
         }
 
         .payment-method:hover {
             border-color: var(--primary-color);
-            box-shadow: 0 2px 8px rgba(33, 120, 208, 0.1);
+            box-shadow: 0 4px 20px rgba(33, 120, 208, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .payment-method:hover::before {
+            left: 100%;
         }
 
         .payment-method.selected {
-            border-color: var(--primary-color);
-            background: rgba(33, 120, 208, 0.03);
+            border-color: var(--success-color);
+            background: rgba(40, 167, 69, 0.05);
+            box-shadow: 0 4px 20px rgba(40, 167, 69, 0.2);
         }
 
-        .payment-method .method-icon {
-            width: 48px;
-            height: 32px;
-            margin-right: 16px;
+        .payment-method.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: var(--success-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .payment-method .method-icon {
+            width: 56px;
+            height: 40px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: var(--radius-sm);
+            border: 1px solid #e9ecef;
         }
 
         .payment-method .method-icon img {
             max-width: 100%;
             max-height: 100%;
+            object-fit: contain;
         }
 
         .payment-method .method-details h6 {
-            margin: 0 0 4px;
-            font-size: 1rem;
-            font-weight: 500;
+            margin: 0 0 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
             color: var(--dark-color);
         }
 
@@ -497,100 +667,116 @@
             margin: 0;
             font-size: 0.9rem;
             color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .payment-method .radio-input {
+            margin-left: auto;
         }
 
         .payment-method .radio-input input[type="radio"] {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
+            accent-color: var(--success-color);
         }
 
         .payment-instructions {
             background: white;
-            border-radius: var(--radius-sm);
-            padding: 20px;
-            margin-top: 20px;
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-top: 24px;
             display: none;
-            border: 1px solid var(--border-color);
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        .payment-instructions.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
         }
 
         .payment-instructions h6 {
             margin-top: 0;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--dark-color);
             display: flex;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            font-weight: 600;
         }
 
         .payment-instructions h6 i {
-            margin-right: 8px;
+            margin-right: 10px;
             color: var(--primary-color);
+            font-size: 1.2rem;
         }
 
         .payment-instructions ol {
-            padding-left: 20px;
+            padding-left: 24px;
             margin: 0;
         }
 
         .payment-instructions li {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             color: var(--text-color);
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
         .payment-instructions .qrcode-placeholder {
             text-align: center;
-            margin: 16px 0;
-            padding: 16px;
-            background: white;
-            border-radius: var(--radius-sm);
-            border: 1px dashed var(--border-color);
+            margin: 20px 0;
+            padding: 24px;
+            background: #f8f9fa;
+            border-radius: var(--radius-md);
+            border: 2px dashed #dee2e6;
         }
 
         .modal-footer {
-            padding: 20px 24px;
+            padding: 24px 32px;
             background: white;
-            border-top: 1px solid var(--border-color);
-            justify-content: flex-end;
+            border-top: 2px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .modal-footer .btn-cancel {
-            padding: 10px 24px;
+            padding: 12px 28px;
             color: var(--text-color);
             background: white;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            margin-right: 12px;
-            transition: all 0.2s;
+            border: 2px solid #dee2e6;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
         }
-.modal-footer .btn-confirm {
-            padding: 12px 28px;
-            background: linear-gradient(135deg, var(--primary-color), #1a61a6);
+
+        .modal-footer .btn-cancel:hover {
+            border-color: var(--text-light);
+            background: #f8f9fa;
+        }
+
+        .modal-footer .btn-confirm {
+            padding: 12px 32px;
+            background: linear-gradient(135deg, var(--success-color), #20c997);
             color: white;
             border: none;
             border-radius: var(--radius-md);
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(33, 120, 208, 0.25);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            min-width: 180px;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
         }
 
         .modal-footer .btn-confirm:hover {
-            background: linear-gradient(135deg, #1a61a6, #15528a);
+            background: linear-gradient(135deg, #218838, #1ba085);
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(33, 120, 208, 0.3);
-        }
-
-        .modal-footer .btn-confirm:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(33, 120, 208, 0.2);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
         }
 
         .modal-footer .btn-confirm:disabled {
@@ -600,82 +786,29 @@
             box-shadow: none;
         }
 
-        .modal-footer .btn-confirm:disabled:hover {
-            background: #adb5bd;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .modal-footer .btn-confirm::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.5s ease;
-        }
-
-        .modal-footer .btn-confirm:hover::before {
-            left: 100%;
-        }
-
-        .payment-confirmed {
-            background: linear-gradient(135deg, var(--success-color), #1e7e34) !important;
-        }
-
-        .payment-processing {
-            position: relative;
-            color: transparent !important;
-        }
-
-        .payment-processing::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            top: 50%;
-            left: 50%;
-            margin: -10px 0 0 -10px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Indicateur de méthode sélectionnée */
-        .payment-method.selected {
-            border: 2px solid var(--primary-color);
-            background: rgba(33, 120, 208, 0.05);
-            position: relative;
-        }
-
-        .payment-method.selected::after {
-            content: '✓';
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
         /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes modalFadeIn {
+            from { 
+                opacity: 0; 
+                transform: scale(0.9) translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1) translateY(0); 
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                max-height: 300px;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive */
@@ -693,6 +826,12 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
+            }
+            .modal-header,
+            .modal-body,
+            .modal-footer {
+                padding-left: 20px;
+                padding-right: 20px;
             }
         }
     </style>
@@ -837,6 +976,7 @@
             </div>
         </div>
     </div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -910,6 +1050,7 @@
             </div>
         </div>
     </footer>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -923,266 +1064,375 @@
             once: true
         });
 
-// Variables globales
-let cartItems = [];
-let total = 0;
+        // Fonction pour mettre à jour le récapitulatif dans le modal de paiement
+        function updatePaymentModal() {
+            const summaryContainer = document.getElementById('modal-order-summary');
+            let summaryHTML = `
+                <h6><i class="fas fa-receipt"></i> Récapitulatif de votre commande</h6>
+            `;
 
-// Charger le panier depuis le localStorage
-function loadCartFromStorage() {
-    const savedCart = localStorage.getItem('cart');
-    const savedTotal = localStorage.getItem('cartTotal');
-    
-    if (savedCart) {
-        cartItems = JSON.parse(savedCart);
-        total = parseInt(savedTotal) || 0;
-        updateCartDisplay();
-    } else {
-        // Si le panier est vide, afficher un message
-        document.querySelector('.cart-items').innerHTML = `
-            <div class="empty-cart">
-                <i class="fas fa-shopping-cart"></i>
-                <h4>Votre panier est vide</h4>
-                <p>Ajoutez des produits depuis la boutique</p>
-                <a href="arduino.html" class="btn btn-primary">Voir la boutique</a>
-            </div>
-        `;
-        
-        // Masquer le récapitulatif
-        document.querySelector('.cart-summary').style.display = 'none';
-    }
-}
-// Fonction pour retourner à la boutique
-function backToShop() {
-    // Sauvegarder le panier avant de quitter
-    saveCartToStorage();
-    window.location.href = "arduino.html";
-}
-// Mettre à jour l'affichage du panier
-function updateCartDisplay() {
-    const cartContainer = document.querySelector('.cart-items');
-    const totalElement = document.querySelector('.summary-total .summary-row span:last-child');
-    const subtotalElement = document.querySelector('.summary-row span:last-child');
-    
-    // Vider le conteneur
-    cartContainer.innerHTML = '';
-    
-    // Ajouter chaque article
-    cartItems.forEach((item, index) => {
-        const itemElement = document.createElement('div');
-        itemElement.className = 'cart-item';
-        itemElement.setAttribute('data-aos', 'fade-right');
-        if (index > 0) {
-            itemElement.setAttribute('data-aos-delay', index * 100);
-        }
-        
-        itemElement.innerHTML = `
-            <div class="cart-item-image">
-                <img src="${item.image}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/100x100/cccccc/ffffff?text=Produit'">
-            </div>
-            <div class="cart-item-info">
-                <h4>${item.name}</h4>
-                <p>${item.price.toLocaleString()} CFA</p>
-                <small>${item.category}</small>
-                <div class="cart-item-stock in-stock">
-                    <i class="fas fa-check-circle me-1"></i> En stock
-                </div>
-                <div class="cart-item-quantity">
-                    <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
-                    <span class="quantity-value">${item.quantity}</span>
-                    <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
-                </div>
-            </div>
-            <div class="cart-item-actions">
-                <div class="cart-item-price">${(item.price * item.quantity).toLocaleString()} CFA</div>
-                <div>
-                    <div class="remove-item" onclick="removeItem(${index})">
-                        <i class="fas fa-trash me-1"></i> Supprimer
+            cartItems.forEach(item => {
+                summaryHTML += `
+                    <div class="summary-row">
+                        <span>${item.name} × ${item.quantity}</span>
+                        <span>${(item.price * item.quantity).toLocaleString()} CFA</span>
                     </div>
+                `;
+            });
+
+            summaryHTML += `
+                <div class="order-total">
+                    <span>Total à payer</span>
+                    <span>${total.toLocaleString()} CFA</span>
                 </div>
-            </div>
-        `;
-        cartContainer.appendChild(itemElement);
-    });
-    
-    // Mettre à jour le total
-    if (totalElement) {
-        totalElement.textContent = `${total.toLocaleString()} CFA`;
-    }
-    
-    // Mettre à jour le sous-total
-    if (subtotalElement) {
-        const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-        subtotalElement.textContent = `${total.toLocaleString()} CFA`;
-        document.querySelector('.summary-row span:first-child').textContent = `Sous-total (${itemCount} article${itemCount > 1 ? 's' : ''})`;
-    }
-}
+            `;
 
-// Modifier la quantité d'un article
-function updateQuantity(index, change) {
-    const newQuantity = cartItems[index].quantity + change;
-    
-    if (newQuantity < 1) {
-        removeItem(index);
-        return;
-    }
-    
-    // Mettre à jour la quantité et le total
-    const priceChange = cartItems[index].price * change;
-    cartItems[index].quantity = newQuantity;
-    total += priceChange;
-    
-    // Sauvegarder et mettre à jour l'affichage
-    saveCartToStorage();
-    updateCartDisplay();
-}
+            summaryContainer.innerHTML = summaryHTML;
+        }
 
-// Supprimer un article du panier
-function removeItem(index) {
-    // Mettre à jour le total
-    total -= cartItems[index].price * cartItems[index].quantity;
-    
-    // Supprimer l'article
-    cartItems.splice(index, 1);
-    
-    // Sauvegarder et mettre à jour l'affichage
-    saveCartToStorage();
-    updateCartDisplay();
-}
 
-// Sauvegarder le panier dans le localStorage
-function saveCartToStorage() {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-    localStorage.setItem('cartTotal', total);
-}
+        // Variables globales
+        let cartItems = [];
+        let total = 0;
 
-// Initialisation
-document.addEventListener('DOMContentLoaded', function() {
-    // Charger le panier
-    loadCartFromStorage();
-    
-    // Initialiser AOS
-    if (typeof AOS !== 'undefined') {
-        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
-    }
-    
-    // Ajouter l'écouteur d'événement pour le bouton de paiement
-    const checkoutBtn = document.querySelector('.checkout-btn');
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function() {
+        // Fonction de finalisation de commande professionnelle
+        function proceedToCheckout() {
+            const checkoutBtn = document.querySelector('.checkout-btn');
+            
             if (cartItems.length === 0) {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Panier vide',
                     text: 'Votre panier est vide. Ajoutez des produits avant de passer commande.',
-                    confirmButtonColor: '#2178d0'
+                    confirmButtonColor: '#2178d0',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    }
                 });
                 return;
             }
-            
-            // Ouvrir le modal de paiement
-            const paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
-            paymentModal.show();
-        });
-    }
-});
-// Fonction pour sélectionner un moyen de paiement
-        function selectPaymentMethod(method) {
-            // Désélectionner toutes les méthodes
-            document.querySelectorAll('.payment-method').forEach(el => {
-                el.classList.remove('selected');
-                el.querySelector('input[type="radio"]').checked = false;
-            });
-            
-            // Sélectionner la méthode choisie
-            const selectedMethod = document.querySelector(`.payment-method input[value="${method}"]`);
-            if (selectedMethod) {
-                selectedMethod.checked = true;
-                selectedMethod.closest('.payment-method').classList.add('selected');
-                
-                // Activer le bouton de confirmation
-                document.getElementById('confirmPaymentBtn').disabled = false;
-                
-                // Afficher les instructions de paiement
-                showPaymentInstructions(method);
-            }
-        }
 
-        // Fonction pour afficher les instructions de paiement
-        function showPaymentInstructions(method) {
-            const instructionsEl = document.getElementById('paymentInstructions');
-            
-            if (method === 'wave') {
-                instructionsEl.innerHTML = `
-                    <h6><i class="fas fa-info-circle"></i> Instructions pour payer avec Wave</h6>
-                    <ol>
-                        <li>Ouvrez votre application Wave</li>
-                        <li>Allez dans la section "Paiement"</li>
-                        <li>Saisissez le code marchand: <strong>LINGUEREFABLAB</strong></li>
-                        <li>Entrez le montant de <strong>${total.toLocaleString()} CFA</strong></li>
-                        <li>Confirmez votre paiement avec votre code PIN</li>
-                    </ol>
-                    <div class="qrcode-placeholder">
-                        <p>Ou scannez ce code QR pour payer directement</p>
-                        <img src="https://via.placeholder.com/150x150/cccccc/ffffff?text=QR+Code" alt="QR Code Wave" style="max-width: 150px;">
-                    </div>
-                `;
-            } else if (method === 'orange') {
-                instructionsEl.innerHTML = `
-                    <h6><i class="fas fa-info-circle"></i> Instructions pour payer avec Orange Money</h6>
-                    <ol>
-                        <li>Composez <strong>#144#</strong> sur votre téléphone</li>
-                        <li>Sélectionnez l'option "Paiement de factures"</li>
-                        <li>Entrez le code marchand: <strong>LINGUEREFABLAB</strong></li>
-                        <li>Entrez le montant de <strong>${total.toLocaleString()} CFA</strong></li>
-                        <li>Confirmez avec votre code secret Orange Money</li>
-                    </ol>
-                `;
-            }
-            
-            instructionsEl.style.display = 'block';
-        }
-
-        // Fonction pour simuler le traitement du paiement
-        function processPayment() {
-            const confirmBtn = document.getElementById('confirmPaymentBtn');
-            
-            // Changer l'apparence du bouton pendant le traitement
-            confirmBtn.disabled = true;
-            confirmBtn.classList.add('payment-processing');
+            // Animation de chargement
+            checkoutBtn.classList.add('loading');
             
             // Simuler un délai de traitement
             setTimeout(() => {
-                confirmBtn.classList.remove('payment-processing');
-                confirmBtn.classList.add('payment-confirmed');
-                confirmBtn.innerHTML = '<i class="fas fa-check-circle me-1"></i> Paiement confirmé';
+                checkoutBtn.classList.remove('loading');
+
+                // Mettre à jour le contenu du modal avant de l'afficher
+                updatePaymentModal();
                 
-                // Afficher un message de succès
-                setTimeout(() => {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Paiement réussi!',
-                        text: 'Votre commande a été confirmée. Vous recevrez un email de confirmation.',
-                        confirmButtonColor: '#28a745',
-                        confirmButtonText: 'Super!'
-                    }).then(() => {
-                        // Fermer le modal
-                        const paymentModal = bootstrap.Modal.getInstance(document.getElementById('paymentModal'));
-                        paymentModal.hide();
-                        
-                        // Rediriger vers la page de confirmation
-                        window.location.href = 'confirmation.html';
-                    });
-                }, 1000);
-            }, 2000);
+                // Ouvrir le modal de paiement
+                const paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
+                paymentModal.show();
+            }, 1500);
         }
 
-        // Ajouter l'écouteur d'événement pour le bouton de confirmation de paiement
+        // Fonction de sélection du moyen de paiement
+        function selectPaymentMethod(method) {
+            // Retirer la sélection précédente
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Ajouter la sélection au moyen choisi
+            const selectedMethod = document.querySelector(`.payment-method`);
+            event.currentTarget.classList.add('selected');
+            
+            // Cocher le radio button
+            document.getElementById(method).checked = true;
+            
+            // Activer le bouton de confirmation
+            document.getElementById('confirmPaymentBtn').disabled = false;
+            
+            // Afficher les instructions
+            showPaymentInstructions(method);
+        }
+
+        // Afficher les instructions de paiement
+        function showPaymentInstructions(method) {
+            const instructionsDiv = document.getElementById('paymentInstructions');
+            let instructions = '';
+
+            if (method === 'wave') {
+                instructions = `
+                    <h6><i class="fas fa-mobile-alt"></i> Instructions Wave Money</h6>
+                    <ol>
+                        <li>Composez <strong>*556#</strong> sur votre téléphone</li>
+                        <li>Sélectionnez <strong>Envoyer de l'argent</strong></li>
+                        <li>Entrez le numéro : <strong>77 077 18 32</strong></li>
+                        <li>Montant : <strong>25 000 CFA</strong></li>
+                        <li>Confirmez avec votre code PIN</li>
+                        <li>Conservez le message de confirmation</li>
+                    </ol>
+                    <div class="qrcode-placeholder">
+                        <i class="fas fa-qrcode" style="font-size: 3rem; color: #dee2e6;"></i>
+                        <p class="mt-2 mb-0">Code QR Wave Money</p>
+                    </div>
+                `;
+            } else if (method === 'orange') {
+                instructions = `
+                    <h6><i class="fas fa-mobile-alt"></i> Instructions Orange Money</h6>
+                    <ol>
+                        <li>Composez <strong>#144#</strong> sur votre téléphone</li>
+                        <li>Sélectionnez <strong>Transfert d'argent</strong></li>
+                        <li>Entrez le numéro : <strong>77 077 18 32</strong></li>
+                        <li>Montant : <strong>25000</strong></li>
+                        <li>Confirmez avec votre code PIN</li>
+                        <li>Notez le numéro de transaction</li>
+                    </ol>
+                    <div class="qrcode-placeholder">
+                        <i class="fas fa-qrcode" style="font-size: 3rem; color: #dee2e6;"></i>
+                        <p class="mt-2 mb-0">Code QR Orange Money</p>
+                    </div>
+                `;
+            }
+
+            instructionsDiv.innerHTML = instructions;
+            instructionsDiv.classList.add('show');
+        }
+
+        // Confirmation du paiement
+        document.getElementById('confirmPaymentBtn').addEventListener('click', function() {
+            const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            
+            if (!selectedMethod) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erreur',
+                    text: 'Veuillez sélectionner un moyen de paiement.',
+                    confirmButtonColor: '#e74c3c'
+                });
+                return;
+            }
+
+            // Animation du bouton
+            this.innerHTML = '<div class="spinner"></div> Traitement en cours...';
+            this.disabled = true;
+
+            // Simuler le traitement du paiement
+            setTimeout(() => {
+                // Fermer le modal
+                bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
+                
+                // Afficher le message de succès
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Commande confirmée !',
+                    html: `
+                        <p>Votre commande a été enregistrée avec succès.</p>
+                        <p><strong>Numéro de commande :</strong> #LF${Math.random().toString(36).substr(2, 9).toUpperCase()}</p>
+                        <p>Vous recevrez un SMS de confirmation sous peu.</p>
+                    `,
+                    confirmButtonColor: '#28a745',
+                    showClass: {
+                        popup: 'animate__animated animate__bounceIn'
+                    }
+                }).then(() => {
+                    // Vider le panier après confirmation
+                    cartItems = [];
+                    total = 0;
+                    saveCartToStorage();
+                    updateCartDisplay();
+                });
+
+                // Réinitialiser le bouton
+                this.innerHTML = '<i class="fas fa-check me-2"></i>Confirmer le paiement';
+                this.disabled = false;
+            }, 3000);
+        });
+
+        // Charger le panier depuis le localStorage
+        function loadCartFromStorage() {
+            const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const savedTotal = parseInt(localStorage.getItem('cartTotal') || '0');
+            
+            if (savedCart.length > 0) {
+                cartItems = savedCart;
+                total = savedTotal;
+                updateCartDisplay();
+            } else {
+                // Si le panier est vide, afficher un message
+                document.querySelector('.cart-items').innerHTML = `
+                    <div class="empty-cart text-center py-5">
+                        <i class="fas fa-shopping-cart" style="font-size: 4rem; color: #dee2e6; margin-bottom: 20px;"></i>
+                        <h4>Votre panier est vide</h4>
+                        <p class="text-muted mb-4">Ajoutez des produits depuis notre boutique</p>
+                        <a href="arduino.html" class="btn btn-primary">
+                            <i class="fas fa-store me-2"></i>Voir la boutique
+                        </a>
+                    </div>
+                `;
+                
+                // Masquer le récapitulatif
+                document.querySelector('.cart-summary').style.display = 'none';
+            }
+        }
+
+        // Mettre à jour l'affichage du panier
+        function updateCartDisplay() {
+            const cartContainer = document.querySelector('.cart-items');
+            const totalElement = document.querySelector('.summary-total .summary-row span:last-child');
+            const subtotalElement = document.querySelector('.summary-row span:last-child');
+            
+            if (cartItems.length === 0) {
+                loadCartFromStorage();
+                return;
+            }
+            
+            // Vider le conteneur
+            cartContainer.innerHTML = '<h2 class="mb-4">Articles dans votre panier</h2>';
+            
+            // Ajouter chaque article
+            cartItems.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.setAttribute('data-aos', 'fade-right');
+                if (index > 0) {
+                    itemElement.setAttribute('data-aos-delay', index * 100);
+                }
+                
+                itemElement.innerHTML = `
+                    <div class="cart-item-image">
+                        <img src="${item.image || 'https://via.placeholder.com/100x100/cccccc/ffffff?text=Produit'}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <p>${item.price.toLocaleString()} CFA</p>
+                        <small>${item.category || 'Produit'}</small>
+                        <div class="cart-item-stock in-stock">
+                            <i class="fas fa-check-circle me-1"></i> En stock
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                            <span class="quantity-value">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <div class="cart-item-price">${(item.price * item.quantity).toLocaleString()} CFA</div>
+                        <div>
+                            <div class="remove-item" onclick="removeItem(${index})">
+                                <i class="fas fa-trash me-1"></i> Supprimer
+                            </div>
+                            <div class="save-for-later" onclick="saveForLater(${index})">
+                                <i class="fas fa-bookmark me-1"></i> Sauvegarder
+                            </div>
+                        </div>
+                    </div>
+                `;
+                cartContainer.appendChild(itemElement);
+            });
+            
+            // Mettre à jour le total
+            if (totalElement) {
+                totalElement.textContent = `${total.toLocaleString()} CFA`;
+            }
+            
+            // Mettre à jour le sous-total
+            if (subtotalElement) {
+                const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+                subtotalElement.textContent = `${total.toLocaleString()} CFA`;
+                document.querySelector('.summary-row span:first-child').textContent = `Sous-total (${itemCount} article${itemCount > 1 ? 's' : ''})`;
+            }
+        }
+
+        // Modifier la quantité d'un article
+        function updateQuantity(index, change) {
+            const newQuantity = cartItems[index].quantity + change;
+            
+            if (newQuantity < 1) {
+                removeItem(index);
+                return;
+            }
+            
+            // Mettre à jour la quantité et le total
+            const priceChange = cartItems[index].price * change;
+            cartItems[index].quantity = newQuantity;
+            total += priceChange;
+            
+            // Sauvegarder et mettre à jour l'affichage
+            saveCartToStorage();
+            updateCartDisplay();
+        }
+
+        // Supprimer un article du panier
+        function removeItem(index) {
+            // Mettre à jour le total
+            total -= cartItems[index].price * cartItems[index].quantity;
+            
+            // Supprimer l'article
+            cartItems.splice(index, 1);
+            
+            // Sauvegarder et mettre à jour l'affichage
+            saveCartToStorage();
+            updateCartDisplay();
+        }
+
+        // Sauvegarder pour plus tard
+        function saveForLater(index) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Fonctionnalité à venir',
+                text: 'La sauvegarde d\'articles sera bientôt disponible.',
+                confirmButtonColor: '#2178d0'
+            });
+        }
+
+        // Sauvegarder le panier dans le localStorage
+        function saveCartToStorage() {
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            localStorage.setItem('cartTotal', total.toString());
+        }
+
+        // Ajouter un produit au panier depuis les recommandations
+        function addToCart(name, price, category, image) {
+            const existingItem = cartItems.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+                total += price;
+            } else {
+                cartItems.push({
+                    name: name,
+                    price: price,
+                    category: category,
+                    image: image,
+                    quantity: 1
+                });
+                total += price;
+            }
+            
+            // Sauvegarder et mettre à jour
+            saveCartToStorage();
+            updateCartDisplay();
+            
+            // Notification
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: `${name} ajouté au panier`,
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true
+            });
+        }
+
+        // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
-            const confirmBtn = document.getElementById('confirmPaymentBtn');
-            if (confirmBtn) {
-                confirmBtn.addEventListener('click', processPayment);
+            // Charger le panier
+            loadCartFromStorage();
+            
+            // Initialiser AOS
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
             }
         });
     </script>
 </body>
+
+
+
+
 </html>

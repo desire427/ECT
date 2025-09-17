@@ -67,6 +67,13 @@ nav {
     -webkit-text-fill-color: transparent;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
 .search-bar {
     position: relative;
     width: 300px;
@@ -128,6 +135,14 @@ nav {
     align-items: center;
     justify-content: center;
     font-size: 0.7rem;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.5rem;
 }
 
 /* Navigation Bar */
@@ -810,6 +825,69 @@ footer {
     
     .carousel-caption h5 {
         font-size: 1.2rem;
+    }
+
+    /* Responsive Navigation */
+    nav .container {
+        flex-wrap: nowrap; /* Empêche le retour à la ligne des éléments principaux */
+    }
+
+    .menu-toggle {
+        display: block; /* Affiche le bouton menu */
+    }
+
+    .header-right {
+        display: none; /* Cache la partie droite (recherche, icônes) sur mobile */
+    }
+
+    .nav-bar {
+        padding: 0;
+    }
+
+    .nav-bar .container {
+        flex-direction: column;
+        align-items: flex-start;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+    }
+
+    .nav-bar.active .container {
+        max-height: 500px; /* Hauteur suffisante pour afficher les liens */
+        padding: 10px 0;
+    }
+
+    .nav-bar a, .nav-bar .dropdown {
+        width: 100%;
+        padding: 10px 20px;
+        margin: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-bar a:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    .nav-bar a::after {
+        display: none; /* Cache l'effet de survol sur mobile */
+    }
+
+    .dropdown-menu {
+        position: static !important; /* Important pour l'affichage mobile */
+        display: none !important;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding-left: 20px !important;
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: block !important;
+    }
+
+    .dropdown-menu a {
+        color: var(--light-color) !important;
+        padding: 8px 15px !important;
     }
 }
 

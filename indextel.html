@@ -1,0 +1,2606 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINGUERE FABLAB - Innovation et Fabrication Numérique au Sénégal</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2178d0;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2178d0;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-color: #f9f9f9;
+        }
+        /* Header Styles */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        .top-bar span {
+            margin: 0 15px;
+        }
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .top-bar a:hover {
+            color: var(--secondary-color);
+        }
+        nav {
+            background-color: rgb(248, 245, 245);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-img {
+            height: 60px;
+            transition: transform 0.3s;
+        }
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+        .nav-brand {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .search-bar {
+            position: relative;
+            width: 300px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .search-bar input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+        }
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .search-bar button:hover {
+            color: var(--secondary-color);
+        }
+        .icons span {
+            margin: 0 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .icons span:hover {
+            color: var(--secondary-color);
+        }
+        .icons span.cart-count::after {
+            content: attr(data-count);
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+        /* Navigation Bar */
+        .nav-bar {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+        }
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s;
+        }
+        .nav-bar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+        .nav-bar a:hover {
+            color: var(--secondary-color);
+        }
+        .nav-bar a:hover::after {
+            width: 100%;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            z-index: 1001;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1002;
+            border-radius: 5px;
+            padding: 10px 0;
+            animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu a {
+            color: #333;
+            padding: 10px 20px;
+            display: block;
+            transition: all 0.2s;
+            margin: 0;
+            text-decoration: none;
+        }
+        .dropdown-menu a:hover {
+            background-color: #f8f9fa;
+            color: #e74c3c;
+            padding-left: 25px;
+        }
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 80vh;
+            overflow: hidden;
+        }
+        .hero-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            background: rgba(0,0,0,0.5);
+            padding: 0 20px;
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+        .btn-hero {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+        .btn-hero:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.6);
+            color: white;
+        }
+        /* Carousel */
+        .carousel {
+            margin: 30px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .carousel-item img {
+            height: 400px;
+            object-fit: cover;
+        }
+        .carousel-caption {
+            background: rgba(44, 62, 80, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            bottom: 50px;
+        }
+        .carousel-caption h5 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            position: relative;
+        }
+        .section-title h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .section-title h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 30px auto;
+            justify-items: center;
+            width: 100%;
+        }
+        .card {
+            width: 100%;
+            max-width: 300px;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+            background: white;
+        }
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+        .card:hover img {
+            transform: scale(1.05);
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 62, 80, 0.9);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.3s;
+            padding: 20px;
+            text-align: center;
+        }
+        .card:hover .overlay {
+            opacity: 1;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        .card-description {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .card-description a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            margin-top: 15px;
+            border-bottom: 1px solid var(--accent-color);
+        }
+        .card-description a:hover {
+            color: var(--secondary-color);
+            border-bottom-color: var(--secondary-color);
+        }
+        .card-image-title {
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        /* Video Sections */
+        .video-section {
+            margin: 50px 0;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .video-section video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 62, 80, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .video-overlay h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .video-overlay p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+        /* Features Section */
+        .features {
+            background-color: var(--primary-color);
+            padding: 80px 0;
+            color: white;
+        }
+        .feature-box {
+            text-align: center;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+        .feature-box:hover {
+            transform: translateY(-10px);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        .feature-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 15px;
+            position: relative;
+        }
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(52, 152, 219, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        .author-info h4 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        .author-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+        }
+        .newsletter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .newsletter p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-control {
+            height: 50px;
+            border-radius: 30px;
+            border: none;
+            padding: 0 20px;
+        }
+        .btn-newsletter {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            height: 50px;
+        }
+        .btn-newsletter:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        .footer-heading {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+            list-style: none;
+        }
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        .footer-contact li {
+            margin-bottom: 15px;
+            list-style: none;
+            display: flex;
+            align-items: flex-start;
+        }
+        .footer-contact i {
+            margin-right: 15px;
+            color: white;
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+        }
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+        }
+
+        /* Styles spécifiques pour la section Services */
+        .services-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
+        .services-section .section-title h1 {
+            color: var(--text-color);
+            font-size: 2.8rem;
+            margin-bottom: 50px;
+        }
+        .services-section .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(4px, 1fr));
+            gap: 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        .services-section .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 480px;
+            position: relative;
+        }
+        .services-section .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        .services-section .card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .services-section .card:hover img {
+            transform: scale(1.05);
+        }
+        .services-section .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 152, 219, 0.8) 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.4s ease;
+            padding: 30px;
+            text-align: center;
+        }
+        .services-section .card:hover .overlay {
+            opacity: 1;
+        }
+        .services-section .card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .services-section .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #e74c3c;
+        }
+        .services-section .card-description {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .services-section .card-description a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: #e74c3c;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        .services-section .card-description a:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+        .services-section .card-image-title {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            padding: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2178d0;
+            text-align: center;
+            margin: 0;
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+        .services-section .card:hover .card-image-title {
+            opacity: 0;
+        }
+
+        /* Styles spécifiques pour la section Formations */
+        .proj {
+            width: 100%;
+            overflow: hidden;
+            padding: 40px 0;
+            background-color: #fff;
+        }
+        .section-title h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #2c3e50;
+        }
+        .formations-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .premiere-ligne {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .gaucheh, .gaucheb {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .gaucheh {
+            margin-bottom: 20px;
+        }
+        .gaucheb {
+            background-image: url('aa.png');
+        }
+        .gaucheh:hover, .gaucheb:hover {
+            transform: translateY(-5px);
+        }
+        .gauche {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 48%;
+            height: auto;
+        }
+        .droite {
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .droiteh, .droiteb {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .droiteh {
+            background-image: url('brother1.png');
+        }
+        .droiteb {
+            background-image: url('aaaa.png');
+        }
+        .pleine-largeur {
+            width: 100%;
+            height: 200px;
+            background-image: url('aaaa.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .gauche:hover, .droiteh:hover, .droiteb:hover, .pleine-largeur:hover {
+            transform: translateY(-5px);
+        }
+        .content-wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+        }
+        .titre {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            max-width: 90%;
+        }
+        .slide-in-title {
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideIn 0.8s forwards ease-out;
+        }
+        .fade-in-description {
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 0.9;
+            }
+        }
+        .btn-pulse {
+            display: inline-block;
+            padding: 8px 18px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        .btn-pulse:hover {
+            background-color: #2980b9;
+            transform: translateX(5px);
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+            }
+        }
+
+        /* ---pour la partie service 5--- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+        }
+        .close {
+            color: #0a0000;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .card {
+            position: relative;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .card:hover .overlay {
+            opacity: 1;
+        }
+        .card-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .card-description {
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* ------pour la correction du modale pour les conditions generales-------- */
+        .modal {
+            z-index: 1050;
+        }
+        .modal-backdrop {
+            z-index: 1040;
+        }
+        .modal-body {
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        /* CSS pour le panier */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+        .cart-header {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8f9fa;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .cart-items {
+            padding: 15px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        .cart-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            gap: 10px;
+        }
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+        }
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .cart-item-info {
+            flex-grow: 1;
+        }
+        .cart-item-info h5 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .cart-item-info p {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        .cart-item-info small {
+            color: #6c757d;
+            font-size: 12px;
+        }
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .cart-item-quantity button {
+            width: 25px;
+            height: 25px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cart-item-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+        .cart-item-total {
+            font-weight: bold;
+        }
+        .cart-footer {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            background-color: #f8f9fa;
+            position: sticky;
+            bottom: 0;
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .checkout-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .checkout-btn:hover {
+            background-color: #0b5ed7;
+        }
+        .cart-discounts {
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .discount-item, .gift-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        /* Modal de paiement */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1100;
+            overflow-y: auto;
+        }
+        .payment-content {
+            background-color: white;
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .close-payment {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+        .payment-methods {
+            margin: 20px 0;
+        }
+        .payment-method-option {
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .payment-method-option input {
+            display: none;
+        }
+        .payment-method-option input:checked + label {
+            border: 2px solid #0d6efd;
+        }
+        .payment-method-label {
+            display: block;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .payment-method-label img {
+            height: 30px;
+        }
+
+        /* Message de confirmation */
+        .confirmation-message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1050;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* ============ RESPONSIVE STYLES ============ */
+        /* Mobile Navigation */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 960px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .nav-brand {
+                font-size: 1.5rem;
+            }
+            .search-bar {
+                width: 200px;
+            }
+            .nav-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-bar a {
+                margin: 5px 0;
+            }
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar span {
+                display: block;
+                text-align: center;
+                margin: 5px 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .section-title h1 {
+                font-size: 2rem;
+            }
+            
+            .video-overlay h2 {
+                font-size: 1.8rem;
+            }
+            .video-overlay p {
+                font-size: 1rem;
+            }
+            
+            .premiere-ligne {
+                flex-direction: column;
+            }
+            .gauche, .droite {
+                width: 100%;
+            }
+            .gaucheh, .gaucheb, .droiteh, .droiteb, .pleine-largeur {
+                height: 200px;
+                margin-bottom: 15px;
+            }
+            
+            .testimonials .row > div {
+                margin-bottom: 20px;
+            }
+            
+            .footer-heading {
+                text-align: center;
+            }
+            .footer-links, .footer-contact {
+                text-align: center;
+            }
+            
+            .search-bar {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* Réduction générale des espacements */
+            .top-bar {
+                padding: 5px 0;
+                font-size: 0.7rem;
+            }
+            
+            nav {
+                padding: 10px 0;
+            }
+            
+            .logo-img {
+                height: 40px;
+            }
+            
+            .nav-brand {
+                font-size: 1rem;
+            }
+            
+            .icons span {
+                margin: 0 5px;
+                font-size: 1rem;
+            }
+            
+            /* Hero section */
+            .hero-section {
+                height: 60vh;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+            
+            .hero-content p {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+            
+            .btn-hero, .btn-newsletter {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+            
+            /* Carousel */
+            .carousel {
+                margin: 15px auto;
+            }
+            
+            .carousel-item img {
+                height: 250px;
+            }
+            
+            .carousel-caption {
+                padding: 10px;
+                bottom: 20px;
+            }
+            
+            .carousel-caption h5 {
+                font-size: 1rem;
+            }
+            
+            /* Section titles */
+            .section-title {
+                margin: 30px 0 20px;
+            }
+            
+            .section-title h1 {
+                font-size: 1.5rem;
+            }
+            
+            /* Features */
+            .features {
+                padding: 40px 0;
+            }
+            
+            .feature-box {
+                padding: 15px;
+            }
+            
+            .feature-icon {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+            
+            .feature-box h3 {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+            }
+            
+            /* Video sections */
+            .video-section {
+                margin: 30px 0;
+                height: 300px;
+            }
+            
+            .video-overlay h2 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+            
+            .video-overlay p {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+            
+            /* Services section */
+            .services-section {
+                padding: 40px 0;
+            }
+            
+            .services-section .section-title h1 {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            
+            .services-section .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .services-section .card {
+                height: 350px;
+            }
+            
+            .services-section .card img {
+                height: 180px;
+            }
+            
+            .services-section .card-title {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+            
+            .services-section .card-description {
+                font-size: 0.85rem;
+                margin-bottom: 15px;
+            }
+            
+            .services-section .card-description a {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+            
+            /* Formations section */
+            .proj {
+                padding: 30px 0;
+            }
+            
+            .section-title h1 {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .gaucheh, .gaucheb, .droiteh, .droiteb, .pleine-largeur {
+                height: 150px;
+            }
+            
+            .content-wrapper {
+                padding: 15px;
+            }
+            
+            .titre {
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+            }
+            
+            .description {
+                font-size: 0.8rem;
+                margin-bottom: 10px;
+            }
+            
+            .btn-pulse {
+                padding: 5px 12px;
+                font-size: 0.8rem;
+            }
+            
+            /* Testimonials */
+            .testimonials {
+                padding: 40px 0;
+            }
+            
+            .testimonial-card {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .testimonial-card::before {
+                font-size: 3rem;
+                top: 10px;
+                left: 10px;
+            }
+            
+            /* Newsletter */
+            .newsletter {
+                padding: 40px 0;
+            }
+            
+            .newsletter h2 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+            
+            .newsletter p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+            
+            .form-control {
+                height: 40px;
+            }
+            
+            .btn-newsletter {
+                height: 40px;
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+            
+            /* Footer */
+            footer {
+                padding: 40px 0 15px;
+            }
+            
+            .footer-heading {
+                font-size: 1.1rem;
+                margin-bottom: 15px;
+            }
+            
+            .footer-contact li {
+                margin-bottom: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .social-icons a {
+                width: 35px;
+                height: 35px;
+                margin-right: 8px;
+            }
+            
+            .footer-bottom {
+                margin-top: 30px;
+                padding-top: 15px;
+            }
+            
+            /* Modal adjustments */
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                padding: 15px;
+            }
+            
+            .modal-content .grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .cart-modal {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            /* Mobile menu */
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-bar {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-color);
+                z-index: 1000;
+                padding: 10px 0;
+                flex-direction: column;
+            }
+            
+            .nav-bar.active {
+                display: flex;
+            }
+            
+            .nav-bar a {
+                margin: 8px 15px;
+                padding: 8px 0;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                background-color: rgba(255, 255, 255, 0.1);
+                margin-top: 5px;
+            }
+            
+            .dropdown-menu a {
+                color: white;
+                padding: 8px 30px;
+            }
+            
+            .dropdown-menu a:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        /* Styles pour les écrans très petits */
+        @media (max-width: 380px) {
+            .services-section .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.3rem;
+            }
+            
+            .section-title h1 {
+                font-size: 1.3rem;
+            }
+            
+            .top-bar span {
+                font-size: 0.6rem;
+                margin: 0 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container d-flex flex-wrap justify-content-center justify-content-md-between">
+            <span><a href="localisation.html"><i class="fas fa-map-marker-alt me-2"></i> LOCALISATION</a></span>
+            <span><i class="fas fa-truck me-2"></i> Livraison Partout au Sénégal</span>
+            <span><i class="far fa-clock me-2"></i> 08:00 - 17:00</span>
+            <span><i class="fas fa-phone me-2"></i> (+221) 77 077 18 32</span>
+            <span><a href="https://wa.me/+221770771832" target="_blank"><i class="fab fa-whatsapp me-2"></i> WHATSAPP</a></span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div class="logo animate__animated animate__fadeInLeft d-flex align-items-center">
+                <img src="logos.jpeg" alt="Logo" class="logo-img me-3">
+                <span class="nav-brand">LINGUERE FABLAB</span>
+            </div>
+            
+            <button class="mobile-menu-toggle d-md-none">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="search-bar animate__animated animate__zoomIn d-none d-md-block">
+                <input type="text" placeholder="Rechercher produits...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="icons d-flex align-items-center">
+                <span class="me-3"><i class="far fa-heart"></i></span>
+                <a href="user.html"><span class="me-3"><i class="far fa-user"></i></span></a>
+                <span class="cart-count" data-count="0"><i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">0 CFA</span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Navigation -->
+    <div class="nav-bar" id="main-nav">
+        <div class="container d-flex flex-wrap justify-content-center">
+            <a href="#" style="color: rgb(255, 68, 0);"><i class="fas fa-home me-2"></i> ACCUEIL</a>
+            <div class="dropdown">
+                <a href="#"><i class="fas fa-list me-2"></i> CATALOGUE <i class="fas fa-chevron-down ms-1"></i></a>
+                <div class="dropdown-menu">
+                    <a href="#boutique"><i class="fas fa-microchip me-2"></i>Boutique</a>
+                    <a href="#services"><i class="fas fa-robot me-2"></i> Services</a>
+                    <a href="#formations"><i class="fas fa-tools me-2"></i> Formations</a>
+                    <a href="#projets"><i class="fas fa-tshirt me-2"></i> Projets et Initiatives</a>
+                </div>
+            </div>
+            <a href="#"><i class="fas fa-certificate me-2"></i> NOUVEAUTÉS</a>
+            <a href="apropos.html"><i class="fas fa-info-circle me-2"></i> À PROPOS</a>
+            <a href="#con"><i class="fas fa-envelope me-2"></i> CONTACT</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <video class="hero-video" autoplay muted loop>
+            <source src="Vi1.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown">INNOVATION & FABRICATION NUMÉRIQUE</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">Découvrez notre gamme complète de produits et services pour vos projets créatifs et industriels</p>
+            <a href="#exp"><button class="btn btn-hero animate__animated animate__fadeInUp animate__delay-2s">Explorer maintenant</button></a>
+        </div>
+    </section>
+
+    <!-- Promotions Carousel -->
+    <div id="exp"></div>
+    <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="aaaa.png" class="d-block w-100" alt="Promotion 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Promotions exceptionnelles</h5>
+                    <p>Jusqu'à 30% de réduction sur les kits Arduino</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="aa.png" class="d-block w-100" alt="Promotion 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Nouveautés</h5>
+                    <p>Découvrez nos dernières machines numériques</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="aaa.png" class="d-block w-100" alt="Promotion 3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Formations spécialisées</h5>
+                    <p>Inscrivez-vous à nos ateliers de fabrication numérique</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4 mb-md-0" data-aos="fade-up">
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-shipping-fast"></i></div>
+                        <h3>Livraison Rapide</h3>
+                        <p>Expédition dans tout le Sénégal sous 48h</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Paiement Sécurisé</h3>
+                        <p>Transactions 100% sécurisées</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                        <h3>Support 24/7</h3>
+                        <p>Assistance technique disponible</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fas fa-undo"></i></div>
+                        <h3>Retour Facile</h3>
+                        <p>15 jours pour changer d'avis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Boutique Section -->
+    <p id="boutiquee"></p>
+    <div id="boutique"></div>
+    <div class="container py-5">
+        <div class="section-title" data-aos="fade-up">
+            <h1>BOUTIQUE</h1>
+        </div>
+        <div class="grid">
+            <div class="card" data-aos="fade-up">
+                <a href="arduino.html"><img src="kits Arduino mega.png" alt="Arduino"></a>
+                <div class="overlay">
+                    <div class="card-title">Kits Arduino et IOT</div>
+                    <div class="card-description">Découvrez nos kits Arduino complets pour vos projets IoT innovants. Capteurs, modules et composants de qualité.<br><br><a href="arduino.html">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a></div>
+                </div>
+                <h2 class="card-image-title">Kits Arduino et IOT</h2>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <a href="machine.html"><img src="Brother.png" alt="Machine"></a>
+                <div class="overlay">
+                    <div class="card-title">Machines Numériques</div>
+                    <div class="card-description">Explorez nos machines numériques haute performance pour la fabrication additive, soustractive et bien plus.<br><br><a href="machine.html">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a></div>
+                </div>
+                <h2 class="card-image-title">Machines Numériques</h2>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <a href="installation.html"><img src="mini kits.png" alt="Impressions"></a>
+                <div class="overlay">
+                    <div class="card-title">Installations Fablab</div>
+                    <div class="card-description">Nous concevons, installons et configurons votre Fablab clé en main avec formation du personnel.<br><br><a href="installation.html">en savoir more <i class="fas fa-arrow-right ms-2"></i></a></div>
+                </div>
+                <h2 class="card-image-title">Installations Fablab</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Section 1 -->
+    <section class="video-section">
+        <video autoplay muted loop>
+            <source src="Vi1.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay">
+            <h2 data-aos="fade-up">CRÉATIVITÉ SANS LIMITES</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Découvrez comment nos solutions peuvent transformer vos idées en réalité</p>
+            <button class="btn btn-hero" data-aos="fade-up" data-aos-delay="200">Voir nos réalisations</button>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <div id="services"></div>
+    <div class="container py-5 services-section">
+        <div class="section-title" data-aos="fade-up">
+            <h1>NOS SERVICES</h1>
+        </div>
+        <div class="grid">
+            <div class="card" data-aos="fade-up">
+                <a href="service.html"></a>
+                <div class="overlay">
+                    <div class="card-title">Broderie Numérique</div>
+                    <div class="card-description">Personnalisation textile de haute précision pour vêtements, accessoires et objets promotionnels.<br><br><a href="service.html">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a></div>
+                </div>
+                <h2 class="card-image-title">Broderie Numérique</h2>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <a href="services3.html"></a>
+                <div class="overlay">
+                    <div class="card-title">Fraiseuses Numérique</div>
+                    <div class="card-description">Usinage de précision pour prototypes, pièces techniques et créations artistiques sur divers matériaux.<br><br><a href="services3.html">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a></div>
+                </div>
+                <h2 class="card-image-title">Fraiseuses Numérique</h2>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <a href="service2.html"></a>
+                <div class="overlay">
+                    <div class="card-title">Découpe Laser</div>
+                    <div class="card-description">Découpe et gravure laser haute précision sur bois, acrylique, cuir et autres matériaux.<br><br><a href="service2.html">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a></div>
+                </div>
+                <h2 class="card-image-title">Découpe Laser</h2>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <a href="service4.html"></a>
+                <div class="overlay">
+                    <div class="card-title">Impression 3D</div>
+                    <div class="card-description">Prototypage rapide et production de pièces en PLA, ABS, résine et autres matériaux techniques.<br><br><a href="service4.html">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a></div>
+                </div>
+                <h2 class="card-image-title">Impression 3D</h2>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <a href="#"></a>
+                <div class="overlay">
+                    <div class="card-title">Impressions Numériques</div>
+                    <div class="card-description">Nous réalisons des impressions sur divers supports papier et rigides pour vos supports de communication et de branding.<br><br><a class="modal-trigger" href="#">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a></div>
+                </div>
+                <h2 class="card-image-title">Impressions Numériques Proposées</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal pour les éléments du service 5 -->
+    <div id="modal-service5" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="grid">
+                <div class="card">
+                    <div class="overlay">
+                        <div class="card-title">Impression sur Papier et Supports Rigides</div>
+                        <div class="card-description">Prototypage rapide et production de pièces en PLA, ABS, résine et autres matériaux techniques.<br><br><a href="impress_sur_papier.html">en savoir plus </a></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="overlay">
+                        <div class="card-title">Impression sur Textiles et Vêtements</div>
+                        <div class="card-description">Prototypage rapide et production de pièces en PLA, ABS, résine et autres matériaux techniques.<br><br><a href="impress_sur_textil.html">en savoir plus</a></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="overlay">
+                        <div class="card-title">Impression sur Objets Personnalisés</div>
+                        <div class="card-description">Prototypage rapide et production de pièces en PLA, ABS, résine et autres matériaux techniques.<br><br><a href="impress_sur_objet.html">en savoir plus</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Section 2 -->
+    <section class="video-section">
+        <video autoplay muted loop>
+            <source src="vi2.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay">
+            <h2 data-aos="fade-up">EXPERTISE TECHNIQUE</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Notre équipe d'experts est à votre disposition pour concrétiser vos projets les plus ambitieux</p>
+            <button class="btn btn-hero" data-aos="fade-up" data-aos-delay="200">Demander un devis</button>
+        </div>
+    </section>
+
+    <!-- Formations Section -->
+    <div id="formations"></div>
+    <div class="proj">
+        <div class="section-title" data-aos="fade-up">
+            <h1>NOS FORMATIONS</h1>
+        </div>
+        <div class="formations-container">
+            <div class="premiere-ligne">
+                <!-- Partie gauche -->
+                <div class="gauche" style="display: flex; flex-direction: column; justify-content: space-between; width: 48%;">
+                    <div class="gaucheh" style="width: 100%; height: 200px; background-image: url('impression-num.png'); background-size: cover; background-position: center; border-radius: 10px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease; margin-bottom: 20px;" data-aos="fade-right" data-aos-delay="100">
+                        <div class="content-wrapper">
+                            <h1 class="titre slide-in-title">Broderie Numérique</h1>
+                            <div class="description fade-in-description">
+                                Personnalisation textile de haute précision pour vêtements, accessoires et objets promotionnels.
+                                <div class="cta-button">
+                                    <a href="forma.html" class="btn-pulse">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gaucheb" style="width: 100%; height: 200px; background-image: url('aa.png'); background-size: cover; background-position: center; border-radius: 10px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease;" data-aos="fade-right" data-aos-delay="150">
+                        <div class="content-wrapper">
+                            <h1 class="titre slide-in-title">Fraiseuse Numérique (CNC)</h1>
+                            <div class="description fade-in-description">
+                                Apprenez à concevoir et usiner des pièces avec nos machines CNC. De la modélisation à la production.
+                                <div class="cta-button">
+                                    <a href="forma_fraiseuse.html" class="btn-pulse">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Partie droite -->
+                <div class="droite">
+                    <div class="droiteh" data-aos="fade-left" data-aos-delay="200">
+                        <div class="content-wrapper">
+                            <h1 class="titre slide-in-title">Impression Numérique</h1>
+                            <div class="description fade-in-description">
+                                Découvrez les techniques d'impression grand format et haute résolution sur divers supports. Apprenez la gestion des couleurs et la finition professionnelle.
+                                <div class="cta-button">
+                                    <a href="#" class="btn-pulse">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="droiteb" data-aos="fade-left" data-aos-delay="250">
+                        <div class="content-wrapper">
+                            <h1 class="titre slide-in-title">Découpe Laser</h1>
+                            <div class="description fade-in-description">
+                                Formation complète sur la découpe et gravure laser: logiciels, paramétrages et techniques avancées.
+                                <div class="cta-button">
+                                    <a href="#" class="btn-pulse">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Formation en pleine largeur -->
+            <div class="pleine-largeur" data-aos="fade-up" data-aos-delay="300">
+                <div class="content-wrapper">
+                    <h1 class="titre slide-in-title">Impression 3D</h1>
+                    <div class="description fade-in-description">
+                        Maîtrisez toutes les étapes de l'impression 3D
+                        <div class="cta-button">
+                            <a href="#" class="btn-pulse">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h1>TÉMOIGNAGES</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Le Fablab nous a fourni des machines de qualité et un excellent support technique pour notre école d'ingénieurs. Service professionnel et réactif.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="author-img">
+                            <div class="author-info">
+                                <h4>Dr. Amadou Diallo</h4>
+                                <p>Universitaire de Dakar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Grâce à leur formation Arduino, nous avons pu développer un système d'irrigation intelligent pour notre coopérative agricole. Résultats impressionnants!</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="author-img">
+                            <div class="author-info">
+                                <h4>Fatou Ndiaye</h4>
+                                <p>Coopérative Agricole</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">La découpe laser nous a permis de créer des produits uniques pour notre boutique d'artisanat. Qualité et précision au rendez-vous.</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client" class="author-img">
+                            <div class="author-info">
+                                <h4>Mamadou Sow</h4>
+                                <p>Artisan Créateur</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <div id="projets"></div>
+    <div class="container py-5">
+        <div class="section-title" data-aos="fade-up">
+            <h1>PROJETS & INITIATIVES</h1>
+        </div>
+        <div class="grid">
+            <div class="card" data-aos="fade-up">
+                <img src="kits Arduino mega.png" alt="Projet Education">
+                <div class="overlay">
+                    <div class="card-title">Smart Coders</div>
+                    <div class="card-description">Développer les compétences numériques dès le plus jeune âge et former les innovateurs de demain.<br><br><a href="SmartCoder.html">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a></div>
+                </div>
+                <h2 class="card-image-title">Smart Coders</h2>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <img src="Brother.png" alt="Projet Entrepreneuriat">
+                <div class="overlay">
+                    <div class="card-title">Fab'Tour</div>
+                    <div class="card-description">Apporter la technologie au plus près des communautés rurales et urbaines et déclencher des vocations.<br><br><a href="FabTour.html">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a></div>
+                </div>
+                <h2 class="card-image-title">Fab'Tour</h2>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <img src="mini kits.png" alt="Projet Communautaire">
+                <div class="overlay">
+                    <div class="card-title">Fab'Elles</div>
+                    <div class="card-description">Briser les barrières et encourager plus de femmes à oser créer, innover et entreprendre.<br><br><a href="FabElle.html">en savoir plus <i class="fas fa-arrow-right ms-2"></i></a></div>
+                </div>
+                <h2 class="card-image-title">Fab'Elles</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Nos partenaires -->
+    <section class="nos-partenaires py-5">
+        <div class="container d-flex flex-column align-items-center">
+            <div class="section-title text-center" data-aos="fade-up">
+                <h1>NOS PARTENAIRES</h1>
+                <p>Découvrez les entreprises et organisations qui nous soutiennent dans notre mission d'innovation et de fabrication numérique.</p>
+            </div>
+            <div class="row justify-content-center text-center">
+                <div class="col-md-2 col-6 mb-3" data-aos="fade-up">
+                    <img src="kits arduino petit.png" alt="Partenaire 1" class="img-fluid">
+                </div>
+                <div class="col-md-2 col-6 mb-3" data-aos="fade-up" data-aos-delay="100">
+                    <img src="Kits d'assortissement de diodes.png" alt="Partenaire 2" class="img-fluid">
+                </div>
+                <div class="col-md-2 col-6 mb-3" data-aos="fade-up" data-aos-delay="200">
+                    <img src="Imprimante 3d adventure3.png" alt="Partenaire 3" class="img-fluid">
+                </div>
+                <div class="col-md-2 col-6 mb-3" data-aos="fade-up" data-aos-delay="300">
+                    <img src="Leds avec fil.png" alt="Partenaire 4" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2 data-aos="fade-up">ABONNEZ-VOUS À NOTRE NEWSLETTER</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Recevez les dernières actualités, promotions et conseils techniques directement dans votre boîte mail.</p>
+            <form class="newsletter-form" data-aos="fade-up" data-aos-delay="200">
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Votre adresse email" required>
+                    <button class="btn btn-newsletter" type="submit">S'abonner</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-5 mb-md-0">
+                    <h3 class="footer-heading">LINGUÈRE FABLAB</h3>
+                    <p>Votre partenaire en fabrication numérique au Sénégal. Machines, formations et services sur mesure pour particuliers, écoles et entreprises.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 mb-5 mb-md-0">
+                    <h3 class="footer-heading">LIENS RAPIDES</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Accueil</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Boutique</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Services</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>Formations</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2"></i>À propos</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 mb-5 mb-md-0">
+                    <h3 class="footer-heading">CATÉGORIES</h3>
+                    <ul class="footer-links">
+                        <li><a href="arduino.html"><i class="fas fa-chevron-right me-2"></i>Arduino & IoT</a></li>
+                        <li><a href="machine.html"><i class="fas fa-chevron-right me-2"></i>Machines</a></li>
+                        <li><a href="installation.html"><i class="fas fa-chevron-right me-2"></i>Installations</a></li>
+                        <li><a href="broderie.html"><i class="fas fa-chevron-right me-2"></i>Broderie</a></li>
+                        <li><a href="CNC.html"><i class="fas fa-chevron-right me-2"></i>Fraiseuses Numérique</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div id="con"></div>
+                    <h3 class="footer-heading">CONTACT</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Avenue de l'Innovation, Dakar, Sénégal</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>(+221) 77 077 18 32</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>linguerefablab@gmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Lun-Ven: 08:00 - 17:00<br>Sam: 09:00 - 13:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom pt-4 mt-5">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-0">&copy; 2025 Linguère Fablab. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="mb-0">Conçu avec <i class="fas fa-heart text-danger"></i> par Linguère Fablab Team</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- HTML pour le modal du panier -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart me-2"></i> Votre Panier</h3>
+            <button id="close-cart" class="btn btn-sm btn-outline-danger">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Les éléments du panier seront ajoutés ici dynamiquement -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total :</span>
+                <span id="total-price">0 CFA</span>
+            </div>
+            <button id="checkout-button" class="checkout-btn">
+                <i class="fas fa-credit-card me-2"></i> Passer la commande
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de paiement -->
+    <div id="payment-modal" class="payment-modal">
+        <div class="payment-content">
+            <span class="close-payment" onclick="closePaymentModal()">&times;</span>
+            <h3>Finalisation de la Commande</h3>
+            <!-- Informations client -->
+            <div class="section">
+                <h4><i class="fas fa-user"></i> Informations Client</h4>
+                <form id="customer-info-form">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="first-name" class="form-label">Prénom</label>
+                            <input type="text" id="first-name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="last-name" class="form-label">Nom</label>
+                            <input type="text" id="last-name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Téléphone</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                </form>
+            </div>
+            <!-- Informations de livraison -->
+            <div class="section">
+                <h4><i class="fas fa-truck"></i> Livraison</h4>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Adresse</label>
+                    <input type="text" id="address" class="form-control" required>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label for="city" class="form-label">Ville</label>
+                        <input type="text" id="city" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <!-- Méthodes de paiement -->
+            <div class="section">
+                <h4><i class="fas fa-credit-card"></i> Paiement</h4>
+                <div class="payment-methods mb-4 text-center">
+                    <div class="d-flex justify-content-center gap-4">
+                        <div class="payment-method-option">
+                            <input type="radio" id="orange-money" name="payment-method" value="orange-money" checked>
+                            <label for="orange-money" class="payment-method-label">
+                                <img src="a.png" alt="Orange Money">
+                            </label>
+                        </div>
+                        <div class="payment-method-option">
+                            <input type="radio" id="wave" name="payment-method" value="wave">
+                            <label for="wave" class="payment-method-label">
+                                <img src="a.png" alt="Wave">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <form id="payment-form">
+                    <div class="mb-3">
+                        <label for="payment-phone" class="form-label">Numéro de téléphone</label>
+                        <input type="tel" id="payment-phone" class="form-control" placeholder="77 123 45 67" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="payment-code" class="form-label">Code de transaction (si applicable)</label>
+                        <input type="text" id="payment-code" class="form-control" placeholder="Optionnel">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-lock"></i> Payer <span id="total-amount">0</span> CFA
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Message -->
+    <div id="confirmation-message" class="confirmation-message">
+        <i class="fas fa-check-circle me-2"></i> Produit ajouté au panier!
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Dropdown menu animation
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                const menu = dropdown.querySelector('.dropdown-menu');
+                menu.style.display = 'block';
+                menu.classList.add('animate__animated', 'animate__fadeIn');
+            });
+            dropdown.addEventListener('mouseleave', () => {
+                const menu = dropdown.querySelector('.dropdown-menu');
+                menu.style.display = 'none';
+                menu.classList.remove('animate__animated', 'animate__fadeIn');
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('.search-bar input');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('animate__animated', 'animate__pulse');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('animate__animated', 'animate__pulse');
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            
+            // Change icon
+            const icon = mobileMenuToggle.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mainNav.classList.contains('active') && 
+                !mainNav.contains(e.target) && 
+                !mobileMenuToggle.contains(e.target)) {
+                mainNav.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
+
+    <!-- JavaScript pour le panier -->
+    <script>
+        let cart = [];
+        let total = 0;
+
+        // Fonction pour ajouter un produit au panier
+        function addToCart(name, price, category, image, quantity = 1) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    category: category,
+                    image: image,
+                    quantity: quantity
+                });
+            }
+            total += price * quantity;
+            updateCartDisplay();
+            showConfirmation();
+        }
+
+        // Fonction pour mettre à jour l'affichage du panier
+        function updateCartDisplay() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCountElement = document.querySelector('.cart-count');
+            const totalPriceElement = document.getElementById('total-price');
+            const { discount, subtotal, gift } = calculateDiscounts();
+
+            cartItemsContainer.innerHTML = '';
+            cart.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div class="cart-item-image">
+                        <img src="${item.image}" alt="${item.name}" loading="lazy">
+                    </div>
+                    <div class="cart-item-info">
+                        <h5>${item.name}</h5>
+                        <p>${item.price.toLocaleString()} CFA</p>
+                        <small>${item.category}</small>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeCartItemQuantity(${index}, -1)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <span class="quantity-value">${item.quantity}</span>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changeCartItemQuantity(${index}, 1)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="cart-item-actions">
+                        <span class="cart-item-total">${(item.price * item.quantity).toLocaleString()} CFA</span>
+                        <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+
+            if (discount > 0 || gift) {
+                const discountElement = document.createElement('div');
+                discountElement.className = 'cart-discounts';
+                let discountHTML = '';
+                if (discount > 0) {
+                    discountHTML += `
+                        <div class="discount-item">
+                            <span>Réduction (10% sur kits Arduino/Robotique)</span>
+                            <span class="text-danger">-${discount.toLocaleString()} CFA</span>
+                        </div>
+                    `;
+                }
+                if (gift) {
+                    discountHTML += `
+                        <div class="gift-item">
+                            <span><i class="fas fa-gift text-success"></i> ${gift}</span>
+                        </div>
+                    `;
+                }
+                discountElement.innerHTML = discountHTML;
+                cartItemsContainer.appendChild(discountElement);
+            }
+
+            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (cartCountElement) {
+                cartCountElement.setAttribute('data-count', itemCount);
+                cartCountElement.innerHTML = `<i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">${subtotal.toLocaleString()} CFA</span>`;
+            }
+
+            if (totalPriceElement) {
+                totalPriceElement.textContent = `${subtotal.toLocaleString()} CFA`;
+            }
+
+            const totalAmountElement = document.getElementById('total-amount');
+            if (totalAmountElement) {
+                totalAmountElement.textContent = subtotal.toLocaleString();
+            }
+        }
+
+        // Fonction pour calculer les réductions et cadeaux
+        function calculateDiscounts() {
+            let discount = 0;
+            let gift = '';
+            const arduinoRobotTotal = cart
+                .filter(item => item.category.includes('Arduino') || item.category.includes('Robotique'))
+                .reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            if (arduinoRobotTotal > 100000) {
+                discount = arduinoRobotTotal * 0.1;
+            }
+
+            const subtotal = total - discount;
+            return { discount, subtotal, gift };
+        }
+
+        // Fonction pour modifier la quantité d'un article
+        function changeCartItemQuantity(index, change) {
+            const newQuantity = cart[index].quantity + change;
+            if (newQuantity < 1) {
+                removeFromCart(index);
+            } else {
+                total += cart[index].price * change;
+                cart[index].quantity = newQuantity;
+                updateCartDisplay();
+            }
+        }
+
+        // Fonction pour supprimer un article
+        function removeFromCart(index) {
+            const item = cart[index];
+            total -= item.price * item.quantity;
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        // Fonction pour afficher la confirmation
+        function showConfirmation() {
+            const confirmation = document.getElementById('confirmation-message');
+            if (confirmation) {
+                confirmation.style.display = 'block';
+                confirmation.style.opacity = '1';
+                setTimeout(() => {
+                    confirmation.style.opacity = '0';
+                    setTimeout(() => confirmation.style.display = 'none', 300);
+                }, 3000);
+            }
+        }
+
+        // Gestion des modales
+        function toggleCartModal() {
+            const cartModal = document.getElementById('cart-modal');
+            if (cartModal.style.display === 'block') {
+                cartModal.style.display = 'none';
+            } else {
+                cartModal.style.display = 'block';
+            }
+        }
+
+        function openPaymentModal() {
+            if (cart.length === 0) {
+                alert('Votre panier est vide. Ajoutez des produits avant de passer commande.');
+                return;
+            }
+            document.getElementById('payment-modal').style.display = 'block';
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('payment-modal').style.display = 'none';
+        }
+
+        // Gestion du formulaire de paiement
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentForm = document.getElementById('payment-form');
+            if (paymentForm) {
+                paymentForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const requiredFields = ['first-name', 'last-name', 'email', 'phone', 'address'];
+                    let isValid = true;
+                    requiredFields.forEach(fieldId => {
+                        const field = document.getElementById(fieldId);
+                        if (!field.value.trim()) {
+                            isValid = false;
+                            field.classList.add('is-invalid');
+                        } else {
+                            field.classList.remove('is-invalid');
+                        }
+                    });
+
+                    if (!isValid) {
+                        alert('Veuillez remplir tous les champs obligatoires.');
+                        return;
+                    }
+
+                    const { subtotal } = calculateDiscounts();
+                    alert(`Paiement réussi!\n\nMerci pour votre commande de ${subtotal.toLocaleString()} CFA.`);
+                    cart = [];
+                    total = 0;
+                    updateCartDisplay();
+                    this.reset();
+                    closePaymentModal();
+                });
+            }
+
+            const cartCountElement = document.querySelector('.cart-count');
+            if (cartCountElement) {
+                cartCountElement.addEventListener('click', toggleCartModal);
+            }
+
+            const closeCartButton = document.getElementById('close-cart');
+            if (closeCartButton) {
+                closeCartButton.addEventListener('click', toggleCartModal);
+            }
+
+            const checkoutButton = document.getElementById('checkout-button');
+            if (checkoutButton) {
+                checkoutButton.addEventListener('click', openPaymentModal);
+            }
+
+            window.addEventListener('click', function(event) {
+                if (event.target === document.getElementById('cart-modal')) {
+                    toggleCartModal();
+                }
+                if (event.target === document.getElementById('payment-modal')) {
+                    closePaymentModal();
+                }
+            });
+        });
+    </script>
+
+    <!-- ---les card de la partie service 5---- -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById("modal-service5");
+            var btn = document.querySelector(".modal-trigger");
+            var span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function(event) {
+                event.preventDefault();
+                modal.style.display = "block";
+            }
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
