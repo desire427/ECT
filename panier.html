@@ -777,66 +777,80 @@
     </main>
 
     <!-- Modal de paiement professionnel -->
-    <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="fas fa-credit-card"></i>
-                        Finaliser votre paiement
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Récapitulatif de commande -->
-                    <div class="order-summary" id="modal-order-summary"></div>
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-credit-card"></i>
+                    Finaliser votre paiement
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body">
+                <div class="order-summary" id="modal-order-summary"></div>
 
-                    <!-- Méthodes de paiement -->
-                    <div class="payment-methods">
-                        <!-- Wave Money -->
-                        <div class="payment-method" onclick="selectPaymentMethod('wave')">
-                            <div class="method-icon">
-                                <img src="wave.png" alt="Wave Money">
-                            </div>
-                            <div class="method-details">
-                                <h6>Wave Money</h6>
-                                <p>Paiement mobile instantané et sécurisé via votre portefeuille Wave</p>
-                            </div>
-                            <div class="radio-input">
-                                <input type="radio" name="paymentMethod" id="wave" value="wave">
-                            </div>
-                        </div>
-                        <!-- Orange Money -->
-                        <div class="payment-method" onclick="selectPaymentMethod('orange')">
-                            <div class="method-icon">
-                                <img src="orange_money.png" alt="Orange Money">
-                            </div>
-                            <div class="method-details">
-                                <h6>Orange Money</h6>
-                                <p>Solution de paiement mobile fiable et accessible partout au Sénégal</p>
-                            </div>
-                            <div class="radio-input">
-                                <input type="radio" name="paymentMethod" id="orange" value="orange">
-                            </div>
-                        </div>
+                <!-- Formulaire d'informations -->
+                <div class="customer-info mb-4">
+                    <h6 class="mb-3">Informations de livraison</h6>
+                    
+                    <!-- Numéro de téléphone -->
+                    <div class="mb-3">
+                        <label for="phoneNumber" class="form-label">Numéro de téléphone</label>
+                        <input type="tel" class="form-control" id="phoneNumber" placeholder="+221 XX XXX XX XX" required>
                     </div>
-
-                    <!-- Instructions de paiement -->
-                    <div class="payment-instructions" id="paymentInstructions">
-                        <!-- Le contenu sera généré dynamiquement -->
+                    
+                    <!-- Adresse avec Google Maps -->
+                    <div class="mb-3">
+                        <label for="deliveryAddress" class="form-label">Adresse de livraison</label>
+                        <input type="text" class="form-control" id="deliveryAddress" placeholder="Commencez à taper votre adresse..." required>
+                        <div id="addressSuggestions" class="address-suggestions"></div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">
-                        <i class="fas fa-times me-2"></i>Annuler
-                    </button>
-                    <button type="button" class="btn btn-confirm" id="confirmPaymentBtn" disabled>
-                        <i class="fas fa-check me-2"></i>Confirmer le paiement
-                    </button>
+
+                <!-- Méthodes de paiement -->
+                <div class="payment-methods">
+                    <div class="payment-method" onclick="selectPaymentMethod('wave')">
+                        <div class="method-icon">
+                            <img src="wave.png" alt="Wave Money">
+                        </div>
+                        <div class="method-details">
+                            <h6>Wave Money</h6>
+                            <p>Paiement mobile instantané et sécurisé via votre portefeuille Wave</p>
+                        </div>
+                        <div class="radio-input">
+                            <input type="radio" name="paymentMethod" id="wave" value="wave">
+                        </div>
+                    </div>
+                    
+                    <div class="payment-method" onclick="selectPaymentMethod('orange')">
+                        <div class="method-icon">
+                            <img src="orange_money.png" alt="Orange Money">
+                        </div>
+                        <div class="method-details">
+                            <h6>Orange Money</h6>
+                            <p>Solution de paiement mobile fiable et accessible partout au Sénégal</p>
+                        </div>
+                        <div class="radio-input">
+                            <input type="radio" name="paymentMethod" id="orange" value="orange">
+                        </div>
+                    </div>
                 </div>
+
+                <div class="payment-instructions" id="paymentInstructions"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>Annuler
+                </button>
+                <button type="button" class="btn btn-confirm" id="confirmPaymentBtn" disabled>
+                    <i class="fas fa-check me-2"></i>Confirmer le paiement
+                </button>
             </div>
         </div>
     </div>
+</div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1106,42 +1120,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 showPaymentInstructions(method);
             }
         }
-
-        // Fonction pour afficher les instructions de paiement
-        function showPaymentInstructions(method) {
-            const instructionsEl = document.getElementById('paymentInstructions');
-            
-            if (method === 'wave') {
-                instructionsEl.innerHTML = `
-                    <h6><i class="fas fa-info-circle"></i> Instructions pour payer avec Wave</h6>
-                    <ol>
-                        <li>Ouvrez votre application Wave</li>
-                        <li>Allez dans la section "Paiement"</li>
-                        <li>Saisissez le code marchand: <strong>LINGUEREFABLAB</strong></li>
-                        <li>Entrez le montant de <strong>${total.toLocaleString()} CFA</strong></li>
-                        <li>Confirmez votre paiement avec votre code PIN</li>
-                    </ol>
-                    <div class="qrcode-placeholder">
-                        <p>Ou scannez ce code QR pour payer directement</p>
-                        <img src="https://via.placeholder.com/150x150/cccccc/ffffff?text=QR+Code" alt="QR Code Wave" style="max-width: 150px;">
-                    </div>
-                `;
-            } else if (method === 'orange') {
-                instructionsEl.innerHTML = `
-                    <h6><i class="fas fa-info-circle"></i> Instructions pour payer avec Orange Money</h6>
-                    <ol>
-                        <li>Composez <strong>#144#</strong> sur votre téléphone</li>
-                        <li>Sélectionnez l'option "Paiement de factures"</li>
-                        <li>Entrez le code marchand: <strong>LINGUEREFABLAB</strong></li>
-                        <li>Entrez le montant de <strong>${total.toLocaleString()} CFA</strong></li>
-                        <li>Confirmez avec votre code secret Orange Money</li>
-                    </ol>
-                `;
-            }
-            
-            instructionsEl.style.display = 'block';
-        }
-
         // Fonction pour simuler le traitement du paiement
         function processPayment() {
             const confirmBtn = document.getElementById('confirmPaymentBtn');
@@ -1184,5 +1162,117 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     </script>
+    <script>
+let searchTimeout;
+let selectedAddress = null;
+
+function initializeAddressSearch() {
+    const input = document.getElementById('deliveryAddress');
+    const suggestionsDiv = document.getElementById('addressSuggestions');
+
+    input.addEventListener('input', function() {
+        const query = this.value.trim();
+        
+        clearTimeout(searchTimeout);
+        
+        if (query.length < 3) {
+            hideSuggestions();
+            return;
+        }
+
+        searchTimeout = setTimeout(() => {
+            searchAddresses(query);
+        }, 300);
+    });
+
+    input.addEventListener('blur', function() {
+        setTimeout(() => hideSuggestions(), 200);
+    });
+}
+
+async function searchAddresses(query) {
+    const suggestionsDiv = document.getElementById('addressSuggestions');
+    
+    try {
+        const url = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=5&countrycodes=sn&q=${encodeURIComponent(query + ', Sénégal')}`;
+        
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        showSuggestions(data);
+    } catch (error) {
+        console.error('Erreur lors de la recherche d\'adresse:', error);
+        hideSuggestions();
+    }
+}
+
+function showSuggestions(addresses) {
+    const suggestionsDiv = document.getElementById('addressSuggestions');
+    
+    if (addresses.length === 0) {
+        hideSuggestions();
+        return;
+    }
+
+    let html = '';
+    addresses.forEach(address => {
+        html += `
+            <div class="address-suggestion" onclick="selectAddress('${address.display_name}', ${address.lat}, ${address.lon})">
+                <i class="fas fa-map-marker-alt me-2"></i>
+                ${address.display_name}
+            </div>
+        `;
+    });
+    
+    suggestionsDiv.innerHTML = html;
+    suggestionsDiv.style.display = 'block';
+}
+
+function hideSuggestions() {
+    const suggestionsDiv = document.getElementById('addressSuggestions');
+    suggestionsDiv.style.display = 'none';
+}
+
+function selectAddress(displayName, lat, lon) {
+    const input = document.getElementById('deliveryAddress');
+    input.value = displayName;
+    
+    selectedAddress = {
+        address: displayName,
+        latitude: lat,
+        longitude: lon
+    };
+    
+    hideSuggestions();
+    validateForm();
+    
+    console.log('Adresse sélectionnée:', selectedAddress);
+}
+
+function selectPaymentMethod(method) {
+    document.querySelectorAll('.payment-method').forEach(pm => pm.classList.remove('selected'));
+    document.getElementById(method).checked = true;
+    document.getElementById(method).closest('.payment-method').classList.add('selected');
+    validateForm();
+}
+
+function validateForm() {
+    const phone = document.getElementById('phoneNumber').value;
+    const address = document.getElementById('deliveryAddress').value;
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+    
+    const isValid = phone.length >= 9 && address.length >= 5 && paymentMethod;
+    document.getElementById('confirmPaymentBtn').disabled = !isValid;
+}
+
+// Validation du formulaire
+document.getElementById('phoneNumber').addEventListener('input', validateForm);
+document.getElementById('deliveryAddress').addEventListener('input', validateForm);
+
+// Initialiser la recherche d'adresse quand la modal s'ouvre
+document.getElementById('paymentModal').addEventListener('shown.bs.modal', function() {
+    initializeAddressSearch();
+});
+</script>
 </body>
 </html>
