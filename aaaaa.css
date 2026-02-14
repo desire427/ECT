@@ -334,7 +334,7 @@ nav {
 }
 
 .section-title h1 {
-    font-size: 2.5rem;
+    /* font-size: 2.5rem; */
     font-weight: 700;
     color: var(--primary-color);
     display: inline-block;
@@ -788,9 +788,9 @@ footer {
         font-size: 1rem;
     }
     
-    .section-title h1 {
-        font-size: 2rem;
-    }
+  .section-title h1 {
+        font-size: 1rem;
+    } 
     
     .grid {
         grid-template-columns: 1fr;
@@ -820,8 +820,16 @@ footer {
     }
     
     .hero-content h1 {
-        font-size: 1.8rem;
+        font-size: 1rem;
     }
+    h1{
+        font-size: 1.5rem;
+    }
+
+    .services-section .grid {
+        display: block;
+    }
+
     
     .carousel-caption h5 {
         font-size: 1.2rem;
@@ -888,6 +896,103 @@ footer {
     .dropdown-menu a {
         color: var(--light-color) !important;
         padding: 8px 15px !important;
+    }
+}
+
+/* Make services and formations stack one-per-line on small screens */
+@media (max-width: 576px) {
+    /* Services: force one card per row */
+    .services-section .grid {
+        display: block !important;
+        padding: 0 10px;
+    }
+    .services-section .card {
+        display: block;
+        width: 100%;
+        max-width: none;
+        margin-bottom: 2px;
+        padding: 10px;
+        height: 100px; /* allow card to size to content */
+    }
+    .services-section .card-title {
+        font-size: 1.3rem !important;
+        font-weight: 700;
+        margin-bottom: 0px !important;
+        color: #fff;
+        position: relative;
+        padding-bottom: 0px !important;
+    }
+    h1 {
+        font-size: 1.5rem !important;
+    }
+    .services-section .card-description {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        padding: 0px !important;
+        font-size: 0.9rem !important;
+        margin: 0px !important;
+    }
+    .services-section .overlay {
+        opacity: 1 !important;
+        padding: 0px !important;
+        margin: 0px !important;
+        background: linear-gradient(135deg, rgba(44, 62, 80, 0.95) 0%, rgba(52, 152, 219, 0.9) 100%);
+        position: relative; /* Optionnel : si vous voulez changer le comportement */
+    }
+
+    .services-section .card-description a {
+        margin-top: 3px !important;
+    }
+    
+    /* Cache le titre blanc qui était visible au survol */
+    .services-section .card-image-title {
+        display: none !important;
+    }
+    
+    /* Ajuste la hauteur des cards pour mieux voir le contenu */
+    .services-section .card {
+        height: auto !important;
+        min-height: 200px;
+    }
+    
+    /* Améliore la lisibilité du texte sur mobile */
+    .services-section .card-description {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        padding: 10px;
+    }
+    .services-section .card img {
+        height: 180px;
+        object-fit: cover;
+    }
+
+    /* Formations: ensure each block is full width and stacked */
+    .premiere-ligne {
+        display: block  !important;
+        padding: 0 10px  !important;
+    }
+    .gauche, .droite, .pleine-largeur {
+        display: block  !important;
+        width: 100%  !important;
+        margin-bottom: 14px  !important;
+        height: auto  !important;
+    }
+    .gaucheh, .gaucheb, .droiteh, .droiteb, .pleine-largeur {
+        height: 180px  !important;
+    }
+    .content-wrapper { padding: 16px; }
+    .carousel-inner{
+        height: 250px !important;
+    }
+    .video-section{
+        height: 300px !important;
+        margin: 10px 0 !important;
+    }
+    .container{
+        padding: 0 10px !important;
+    }
+    .section-title h1{
+        padding: 0 10px !important;
     }
 }
 
@@ -1350,3 +1455,258 @@ footer {
         max-height: calc(100vh - 200px);
         overflow-y: auto;
     }
+
+
+
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .nav-brand {
+        font-size: 1.5rem;
+    }
+    
+    .search-bar {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-bar span {
+        display: block;
+        text-align: center;
+        margin: 5px 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+  .section-title h1 {
+        font-size: 1rem;
+    } 
+    
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .video-overlay h2 {
+        font-size: 1.8rem;
+    }
+    
+    .video-overlay p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .nav-brand {
+        font-size: 1.2rem;
+    }
+    
+    .search-bar {
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    .icons span {
+        margin: 0 5px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1rem;
+    }
+    h1{
+        font-size: 1.5rem;
+    }
+
+    .services-section .grid {
+        display: block;
+    }
+
+    
+    .carousel-caption h5 {
+        font-size: 1.2rem;
+    }
+
+    /* Responsive Navigation */
+    nav .container {
+        flex-wrap: nowrap; /* Empêche le retour à la ligne des éléments principaux */
+    }
+
+    .menu-toggle {
+        display: block; /* Affiche le bouton menu */
+    }
+
+    .header-right {
+        display: none; /* Cache la partie droite (recherche, icônes) sur mobile */
+    }
+
+    .nav-bar {
+        padding: 0;
+    }
+
+    .nav-bar .container {
+        flex-direction: column;
+        align-items: flex-start;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+    }
+
+    .nav-bar.active .container {
+        max-height: 500px; /* Hauteur suffisante pour afficher les liens */
+        padding: 10px 0;
+    }
+
+    .nav-bar a, .nav-bar .dropdown {
+        width: 100%;
+        padding: 10px 20px;
+        margin: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-bar a:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    .nav-bar a::after {
+        display: none; /* Cache l'effet de survol sur mobile */
+    }
+
+    .dropdown-menu {
+        position: static !important; /* Important pour l'affichage mobile */
+        display: none !important;
+        background: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding-left: 20px !important;
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: block !important;
+    }
+
+    .dropdown-menu a {
+        color: var(--light-color) !important;
+        padding: 8px 15px !important;
+    }
+}
+
+/* Make services and formations stack one-per-line on small screens */
+@media (max-width: 576px) {
+    /* Services: force one card per row */
+    .services-section .grid {
+        display: block !important;
+        padding: 0 10px;
+    }
+    .services-section .card {
+        display: block;
+        width: 100%;
+        max-width: none;
+        margin-bottom: 2px;
+        padding: 10px;
+        height: 100px; /* allow card to size to content */
+    }
+    .services-section .card-title {
+        font-size: 1.3rem !important;
+        font-weight: 700;
+        margin-bottom: 0px !important;
+        color: #fff;
+        position: relative;
+        padding-bottom: 0px !important;
+    }
+    h1 {
+        font-size: 1.5rem !important;
+    }
+    .services-section .card-description {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        padding: 0px !important;
+        font-size: 0.9rem !important;
+        margin: 0px !important;
+    }
+    .services-section .overlay {
+        opacity: 1 !important;
+        padding: 0px !important;
+        margin: 0px !important;
+        background: linear-gradient(135deg, rgba(44, 62, 80, 0.95) 0%, rgba(52, 152, 219, 0.9) 100%);
+        position: relative; /* Optionnel : si vous voulez changer le comportement */
+    }
+
+    .services-section .card-description a {
+        margin-top: 3px !important;
+    }
+    
+    /* Cache le titre blanc qui était visible au survol */
+    .services-section .card-image-title {
+        display: none !important;
+    }
+    
+    /* Ajuste la hauteur des cards pour mieux voir le contenu */
+    .services-section .card {
+        height: auto !important;
+        min-height: 200px;
+    }
+    
+    /* Améliore la lisibilité du texte sur mobile */
+    .services-section .card-description {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        padding: 10px;
+    }
+    .services-section .card img {
+        height: 180px;
+        object-fit: cover;
+    }
+
+    /* Formations: ensure each block is full width and stacked */
+    .premiere-ligne {
+        display: block  !important;
+        padding: 0 10px  !important;
+    }
+    .gauche, .droite, .pleine-largeur {
+        display: block  !important;
+        width: 100%  !important;
+        margin-bottom: 14px  !important;
+        height: auto  !important;
+    }
+    .gaucheh, .gaucheb, .droiteh, .droiteb, .pleine-largeur {
+        height: 180px  !important;
+    }
+    .content-wrapper { padding: 16px; }
+    .carousel-inner{
+        height: 250px !important;
+    }
+    .video-section{
+        height: 300px !important;
+        margin: 10px 0 !important;
+    }
+    .container{
+        padding: 0 10px !important;
+    }
+    .section-title h1{
+        padding: 0 10px !important;
+    }
+    .col-md-2 {
+        width: 25%;
+    }
+    .testimonials{
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+    .testimonial-card{
+        margin: 0px !important;
+        padding: 0px 10px !important
+    }
+    .testimonial-text{
+        font-size: 0.9rem !important;
+    }   
+}

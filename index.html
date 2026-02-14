@@ -813,6 +813,28 @@ footer {
     }
 }
 
+/* Reduce excessive spacing in features section on small screens */
+@media (max-width: 576px) {
+    .features {
+        padding: 5px 0; /* was 80px */
+    }
+    .features .feature-box {
+        padding: 5px 6px !important; /* reduce inner padding */
+    }
+    .features .feature-icon {
+        font-size: 2rem; /* slightly smaller */
+        margin-bottom: 8px;
+    }
+    .features .feature-box h3 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+    .features .feature-box p {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+}
+
 @media (max-width: 576px) {
     .nav-brand {
         font-size: 1.2rem;
@@ -1327,27 +1349,220 @@ footer {
                 <a href="user.html"><span class="me-3"><i class="far fa-user"></i></span></a>
                 <span class="cart-count" data-count="0"><i class="fas fa-shopping-cart"></i> <span class="d-none d-md-inline">0 CFA</span></span>
             </div>
+            <!-- Hamburger toggler for main nav (visible on mobile) -->
+            <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+            </button>
         </div>
     </nav>
     
-    <!-- Main Navigation -->
-    <div class="nav-bar">
-        <div class="container d-flex flex-wrap justify-content-center">
-            <a href="#" style="color: rgb(255, 68, 0);"><i class="fas fa-home me-2"></i> ACCUEIL</a>
-            <div class="dropdown">
-                <a href="#"><i class="fas fa-list me-2"></i> CATALOGUE <i class="fas fa-chevron-down ms-1"></i></a>
-                <div class="dropdown-menu">
-                    <a href="#boutique"><i class="fas fa-microchip me-2"></i>Boutique</a>
-                    <a href="#services"><i class="fas fa-robot me-2"></i> Services</a>
-                    <a href="#formations"><i class="fas fa-tools me-2"></i> Formations</a>
-                    <a href="#projets"><i class="fas fa-tshirt me-2"></i> Projets et Initiatives</a>
-                </div>
-            </div> 
-            <a href="#"><i class="fas fa-certificate me-2"></i> NOUVEAUTÉS</a>
-            <a href="apropos.html"><i class="fas fa-info-circle me-2"></i> À PROPOS</a>
-            <a href="#con"><i class="fas fa-envelope me-2"></i> CONTACT</a>
+    <!-- Main Navigation (Bootstrap navbar with toggler for mobile) -->
+    <nav class="nav-bar navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+            </button> -->
+
+            <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: rgb(255, 68, 0);"><i class="fas fa-home me-2"></i> ACCUEIL</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="catalogueDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-list me-2"></i> CATALOGUE</a>
+                        <ul class="dropdown-menu" aria-labelledby="catalogueDropdown">
+                            <li><a class="dropdown-item" href="#boutique"><i class="fas fa-microchip me-2"></i>Boutique</a></li>
+                            <li><a class="dropdown-item" href="#services"><i class="fas fa-robot me-2"></i> Services</a></li>
+                            <li><a class="dropdown-item" href="#formations"><i class="fas fa-tools me-2"></i> Formations</a></li>
+                            <li><a class="dropdown-item" href="#projets"><i class="fas fa-tshirt me-2"></i> Projets et Initiatives</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-certificate me-2"></i> NOUVEAUTÉS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="apropos.html"><i class="fas fa-info-circle me-2"></i> À PROPOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#con"><i class="fas fa-envelope me-2"></i> CONTACT</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
+    <style>
+    /* Ensure hamburger is visible and styled */
+    .navbar-toggler { border: none; }
+    .navbar-toggler { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 40px; padding: 6px; border-radius: 6px; background: transparent; z-index: 2000; }
+    .navbar-toggler .fa-bars { color: #ec0404; font-size: 1.25rem; }
+    .navbar-dark .navbar-toggler-icon { background-image: none; }
+    /* Position toggler inside the top nav container */
+    nav .container .navbar-toggler { border: none; display: inline-flex !important; align-items: center; justify-content: center; width: 44px; height: 38px; padding: 6px; background: transparent; z-index: 2000; }
+    /* Hide toggler on large screens (since main nav is expanded there) */
+    @media (min-width: 992px) {
+        nav .container .navbar-toggler { display: none !important; }
+    }
+    /* Ensure collapsed menu uses same background on small screens and links are visible */
+    @media (max-width: 992px) {
+        #mainNav {
+            background: var(--primary-color);
+            padding: 10px 0;
+            z-index: 1500;
+        }
+        /* Make sure toggler is visible on small screens */
+        .navbar-toggler { display: inline-flex !important; }
+        .navbar-nav .nav-link { color: #fff !important; }
+        .dropdown-menu { position: static !important; background: transparent; box-shadow: none; }
+        .dropdown-item { color: #fff !important; }
+    }
+    </style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Récupérer tous les togglers (boutons hamburger)
+    const togglers = document.querySelectorAll('.navbar-toggler');
+    const mainNav = document.getElementById('mainNav');
+    
+    if (togglers.length > 0 && mainNav) {
+        togglers.forEach(toggler => {
+            toggler.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Basculer la classe 'show' sur mainNav
+                mainNav.classList.toggle('show');
+                
+                // Gérer l'attribut aria-expanded
+                const isExpanded = mainNav.classList.contains('show');
+                this.setAttribute('aria-expanded', isExpanded);
+                
+                // Pour le premier toggler (dans le nav blanc)
+                if (this.closest('nav:not(.nav-bar)')) {
+                    // Si c'est le premier toggler, on s'assure que le menu est visible
+                    mainNav.style.display = isExpanded ? 'block' : '';
+                }
+            });
+        });
+    }
+    
+    // Fermer le menu quand on clique en dehors
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.navbar-toggler') && !e.target.closest('#mainNav')) {
+            mainNav.classList.remove('show');
+            togglers.forEach(t => t.setAttribute('aria-expanded', 'false'));
+        }
+    });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Désactiver complètement Bootstrap sur ce menu
+    const mainNav = document.getElementById('mainNav');
+    if (mainNav) {
+        mainNav.classList.remove('collapse', 'navbar-collapse');
+        mainNav.classList.add('custom-mobile-menu');
+    }
+    
+    // 2. Récupérer tous les togglers
+    const togglers = document.querySelectorAll('.navbar-toggler');
+    let menuOpen = false;
+    
+    // 3. Fonction pour ouvrir/fermer le menu
+    function toggleMenu(show) {
+        if (show) {
+            mainNav.style.display = 'block';
+            mainNav.style.maxHeight = '500px';
+            mainNav.style.opacity = '1';
+            menuOpen = true;
+        } else {
+            mainNav.style.display = 'none';
+            mainNav.style.maxHeight = '0';
+            mainNav.style.opacity = '0';
+            menuOpen = false;
+        }
+        
+        // Mettre à jour l'attribut aria-expanded sur tous les togglers
+        togglers.forEach(t => t.setAttribute('aria-expanded', menuOpen));
+    }
+    
+    // 4. Ajouter l'événement sur chaque toggler
+    togglers.forEach(toggler => {
+        toggler.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu(!menuOpen);
+        });
+    });
+    
+    // 5. Fermer le menu en cliquant ailleurs
+    document.addEventListener('click', function(e) {
+        if (menuOpen && !e.target.closest('.custom-mobile-menu') && !e.target.closest('.navbar-toggler')) {
+            toggleMenu(false);
+        }
+    });
+    
+    // 6. Fermer le menu au redimensionnement (si on passe en desktop)
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 992) {
+            mainNav.style.display = '';
+            mainNav.style.maxHeight = '';
+            mainNav.style.opacity = '';
+            menuOpen = false;
+        } else if (menuOpen) {
+            mainNav.style.display = 'block';
+        }
+    });
+});
+</script>
+<style>
+/* Style pour que le menu fonctionne avec notre JS */
+#mainNav.collapse:not(.show) {
+    display: none !important;
+}
+
+#mainNav.collapse.show {
+    display: block !important;
+}
+
+/* Ajustements pour mobile */
+@media (max-width: 992px) {
+    #mainNav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary-color);
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 9999;
+    }
+    
+    #mainNav .navbar-nav {
+        flex-direction: column;
+    }
+    
+    #mainNav .nav-item {
+        margin: 0.5rem 0;
+    }
+    
+    #mainNav .nav-link {
+        color: white !important;
+        padding: 0.5rem 1rem;
+    }
+    
+    #mainNav .dropdown-menu {
+        background: rgba(255,255,255,0.1);
+        border: none;
+        padding-left: 1rem;
+    }
+    
+    #mainNav .dropdown-item {
+        color: white !important;
+    }
+    
+    #mainNav .dropdown-item:hover {
+        background: rgba(255,255,255,0.2);
+    }
+}
+
+</style>
     
     <!-- Hero Section -->
     <section class="hero-section">
@@ -1434,7 +1649,7 @@ footer {
     </section>
     
     <!-- Boutique Section -->
-     <p id="boutiquee"></p>
+    <p id="boutiquee"></p>
     <div id="boutique"></div>
     <div class="container py-5">
         <div class="section-title" data-aos="fade-up">
